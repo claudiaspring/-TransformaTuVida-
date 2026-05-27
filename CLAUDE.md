@@ -47,7 +47,6 @@ La marca gira en torno a la transformación personal femenina desde una perspect
 | Crema cálido | `#F7F1E8` | Fondo principal, secciones claras |
 | Morado real | `#5B2C83` | Títulos principales, botones primarios, elementos de énfasis |
 | Dorado | `#C9A646` | Acentos, bordes decorativos, íconos especiales |
-| Ciruela | `#7A4E9D` | Subtítulos, hover states, gradientes suaves |
 | Malva suave | `#C9A3B8` | Fondos secundarios, separadores, elementos decorativos |
 
 No introducir colores fuera de esta paleta sin presentar primero una propuesta justificada.

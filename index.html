@@ -290,6 +290,50 @@
     .cta-banda { background: var(--morado); color: #fff; padding: 48px 20px; text-align: center; }
     .cta-banda p { font-size: 1.1rem; opacity: .9; margin-bottom: 24px; max-width: 560px; margin-left: auto; margin-right: auto; margin-bottom: 24px; }
     .cta-banda h3 { font-size: 1.5rem; margin-bottom: 12px; }
+
+    /* ── SECCIÓN DE PAGO ── */
+    #pago { padding: 84px 20px; background: var(--crema); }
+    .pago-caja {
+      max-width: 680px; margin: 0 auto;
+      background: var(--blanco); border-radius: 24px;
+      padding: 52px 44px; text-align: center;
+      box-shadow: var(--sombra); border: 2px solid rgba(201,166,70,.3);
+    }
+    .pago-icono { font-size: 3rem; margin-bottom: 16px; }
+    .pago-precio {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      font-weight: 700; color: var(--morado); line-height: 1; margin-bottom: 6px;
+    }
+    .pago-precio sup { font-size: 1.6rem; vertical-align: super; }
+    .pago-etiqueta {
+      display: inline-block; background: var(--dorado); color: var(--morado-osc);
+      font-weight: 700; font-size: .78rem; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 5px 18px; border-radius: 50px; margin-bottom: 28px;
+    }
+    .pago-texto {
+      font-size: 1.05rem; color: #4a3a5e; max-width: 520px;
+      margin: 0 auto 32px; line-height: 1.8;
+    }
+    .pago-pasos {
+      display: flex; flex-direction: column; gap: 14px;
+      margin: 0 auto 36px; max-width: 460px; text-align: left;
+    }
+    .pago-paso {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--crema); border-radius: 12px; padding: 14px 18px;
+    }
+    .pago-paso .num {
+      background: var(--morado); color: #fff; border-radius: 50%;
+      width: 28px; height: 28px; font-size: .85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pago-paso p { font-size: .92rem; color: #4a3a5e; }
+    .pago-seguridad {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 18px; font-size: .82rem; color: #7a6a8e;
+    }
+    @media(max-width:480px){ .pago-caja { padding: 36px 20px; } }
   </style>
 </head>
 <body>
@@ -745,6 +789,45 @@
         </a>
         <div style="margin-top: 16px; font-size: .82rem; opacity: .6;">
           🔒 Cupos limitados · Contacto directo y personalizado con Claudia
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PAGO ── -->
+  <section id="pago">
+    <div class="container">
+      <div class="pago-caja">
+        <div class="pago-icono">💛</div>
+        <div class="pago-precio"><sup>$</sup>197</div>
+        <div class="pago-etiqueta">Inversión especial</div>
+        <p class="pago-texto">
+          Para reservar tu lugar en el taller <strong>Renacer en Fe y Amor + Herramientas de IA</strong>,
+          haz clic en el botón de WhatsApp. Te enviaré personalmente las opciones de pago
+          disponibles y confirmaré tu cupo.
+        </p>
+        <div class="pago-pasos">
+          <div class="pago-paso">
+            <div class="num">1</div>
+            <p>Haz clic en el botón de WhatsApp y envía el mensaje.</p>
+          </div>
+          <div class="pago-paso">
+            <div class="num">2</div>
+            <p>Claudia te responde con las opciones de pago disponibles.</p>
+          </div>
+          <div class="pago-paso">
+            <div class="num">3</div>
+            <p>Realizas tu pago y recibes confirmación de tu cupo reservado.</p>
+          </div>
+        </div>
+        <a class="btn btn-wa"
+           href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197.%20%C2%BFMe%20puedes%20enviar%20las%20opciones%20de%20pago%3F"
+           target="_blank" rel="noopener"
+           style="font-size: 1.1rem; padding: 18px 44px;">
+          💬 Reservar mi lugar por WhatsApp
+        </a>
+        <div class="pago-seguridad">
+          🔒 Proceso 100% personal · Sin datos bancarios en este sitio · Cupos limitados
         </div>
       </div>
     </div>

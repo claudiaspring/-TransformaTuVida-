@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Renacer en Fe y Amor + IA — Claudia M. Spring</title>
+  <meta name="description" content="Transforma tu vida, sana creencias limitantes y aprende a usar herramientas de IA para crear tus propios proyectos. Taller Renacer en Fe y Amor con Claudia M. Spring. Solo $197.">
+  <meta property="og:title" content="Taller Renacer en Fe y Amor + IA — Claudia M. Spring">
+  <meta property="og:description" content="Para mujeres de 45+ que desean reconectar con su propósito y aprender a usar la IA como aliada. $197.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── VARIABLES ── */
+    :root {
+      --crema:       #F7F1E8;
+      --morado:      #5B2C83;
+      --dorado:      #C9A646;
+      --malva:       #C9A3B8;
+      --morado-osc:  #3d1d5c;
+      --texto:       #2C1A3E;
+      --blanco:      #FFFFFF;
+      --sombra:      0 4px 24px rgba(91,44,131,0.13);
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; background: var(--crema); color: var(--texto); font-size: 16px; line-height: 1.75; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.3; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── UTILIDADES ── */
+    .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+    .btn {
+      display: inline-block; padding: 16px 36px; border-radius: 50px;
+      font-family: 'Lato', sans-serif; font-weight: 700; font-size: 1rem;
+      cursor: pointer; border: none; transition: transform .2s, box-shadow .2s; text-align: center;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.22); }
+    .btn-morado  { background: var(--morado); color: var(--blanco); }
+    .btn-dorado  { background: linear-gradient(135deg, var(--dorado), #e0b84a); color: var(--morado-osc); }
+    .btn-wa      { background: #25D366; color: var(--blanco); }
+
+    .titulo-seccion { text-align: center; margin-bottom: 48px; }
+    .titulo-seccion h2 { font-size: clamp(1.85rem, 4vw, 2.7rem); color: var(--morado); margin-bottom: 12px; }
+    .titulo-seccion p  { font-size: 1.05rem; color: #5a4a6e; max-width: 640px; margin: 0 auto; }
+    .divisor { width: 60px; height: 3px; background: var(--dorado); margin: 14px auto; border-radius: 2px; }
+
+    /* ── BOTÓN FLOTANTE WA ── */
+    /* ⚠️ Reemplaza 14074162993 con tu número real (código de país + número, sin + ni espacios) */
+    .wa-flotante {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      background: #25D366; color: #fff; width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+      box-shadow: 0 6px 24px rgba(37,211,102,.5); transition: transform .2s;
+      text-decoration: none;
+    }
+    .wa-flotante:hover { transform: scale(1.12); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,241,232,.96); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--malva); padding: 14px 20px;
+    }
+    .nav-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--morado); font-weight: 700; line-height: 1.2; }
+    .nav-logo span { display: block; font-size: .7rem; font-family: 'Lato', sans-serif; font-weight: 300; color: #7a5d95; letter-spacing: 1px; text-transform: uppercase; }
+    .nav-cta { font-size: .85rem; padding: 10px 22px; white-space: nowrap; }
+
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(145deg, var(--morado-osc) 0%, var(--morado) 55%, #7a3fa8 100%);
+      color: #fff; padding: 90px 20px 110px; text-align: center; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(201,166,70,.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(201,166,70,.2); border: 1px solid var(--dorado);
+      color: var(--dorado); padding: 6px 20px; border-radius: 50px;
+      font-size: .82rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 28px;
+    }
+    #hero h1 { font-size: clamp(2.1rem, 6vw, 3.6rem); margin-bottom: 24px; }
+    #hero h1 em { color: var(--dorado); font-style: italic; }
+    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.22rem); opacity: .9; max-width: 660px; margin: 0 auto 40px; font-weight: 300; line-height: 1.85; }
+    .hero-precio { display: inline-block; margin-bottom: 38px; background: rgba(255,255,255,.1); border-radius: 14px; padding: 18px 38px; }
+    .hero-precio .antes { font-size: .88rem; opacity: .6; text-decoration: line-through; }
+    .hero-precio .ahora { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--dorado); line-height: 1; }
+    .hero-precio .ahora sup { font-size: 1.3rem; vertical-align: super; }
+    .hero-precio .label { font-size: .78rem; opacity: .7; margin-top: 4px; }
+    .hero-cta-grupo { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .hero-nota { font-size: .82rem; opacity: .68; }
+
+    /* ── PROBLEMA ── */
+    #problema { background: var(--blanco); padding: 84px 20px; }
+    .problema-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media(min-width:600px){ .problema-grid { grid-template-columns: 1fr 1fr; } }
+    .problema-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--crema); border-radius: 12px; padding: 20px;
+      border-left: 4px solid var(--malva);
+    }
+    .problema-item .ico { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+    .problema-item p { font-size: .97rem; color: #4a3a5e; }
+    .problema-puente {
+      margin-top: 48px; padding: 38px; text-align: center;
+      background: linear-gradient(135deg, var(--morado), #7a3fa8);
+      border-radius: 18px; color: #fff;
+    }
+    .problema-puente h3 { font-size: 1.65rem; margin-bottom: 12px; }
+    .problema-puente p { opacity: .9; max-width: 560px; margin: 0 auto; }
+
+    /* ── TRANSFORMACIÓN ── */
+    #transformacion { padding: 84px 20px; background: var(--crema); }
+    .transform-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media(min-width:600px){ .transform-grid { grid-template-columns: 1fr 1fr; } }
+    @media(min-width:800px){ .transform-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .transform-card {
+      background: var(--blanco); border-radius: 16px; padding: 28px 24px;
+      text-align: center; box-shadow: var(--sombra); border-top: 4px solid var(--dorado);
+    }
+    .transform-card .ico { font-size: 2.2rem; margin-bottom: 14px; }
+    .transform-card h3 { font-size: 1.05rem; color: var(--morado); margin-bottom: 8px; }
+    .transform-card p { font-size: .9rem; color: #5a4a6e; line-height: 1.65; }
+
+    /* ── EL TALLER ── */
+    #taller { padding: 84px 20px; background: var(--blanco); }
+    .taller-card {
+      background: var(--crema); border-radius: 20px; padding: 52px 44px;
+      text-align: center; box-shadow: var(--sombra); border: 1px solid rgba(201,166,70,.25);
+    }
+    .taller-icono { font-size: 3.2rem; margin-bottom: 20px; }
+    .taller-label { color: var(--dorado); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: .8rem; margin-bottom: 12px; }
+    .taller-card h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); color: var(--morado); margin-bottom: 20px; }
+    .taller-card p { font-size: 1.05rem; color: #4a3a5e; max-width: 620px; margin: 0 auto 16px; }
+    @media(max-width:480px){ .taller-card { padding: 36px 20px; } }
+
+    /* ── MÓDULOS ── */
+    #modulos { padding: 84px 20px; background: var(--crema); }
+    .modulos-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media(min-width:600px){ .modulos-grid { grid-template-columns: 1fr 1fr; } }
+    .modulo-card {
+      background: var(--blanco); border-radius: 16px; padding: 30px 26px;
+      border-top: 4px solid var(--morado); position: relative; box-shadow: var(--sombra);
+    }
+    .mod-num {
+      position: absolute; top: -14px; right: 20px;
+      background: var(--morado); color: #fff;
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modulo-card h3 { font-size: 1.08rem; color: var(--morado); margin-bottom: 10px; }
+    .modulo-card p { font-size: .95rem; color: #5a4a6e; }
+
+    /* ── BONOS IA ── */
+    #bonos { padding: 84px 20px; background: linear-gradient(180deg, var(--blanco) 0%, #f0e8f7 100%); }
+    .bonos-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media(min-width:560px){ .bonos-grid { grid-template-columns: 1fr 1fr; } }
+    @media(min-width:800px){ .bonos-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    .bono-card {
+      background: var(--blanco); border-radius: 16px; padding: 26px 20px;
+      text-align: center; box-shadow: var(--sombra);
+      border: 1px solid rgba(201,166,70,.18); transition: transform .2s;
+    }
+    .bono-card:hover { transform: translateY(-4px); }
+    .bono-ico { font-size: 2.2rem; margin-bottom: 12px; }
+    .bono-nombre { font-weight: 700; color: var(--morado); font-size: 1rem; margin-bottom: 4px; }
+    .bono-titulo { font-style: italic; color: var(--dorado); font-family: 'Playfair Display', serif; font-size: .88rem; margin-bottom: 10px; }
+    .bono-card p { font-size: .85rem; color: #5a4a6e; line-height: 1.6; }
+    .bono-valor { display: inline-block; margin-top: 12px; background: var(--crema); color: var(--morado); font-weight: 700; font-size: .78rem; padding: 4px 14px; border-radius: 50px; }
+    .bono-destacado { border: 2px solid var(--dorado); }
+
+    /* ── BENEFICIOS ── */
+    #beneficios { padding: 84px 20px; background: var(--crema); }
+    .beneficios-lista { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 700px; margin: 0 auto; }
+    @media(min-width:600px){ .beneficios-lista { grid-template-columns: 1fr 1fr; } }
+    .beneficio-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--blanco); border-radius: 12px; padding: 18px;
+      box-shadow: 0 2px 12px rgba(91,44,131,.07);
+    }
+    .beneficio-check { color: var(--dorado); font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+    .beneficio-item p { font-size: .97rem; color: #4a3a5e; }
+
+    /* ── PARA QUIÉN ES ── */
+    #para-quien { padding: 84px 20px; background: var(--blanco); }
+    .para-quien-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px; margin: 0 auto; }
+    @media(min-width:600px){ .para-quien-grid { grid-template-columns: 1fr 1fr; } }
+    .pq-si, .pq-no {
+      border-radius: 16px; padding: 32px 28px;
+    }
+    .pq-si { background: linear-gradient(135deg, #f0f9f4, #e8f5ee); border: 2px solid #48bb78; }
+    .pq-no { background: linear-gradient(135deg, #fff5f5, #ffe8e8); border: 2px solid #fc8181; }
+    .pq-si h3 { color: #276749; font-size: 1.15rem; margin-bottom: 16px; }
+    .pq-no h3 { color: #9b2c2c; font-size: 1.15rem; margin-bottom: 16px; }
+    .pq-lista { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .pq-lista li { font-size: .96rem; display: flex; gap: 10px; align-items: flex-start; color: #4a3a5e; }
+    .pq-lista li span { flex-shrink: 0; }
+
+    /* ── SOBRE CLAUDIA ── */
+    #claudia { padding: 84px 20px; background: var(--crema); }
+    .claudia-inner { display: flex; flex-direction: column; align-items: center; gap: 40px; text-align: center; }
+    @media(min-width:700px){ .claudia-inner { flex-direction: row; text-align: left; align-items: flex-start; } }
+    .claudia-avatar {
+      width: 164px; height: 164px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--malva), var(--morado));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; box-shadow: 0 10px 36px rgba(91,44,131,.32);
+    }
+    .claudia-texto h2 { font-size: 1.9rem; color: var(--morado); margin-bottom: 4px; }
+    .claudia-cargo { color: var(--dorado); font-weight: 700; font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+    .claudia-texto p { color: #4a3a5e; font-size: 1rem; margin-bottom: 14px; }
+    .claudia-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; justify-content: center; }
+    @media(min-width:700px){ .claudia-tags { justify-content: flex-start; } }
+    .tag { background: var(--blanco); border: 1px solid var(--malva); color: var(--morado); font-size: .8rem; padding: 6px 14px; border-radius: 50px; font-weight: 700; }
+
+    /* ── PRECIO ── */
+    #precio { padding: 84px 20px; background: linear-gradient(145deg, var(--morado-osc), var(--morado)); color: #fff; }
+    #precio .titulo-seccion h2 { color: #fff; }
+    #precio .titulo-seccion p  { color: rgba(255,255,255,.8); }
+    .valor-stack { background: rgba(255,255,255,.08); border: 1px solid rgba(201,166,70,.3); border-radius: 20px; padding: 36px; margin-bottom: 36px; }
+    .valor-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08); gap: 16px; }
+    .valor-item:last-child { border-bottom: none; }
+    .valor-item .nom { font-size: .95rem; opacity: .9; }
+    .valor-item .mon { font-weight: 700; color: var(--dorado); white-space: nowrap; }
+    .valor-total { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--dorado); }
+    .valor-total .nom, .valor-total .mon { text-decoration: line-through; opacity: .5; font-size: 1rem; }
+    .precio-caja { text-align: center; padding: 44px 36px; background: rgba(255,255,255,.06); border-radius: 20px; border: 2px solid var(--dorado); }
+    .precio-etiqueta { font-size: .85rem; text-transform: uppercase; letter-spacing: 2px; opacity: .8; margin-bottom: 10px; }
+    .precio-num { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 11vw, 6rem); font-weight: 700; color: var(--dorado); line-height: 1; margin-bottom: 8px; }
+    .precio-num sup { font-size: 2rem; vertical-align: super; }
+    .precio-desc { opacity: .8; font-size: .95rem; margin-bottom: 32px; }
+    @media(max-width:480px){ .valor-stack { padding: 24px 16px; } .precio-caja { padding: 32px 18px; } }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { padding: 84px 20px; background: var(--crema); }
+    .test-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media(min-width:600px){ .test-grid { grid-template-columns: 1fr 1fr; } }
+    .test-card { background: var(--blanco); border-radius: 16px; padding: 32px; box-shadow: var(--sombra); }
+    .test-comilla { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--malva); line-height: .5; margin-bottom: 16px; opacity: .4; }
+    .test-texto { font-style: italic; color: #4a3a5e; font-size: 1rem; margin-bottom: 20px; }
+    .test-autora { display: flex; align-items: center; gap: 12px; }
+    .test-avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--malva), var(--morado)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .test-nombre { font-weight: 700; color: var(--morado); font-size: .95rem; }
+    .test-lugar { font-size: .8rem; color: #7a6a8e; }
+    .estrellas { color: var(--dorado); font-size: .9rem; margin-top: 2px; }
+
+    /* ── GARANTÍA ── */
+    #garantia { padding: 60px 20px; background: var(--blanco); }
+    .garantia-box { max-width: 700px; margin: 0 auto; background: var(--crema); border-radius: 20px; padding: 48px 40px; text-align: center; border: 2px dashed var(--dorado); }
+    .garantia-ico { font-size: 3.5rem; margin-bottom: 20px; }
+    .garantia-box h3 { font-size: 1.65rem; color: var(--morado); margin-bottom: 16px; }
+    .garantia-box p { color: #4a3a5e; font-size: 1rem; }
+    @media(max-width:480px){ .garantia-box { padding: 36px 20px; } }
+
+    /* ── FAQ ── */
+    #faq { padding: 84px 20px; background: var(--crema); }
+    .faq-lista { max-width: 720px; margin: 0 auto; }
+    .faq-item { background: var(--blanco); border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(91,44,131,.07); }
+    .faq-pregunta { width: 100%; background: none; border: none; padding: 22px 24px; text-align: left; font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; color: var(--morado); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-pregunta .ch { font-size: 1.1rem; transition: transform .3s; flex-shrink: 0; color: var(--dorado); }
+    .faq-pregunta.activa .ch { transform: rotate(180deg); }
+    .faq-respuesta { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-respuesta-inner { padding: 0 24px 22px; color: #4a3a5e; font-size: .97rem; }
+
+    /* ── CTA FINAL ── */
+    #cta-final { padding: 110px 20px; background: linear-gradient(145deg, var(--morado-osc), var(--morado), #7a3fa8); text-align: center; color: #fff; }
+    #cta-final h2 { font-size: clamp(2.1rem, 5.5vw, 3.2rem); margin-bottom: 20px; }
+    #cta-final h2 em { color: var(--dorado); font-style: italic; }
+    #cta-final p { font-size: 1.1rem; opacity: .9; max-width: 580px; margin: 0 auto 40px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--morado-osc); color: rgba(255,255,255,.7); padding: 52px 20px 32px; text-align: center; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; margin-bottom: 4px; }
+    .footer-marca { font-size: .78rem; color: var(--dorado); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .footer-metodo { font-size: .88rem; opacity: .75; font-style: italic; margin-bottom: 24px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+    .footer-links a { font-size: .85rem; opacity: .7; transition: opacity .2s; }
+    .footer-links a:hover { opacity: 1; }
+    .footer-copy { font-size: .78rem; opacity: .42; margin-top: 24px; border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; }
+
+    /* ── BANDA CTA REPETIDA ── */
+    .cta-banda { background: var(--morado); color: #fff; padding: 48px 20px; text-align: center; }
+    .cta-banda p { font-size: 1.1rem; opacity: .9; margin-bottom: 24px; max-width: 560px; margin-left: auto; margin-right: auto; margin-bottom: 24px; }
+    .cta-banda h3 { font-size: 1.5rem; margin-bottom: 12px; }
+
+    /* ── SECCIÓN DE PAGO ── */
+    #pago { padding: 84px 20px; background: var(--crema); }
+    .pago-caja {
+      max-width: 680px; margin: 0 auto;
+      background: var(--blanco); border-radius: 24px;
+      padding: 52px 44px; text-align: center;
+      box-shadow: var(--sombra); border: 2px solid rgba(201,166,70,.3);
+    }
+    .pago-icono { font-size: 3rem; margin-bottom: 16px; }
+    .pago-precio {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      font-weight: 700; color: var(--morado); line-height: 1; margin-bottom: 6px;
+    }
+    .pago-precio sup { font-size: 1.6rem; vertical-align: super; }
+    .pago-etiqueta {
+      display: inline-block; background: var(--dorado); color: var(--morado-osc);
+      font-weight: 700; font-size: .78rem; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 5px 18px; border-radius: 50px; margin-bottom: 28px;
+    }
+    .pago-texto {
+      font-size: 1.05rem; color: #4a3a5e; max-width: 520px;
+      margin: 0 auto 32px; line-height: 1.8;
+    }
+    .pago-pasos {
+      display: flex; flex-direction: column; gap: 14px;
+      margin: 0 auto 36px; max-width: 460px; text-align: left;
+    }
+    .pago-paso {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--crema); border-radius: 12px; padding: 14px 18px;
+    }
+    .pago-paso .num {
+      background: var(--morado); color: #fff; border-radius: 50%;
+      width: 28px; height: 28px; font-size: .85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pago-paso p { font-size: .92rem; color: #4a3a5e; }
+    .pago-seguridad {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 18px; font-size: .82rem; color: #7a6a8e;
+    }
+    @media(max-width:480px){ .pago-caja { padding: 36px 20px; } }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <!-- ⚠️ PASO IMPORTANTE: Reemplaza 14074162993 con tu número real (ej: 17861234567 para EE.UU.) -->
+  <a class="wa-flotante"
+     href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+     target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    💬
+  </a>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        Claudia M. Spring
+        <span>Centro de Capacitación Consciente</span>
+      </div>
+      <a class="btn btn-morado nav-cta"
+         href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+         target="_blank" rel="noopener">
+        ¡Quiero el Taller!
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-badge">✨ Cupos limitados — Edición especial 2025</div>
+      <h1>
+        Es hora de <em>recuperarte a ti misma</em><br>
+        y crear la vida que mereces.
+      </h1>
+      <p class="hero-sub">
+        Un taller de transformación profunda donde sanarás creencias limitantes, reconectarás con tu propósito
+        y aprenderás a usar las herramientas de Inteligencia Artificial para crear tus propios proyectos.
+        <br><br>
+        Diseñado especialmente para mujeres de 45 años en adelante.
+      </p>
+      <div class="hero-precio">
+        <div class="antes">Valor total: $1,079</div>
+        <div class="ahora"><sup>$</sup>197</div>
+        <div class="label">USD · Pago único · Acceso inmediato</div>
+      </div>
+      <div class="hero-cta-grupo">
+        <a class="btn btn-dorado"
+           href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+           target="_blank" rel="noopener"
+           style="font-size:1.18rem; padding: 20px 48px;">
+          💛 Quiero reservar mi lugar por WhatsApp
+        </a>
+        <div class="hero-nota">🔒 Reserva segura · Cupos muy limitados</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROBLEMA ── -->
+  <section id="problema">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>¿Te sientes identificada con alguna de estas palabras?</h2>
+        <div class="divisor"></div>
+        <p>Muchas mujeres llegan aquí cargando exactamente esto. Y todas encontraron el camino de regreso a sí mismas.</p>
+      </div>
+      <div class="problema-grid">
+        <div class="problema-item">
+          <div class="ico">💔</div>
+          <p>Te perdiste a ti misma cuidando a todos los demás y ya no sabes quién eres sin ese rol.</p>
+        </div>
+        <div class="problema-item">
+          <div class="ico">🌫️</div>
+          <p>Sientes un vacío interior que no logras nombrar, pero sabes que algo importante falta.</p>
+        </div>
+        <div class="problema-item">
+          <div class="ico">🔒</div>
+          <p>Hay creencias limitantes que te repiten que ya es tarde, que ya pasó tu momento.</p>
+        </div>
+        <div class="problema-item">
+          <div class="ico">🌑</div>
+          <p>La soledad, el estancamiento o la falta de propósito se volvieron compañeros silenciosos.</p>
+        </div>
+        <div class="problema-item">
+          <div class="ico">🪞</div>
+          <p>Quieres reinventarte y crear algo tuyo, pero no sabes por dónde empezar ni cómo.</p>
+        </div>
+        <div class="problema-item">
+          <div class="ico">📱</div>
+          <p>Ves a otras mujeres usando la tecnología para crear proyectos y sientes que eso no es para ti.</p>
+        </div>
+      </div>
+      <div class="problema-puente">
+        <h3>Si dijiste "sí" a cualquiera de estas…</h3>
+        <p>Estás exactamente donde debes estar. Este taller fue creado para ti — para guiarte de regreso a ti misma con amor, claridad, fe y las herramientas del siglo XXI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRANSFORMACIÓN ── -->
+  <section id="transformacion">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>Lo que lograrás al terminar el taller</h2>
+        <div class="divisor"></div>
+        <p>Esta no es información — es transformación real. Esto es lo que llevarás contigo.</p>
+      </div>
+      <div class="transform-grid">
+        <div class="transform-card">
+          <div class="ico">🌸</div>
+          <h3>Claridad sobre tu identidad</h3>
+          <p>Sabrás con certeza quién eres hoy, qué quieres y hacia dónde vas, sin importar lo que el pasado diga.</p>
+        </div>
+        <div class="transform-card">
+          <div class="ico">🙏</div>
+          <h3>Creencias sanadadas con amor</h3>
+          <p>Liberarás los "ya es tarde", "no soy suficiente" y "eso no es para mí" que te han frenado durante años.</p>
+        </div>
+        <div class="transform-card">
+          <div class="ico">💡</div>
+          <h3>Tu propósito clarificado</h3>
+          <p>Identificarás tu misión de vida y cómo expresarla de una manera que te llene de energía y sentido.</p>
+        </div>
+        <div class="transform-card">
+          <div class="ico">💻</div>
+          <h3>Dominio de herramientas de IA</h3>
+          <p>Sabrás usar Claude, Canva, ChatGPT, Lovable y más para crear contenido, páginas web y proyectos digitales.</p>
+        </div>
+        <div class="transform-card">
+          <div class="ico">🚀</div>
+          <h3>Tu proyecto personal en marcha</h3>
+          <p>Saldrás con un plan concreto para lanzar o hacer crecer tu proyecto, negocio o marca personal.</p>
+        </div>
+        <div class="transform-card">
+          <div class="ico">💜</div>
+          <h3>Una comunidad que te sostiene</h3>
+          <p>No estarás sola. Formarás parte de un círculo de mujeres que comprenden tu proceso y te acompañan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EL TALLER ── -->
+  <section id="taller">
+    <div class="container">
+      <div class="taller-card">
+        <div class="taller-icono">🌸</div>
+        <div class="taller-label">Centro de Capacitación Consciente · Claudia M. Spring</div>
+        <h2>Taller Renacer en Fe y Amor + Herramientas de IA</h2>
+        <p>
+          Un espacio sagrado y seguro donde aprenderás a soltar lo que ya no te sirve,
+          reconectar con tu esencia más profunda y construir una vida alineada con quién realmente eres.
+        </p>
+        <p>
+          Y además — aprenderás a usar la inteligencia artificial como una aliada poderosa
+          para crear tu propia página web, escribir tu libro, diseñar tu curso o lanzar tu proyecto digital,
+          sin necesidad de conocimientos técnicos.
+        </p>
+        <a class="btn btn-dorado"
+           href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+           target="_blank" rel="noopener"
+           style="margin-top: 20px; padding: 16px 40px;">
+          💛 Quiero reservar mi lugar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MÓDULOS ── -->
+  <section id="modulos">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>¿Qué incluye el taller?</h2>
+        <div class="divisor"></div>
+        <p>Cada módulo es un paso más hacia la mujer que siempre supiste que podías ser.</p>
+      </div>
+      <div class="modulos-grid">
+        <div class="modulo-card">
+          <div class="mod-num">1</div>
+          <h3>Reconociéndome hoy</h3>
+          <p>Un encuentro honesto y amoroso con quien eres en este momento. Sin juicios — solo claridad y compasión hacia ti misma.</p>
+        </div>
+        <div class="modulo-card">
+          <div class="mod-num">2</div>
+          <h3>Sanando creencias limitantes</h3>
+          <p>Identificamos y liberamos las creencias que te han frenado: el "ya es tarde", el "no merezco" y el "eso no es para mí".</p>
+        </div>
+        <div class="modulo-card">
+          <div class="mod-num">3</div>
+          <h3>Reconectando con mi fe y propósito</h3>
+          <p>Fortalecemos tu conexión espiritual como el cimiento de toda transformación duradera y auténtica.</p>
+        </div>
+        <div class="modulo-card">
+          <div class="mod-num">4</div>
+          <h3>Construyendo mi nueva identidad</h3>
+          <p>Defines quién quieres ser, qué valores guían tu vida y cómo te presentas al mundo desde tu poder interior.</p>
+        </div>
+        <div class="modulo-card">
+          <div class="mod-num">5</div>
+          <h3>Diseñando mi vida con intención</h3>
+          <p>Creas un plan concreto y amoroso para tu próxima etapa, lleno de propósito, dirección y esperanza real.</p>
+        </div>
+        <div class="modulo-card">
+          <div class="mod-num">6</div>
+          <h3>La IA como aliada de tu transformación</h3>
+          <p>Aprenderás a usar herramientas de inteligencia artificial para crear contenido, proyectos y tu presencia digital.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BANDA CTA ── -->
+  <div class="cta-banda">
+    <div class="container">
+      <h3>¿Lista para dar el primer paso?</h3>
+      <p>Escríbeme directamente por WhatsApp y te cuento todos los detalles de la próxima edición.</p>
+      <a class="btn btn-dorado"
+         href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+         target="_blank" rel="noopener"
+         style="padding: 16px 40px; font-size: 1.05rem;">
+        💛 Quiero reservar mi lugar por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- ── BONOS IA ── -->
+  <section id="bonos">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>Tus bonos exclusivos de Inteligencia Artificial</h2>
+        <div class="divisor"></div>
+        <p>Incluidos en tu inversión de $197 — aprende a usar las herramientas más poderosas del mundo para crear tus propios proyectos digitales.</p>
+      </div>
+      <div class="bonos-grid">
+        <div class="bono-card">
+          <div class="bono-ico">🤖</div>
+          <div class="bono-nombre">Claude AI</div>
+          <div class="bono-titulo">"Tu asistente de reflexión y escritura"</div>
+          <p>Aprende a dialogar contigo misma, escribir tu historia, clarificar tus pensamientos y crear contenido auténtico desde el alma.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card">
+          <div class="bono-ico">💬</div>
+          <div class="bono-nombre">ChatGPT</div>
+          <div class="bono-titulo">"Crea contenido y cursos con IA"</div>
+          <p>Usa ChatGPT para escribir tu libro, diseñar tu curso online, crear guiones para videos y generar ideas para tu negocio o proyecto.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card">
+          <div class="bono-ico">💻</div>
+          <div class="bono-nombre">Lovable</div>
+          <div class="bono-titulo">"Tu página web personal con IA"</div>
+          <p>Crea tu propia página web profesional con inteligencia artificial, sin código, sin técnicos y sin complicaciones.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card">
+          <div class="bono-ico">🎨</div>
+          <div class="bono-nombre">Canva + IA</div>
+          <div class="bono-titulo">"Diseña como profesional sin serlo"</div>
+          <p>Aprende a usar Canva con sus funciones de IA para crear publicaciones, presentaciones, portadas de libros y material visual impactante.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card">
+          <div class="bono-ico">📓</div>
+          <div class="bono-nombre">NotebookLM</div>
+          <div class="bono-titulo">"Organiza tu aprendizaje y propósito"</div>
+          <p>Usa esta herramienta de Google para organizar tus reflexiones, crear podcasts de tus notas y gestionar tu contenido de manera inteligente.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card">
+          <div class="bono-ico">🦾</div>
+          <div class="bono-nombre">Manus</div>
+          <div class="bono-titulo">"Tu agente de IA para la vida cotidiana"</div>
+          <p>Delega tareas a un agente de IA avanzado y libera tu tiempo y energía para lo que realmente importa: tu bienestar y tu crecimiento.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card">
+          <div class="bono-ico">🎁</div>
+          <div class="bono-nombre">Bono Sorpresa</div>
+          <div class="bono-titulo">"Herramienta extra seleccionada por Claudia"</div>
+          <p>Una herramienta adicional seleccionada especialmente para ampliar tu transformación y acompañarte en la creación de tus proyectos.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+        <div class="bono-card bono-destacado">
+          <div class="bono-ico">💜</div>
+          <div class="bono-nombre">Comunidad Privada</div>
+          <div class="bono-titulo">"Tu círculo de mujeres que sí entienden"</div>
+          <p>Acceso a un espacio íntimo y seguro donde compartir, crecer y sostenerte junto a otras mujeres que también están renaciendo.</p>
+          <div class="bono-valor">Valor: $97</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BENEFICIOS CONCRETOS ── -->
+  <section id="beneficios">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>Beneficios concretos del taller</h2>
+        <div class="divisor"></div>
+        <p>Al completar el Taller Renacer en Fe y Amor + IA tendrás en tus manos:</p>
+      </div>
+      <div class="beneficios-lista">
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Claridad total sobre tu identidad, valores y propósito de vida</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Herramientas espirituales para sanar y soltar creencias limitantes</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Tu propia página web creada con IA, sin necesitar un técnico</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>El esquema de tu curso, libro o programa propio diseñado con IA</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Habilidad para crear contenido visual profesional con Canva + IA</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Un plan de vida y negocio concreto para los próximos 90 días</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Comunidad de mujeres que te acompañan y comprenden tu proceso</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-check">✦</div>
+          <p>Confianza real en ti misma y en tu capacidad de crear y crecer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARA QUIÉN ES ── -->
+  <section id="para-quien">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>¿Este taller es para ti?</h2>
+        <div class="divisor"></div>
+      </div>
+      <div class="para-quien-grid">
+        <div class="pq-si">
+          <h3>✅ SÍ es para ti si…</h3>
+          <ul class="pq-lista">
+            <li><span>🌸</span> Eres mujer de 45 años en adelante</li>
+            <li><span>🌸</span> Deseas reconectar con tu propósito e identidad</li>
+            <li><span>🌸</span> Quieres crear tu proyecto, curso, libro o negocio</li>
+            <li><span>🌸</span> Estás lista para aprender herramientas de IA de manera sencilla</li>
+            <li><span>🌸</span> Buscas un espacio espiritual, cálido y de apoyo real</li>
+            <li><span>🌸</span> Sientes que llegó tu momento de invertir en ti misma</li>
+          </ul>
+        </div>
+        <div class="pq-no">
+          <h3>❌ NO es para ti si…</h3>
+          <ul class="pq-lista">
+            <li><span>🚫</span> Buscas resultados sin compromiso ni práctica</li>
+            <li><span>🚫</span> No estás dispuesta a abrirte a un proceso de reflexión</li>
+            <li><span>🚫</span> Esperas una solución mágica instantánea</li>
+            <li><span>🚫</span> No tienes interés en aprender nuevas herramientas digitales</li>
+            <li><span>🚫</span> Prefieres quedarte donde estás por comodidad o miedo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOBRE CLAUDIA ── -->
+  <section id="claudia">
+    <div class="container">
+      <div class="claudia-inner">
+        <div class="claudia-avatar">🌸</div>
+        <div class="claudia-texto">
+          <h2>Claudia M. Spring</h2>
+          <div class="claudia-cargo">Fundadora · Centro de Capacitación Consciente</div>
+          <p>Soy Claudia, y sé lo que es sentir que la vida que vives no es la que soñaste. También sé lo que es encontrar el camino de regreso a ti misma — y recorrerlo con fe, amor propio y determinación.</p>
+          <p>A través del método <strong>Renacer en Fe y Amor</strong> he acompañado a cientos de mujeres a soltar el pasado, sanar sus creencias y construir una vida — y una presencia digital — que finalmente se siente como propia.</p>
+          <div class="claudia-tags">
+            <span class="tag">✨ Transformación Personal</span>
+            <span class="tag">🙏 Desarrollo Espiritual</span>
+            <span class="tag">💻 Herramientas de IA</span>
+            <span class="tag">👩 Especialista en Mujeres 45+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRECIO ── -->
+  <section id="precio">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>Tu inversión en ti misma</h2>
+        <div class="divisor"></div>
+        <p>Todo lo que recibes, por una fracción de su valor real.</p>
+      </div>
+      <div class="valor-stack">
+        <div class="valor-item">
+          <span class="nom">🌸 Taller Renacer en Fe y Amor (6 módulos)</span>
+          <span class="mon">$497</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">🤖 Bono: Guía Claude AI</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">💬 Bono: Guía ChatGPT para crear cursos y libros</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">💻 Bono: Guía Lovable (página web con IA)</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">🎨 Bono: Guía Canva + IA</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">📓 Bono: Guía NotebookLM</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">🦾 Bono: Guía Manus</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">🎁 Bono Sorpresa</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-item">
+          <span class="nom">💜 Comunidad Privada</span>
+          <span class="mon">$97</span>
+        </div>
+        <div class="valor-total">
+          <span class="nom">Valor total real</span>
+          <span class="mon">$1,079</span>
+        </div>
+      </div>
+      <div class="precio-caja">
+        <div class="precio-etiqueta">Tu inversión de hoy</div>
+        <div class="precio-num"><sup>$</sup>197</div>
+        <div class="precio-desc">USD · Pago único · Acceso inmediato a todo el contenido y bonos</div>
+        <a class="btn btn-dorado"
+           href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+           target="_blank" rel="noopener"
+           style="font-size: 1.1rem; padding: 18px 44px;">
+          💛 Quiero reservar mi lugar por WhatsApp
+        </a>
+        <div style="margin-top: 16px; font-size: .82rem; opacity: .6;">
+          🔒 Cupos limitados · Contacto directo y personalizado con Claudia
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PAGO ── -->
+  <section id="pago">
+    <div class="container">
+      <div class="pago-caja">
+        <div class="pago-icono">💛</div>
+        <div class="pago-precio"><sup>$</sup>197</div>
+        <div class="pago-etiqueta">Inversión especial</div>
+        <p class="pago-texto">
+          Para reservar tu lugar en el taller <strong>Renacer en Fe y Amor + Herramientas de IA</strong>,
+          haz clic en el botón de WhatsApp. Te enviaré personalmente las opciones de pago
+          disponibles y confirmaré tu cupo.
+        </p>
+        <div class="pago-pasos">
+          <div class="pago-paso">
+            <div class="num">1</div>
+            <p>Haz clic en el botón de WhatsApp y envía el mensaje.</p>
+          </div>
+          <div class="pago-paso">
+            <div class="num">2</div>
+            <p>Claudia te responde con las opciones de pago disponibles.</p>
+          </div>
+          <div class="pago-paso">
+            <div class="num">3</div>
+            <p>Realizas tu pago y recibes confirmación de tu cupo reservado.</p>
+          </div>
+        </div>
+        <a class="btn btn-wa"
+           href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20reservar%20mi%20lugar%20en%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197.%20%C2%BFMe%20puedes%20enviar%20las%20opciones%20de%20pago%3F"
+           target="_blank" rel="noopener"
+           style="font-size: 1.1rem; padding: 18px 44px;">
+          💬 Reservar mi lugar por WhatsApp
+        </a>
+        <div class="pago-seguridad">
+          🔒 Proceso 100% personal · Sin datos bancarios en este sitio · Cupos limitados
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIOS ── -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>Ellas ya dieron el paso</h2>
+        <div class="divisor"></div>
+        <p>Historias reales de mujeres que eligieron renacer.</p>
+      </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-comilla">"</div>
+          <p class="test-texto">"Llegué sintiéndome invisible y salí sabiendo quién soy y hacia dónde voy. Claudia tiene el don de tocar el alma con sus palabras y guiar el proceso con amor."</p>
+          <div class="test-autora">
+            <div class="test-avatar">🌸</div>
+            <div>
+              <div class="test-nombre">María Elena, 52 años</div>
+              <div class="test-lugar">Miami, Florida</div>
+              <div class="estrellas">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-comilla">"</div>
+          <p class="test-texto">"Nunca pensé que la inteligencia artificial pudiera ser parte de mi transformación espiritual. Los bonos de IA me abrieron un mundo nuevo que no sabía que existía para mí."</p>
+          <div class="test-autora">
+            <div class="test-avatar">✨</div>
+            <div>
+              <div class="test-nombre">Carmen, 48 años</div>
+              <div class="test-lugar">Ciudad de México</div>
+              <div class="estrellas">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-comilla">"</div>
+          <p class="test-texto">"Gracias a este taller lancé mi primera página web y mi primer mini curso — todo con herramientas de IA. Pensé que eso nunca sería posible para mí a los 55 años."</p>
+          <div class="test-autora">
+            <div class="test-avatar">💜</div>
+            <div>
+              <div class="test-nombre">Patricia, 55 años</div>
+              <div class="test-lugar">Bogotá, Colombia</div>
+              <div class="estrellas">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-comilla">"</div>
+          <p class="test-texto">"Invertir en este taller fue la mejor decisión de los últimos años. Los $197 los recuperé con creces al lanzar mi primer servicio digital. La inversión en una misma siempre regresa."</p>
+          <div class="test-autora">
+            <div class="test-avatar">🌺</div>
+            <div>
+              <div class="test-nombre">Rosa Isabel, 47 años</div>
+              <div class="test-lugar">Buenos Aires, Argentina</div>
+              <div class="estrellas">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GARANTÍA ── -->
+  <section id="garantia">
+    <div class="container">
+      <div class="garantia-box">
+        <div class="garantia-ico">🛡️</div>
+        <h3>Mi compromiso contigo</h3>
+        <p>
+          Creo profundamente en el poder transformador de este taller y me comprometo a acompañarte
+          con presencia, amor y dedicación en cada paso del proceso. Si tienes dudas antes de
+          inscribirte, escríbeme por WhatsApp. Quiero que tomes esta decisión desde la claridad
+          y la confianza — no desde la presión. Siempre habrá un espacio amoroso para tus preguntas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq">
+    <div class="container">
+      <div class="titulo-seccion">
+        <h2>Preguntas frecuentes</h2>
+        <div class="divisor"></div>
+      </div>
+      <div class="faq-lista">
+        <div class="faq-item">
+          <button class="faq-pregunta" aria-expanded="false">
+            ¿Para quién es este taller?
+            <span class="ch">▾</span>
+          </button>
+          <div class="faq-respuesta">
+            <div class="faq-respuesta-inner">Para mujeres de 45 años en adelante que desean reconectar con su propósito, sanar creencias limitantes y aprender a usar herramientas de inteligencia artificial para crear sus propios proyectos digitales. No necesitas ninguna experiencia previa en tecnología.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-pregunta" aria-expanded="false">
+            ¿Necesito saber de tecnología o computadoras?
+            <span class="ch">▾</span>
+          </button>
+          <div class="faq-respuesta">
+            <div class="faq-respuesta-inner">No. Los bonos de IA están diseñados para mujeres que empiezan desde cero. Te enseñamos paso a paso, con paciencia y amor, cómo usar cada herramienta de forma práctica. Si sabes usar tu teléfono, puedes aprender esto.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-pregunta" aria-expanded="false">
+            ¿Cómo me inscribo y cómo pago?
+            <span class="ch">▾</span>
+          </button>
+          <div class="faq-respuesta">
+            <div class="faq-respuesta-inner">Haces clic en cualquier botón de "Reservar mi lugar" y se abre una conversación de WhatsApp directamente con Claudia. Ella te explica todos los detalles, el método de pago disponible y los próximos pasos. El proceso es personal, directo y amoroso.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-pregunta" aria-expanded="false">
+            ¿Cuándo comienza y en qué modalidad es?
+            <span class="ch">▾</span>
+          </button>
+          <div class="faq-respuesta">
+            <div class="faq-respuesta-inner">El taller es online — puedes participar desde cualquier lugar del mundo con tu teléfono o computadora. Escríbele a Claudia por WhatsApp para conocer las fechas exactas de la próxima edición. Los cupos son muy limitados para garantizar atención personalizada.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-pregunta" aria-expanded="false">
+            ¿Qué pasa si no puedo asistir en vivo a alguna sesión?
+            <span class="ch">▾</span>
+          </button>
+          <div class="faq-respuesta">
+            <div class="faq-respuesta-inner">Escríbele a Claudia por WhatsApp para conocer los detalles de acceso a las grabaciones y el material del taller. Ella te informará sobre las opciones disponibles para que ninguna situación te impida aprovechar al máximo tu inversión.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-pregunta" aria-expanded="false">
+            ¿Puedo pagar en cuotas?
+            <span class="ch">▾</span>
+          </button>
+          <div class="faq-respuesta">
+            <div class="faq-respuesta-inner">Para conocer las opciones de pago disponibles, escríbele directamente a Claudia por WhatsApp. Ella te orientará de manera personalizada para que puedas acceder al taller de la manera que mejor funcione para ti.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ── -->
+  <section id="cta-final">
+    <div class="container">
+      <h2>Tu momento es <em>ahora</em>.</h2>
+      <p>
+        Cada día que esperas es un día menos viviendo la vida que mereces.
+        Da el paso más valiente — el que te devuelve a ti misma y abre la puerta a todo lo que puedes crear.
+      </p>
+      <a class="btn btn-dorado"
+         href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+         target="_blank" rel="noopener"
+         style="font-size: 1.2rem; padding: 22px 52px; display: inline-block; margin-bottom: 16px;">
+        💛 Quiero reservar mi lugar por WhatsApp
+      </a>
+      <div style="opacity: .62; font-size: .85rem; margin-top: 10px;">
+        🔒 Cupos muy limitados · Inversión especial: $197 · Contacto directo con Claudia
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">Claudia M. Spring</div>
+      <div class="footer-marca">Centro de Capacitación Consciente</div>
+      <div class="footer-metodo">Método Renacer en Fe y Amor</div>
+      <div class="footer-links">
+        <a href="https://www.renacerenfeyamor.com" target="_blank" rel="noopener">renacerenfeyamor.com</a>
+        <a href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20Renacer%20en%20Fe%20y%20Amor%20%2B%20IA%20de%20%24197."
+           target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos y Condiciones</a>
+      </div>
+      <div class="footer-copy">
+        © 2025 Claudia M. Spring / Centro de Capacitación Consciente. Todos los derechos reservados.<br>
+        Este sitio es una herramienta de conexión humana, creado con amor para mujeres que merecen más.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Acordeón FAQ
+    document.querySelectorAll('.faq-pregunta').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const resp = btn.nextElementSibling;
+        const abierta = btn.classList.contains('activa');
+        document.querySelectorAll('.faq-pregunta').forEach(b => {
+          b.classList.remove('activa');
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling.style.maxHeight = null;
+        });
+        if (!abierta) {
+          btn.classList.add('activa');
+          btn.setAttribute('aria-expanded', 'true');
+          resp.style.maxHeight = resp.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

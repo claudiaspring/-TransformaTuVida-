@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM · Renacer en Fe y Amor — Claudia M. Spring</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --morado:      #5B2C83;
+    --morado-claro:#7B3FAD;
+    --morado-suave:#EDE4F5;
+    --dorado:      #C9A646;
+    --dorado-claro:#F0DFA0;
+    --crema:       #F7F1E8;
+    --malva:       #C9A3B8;
+    --malva-suave: #F5ECF2;
+    --blanco:      #FFFFFF;
+    --gris:        #6B6B6B;
+    --gris-claro:  #E8E0EC;
+    --rojo:        #C0392B;
+    --verde:       #27AE60;
+    --sombra:      0 2px 12px rgba(91,44,131,0.12);
+    --sombra-lg:   0 8px 32px rgba(91,44,131,0.18);
+    --radio:       14px;
+    --radio-sm:    8px;
+    --trans:       all 0.22s ease;
+  }
+  html { font-size: 15px; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--crema);
+    color: #2D1B44;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  h1,h2,h3,h4 { font-family: Georgia, serif; }
+  input, select, textarea, button { font-family: inherit; }
+  a { color: var(--morado); text-decoration: none; }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 7px; height: 7px; }
+  ::-webkit-scrollbar-track { background: var(--gris-claro); }
+  ::-webkit-scrollbar-thumb { background: var(--malva); border-radius: 10px; }
+
+  /* ===== SIDEBAR ===== */
+  #sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 230px;
+    background: linear-gradient(160deg, var(--morado) 0%, #3A1860 100%);
+    display: flex; flex-direction: column;
+    z-index: 100; padding: 0;
+    box-shadow: 3px 0 20px rgba(91,44,131,0.25);
+  }
+  .sidebar-logo {
+    padding: 28px 20px 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+  .sidebar-logo .logo-icon { font-size: 2.2rem; margin-bottom: 4px; }
+  .sidebar-logo h2 { color: var(--dorado); font-size: 0.85rem; font-weight: bold; letter-spacing: 0.04em; line-height: 1.3; }
+  .sidebar-logo p { color: rgba(255,255,255,0.6); font-size: 0.72rem; margin-top: 3px; }
+  .sidebar-nav { flex: 1; padding: 16px 0; overflow-y: auto; }
+  .nav-section { padding: 8px 18px 4px; color: var(--dorado-claro); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; padding: 10px 20px;
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.8); font-size: 0.88rem;
+    transition: var(--trans); text-align: left;
+    border-left: 3px solid transparent;
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .nav-btn.active {
+    background: rgba(201,166,70,0.18);
+    color: var(--dorado-claro);
+    border-left-color: var(--dorado);
+    font-weight: bold;
+  }
+  .nav-btn .nav-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5); font-size: 0.72rem; text-align: center;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  #main {
+    margin-left: 230px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  #topbar {
+    background: var(--blanco);
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(91,44,131,0.08);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .topbar-title { font-size: 1.25rem; color: var(--morado); font-weight: bold; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .btn-add {
+    background: linear-gradient(135deg, var(--morado) 0%, var(--morado-claro) 100%);
+    color: #fff; border: none; border-radius: var(--radio-sm);
+    padding: 9px 18px; cursor: pointer; font-size: 0.88rem; font-weight: bold;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 3px 10px rgba(91,44,131,0.3);
+    transition: var(--trans);
+  }
+  .btn-add:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(91,44,131,0.4); }
+  #page-content { flex: 1; padding: 28px; }
+
+  /* ===== TABS ===== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ===== PANEL — MÉTRICAS ===== */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .metric-card {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 22px 20px;
+    box-shadow: var(--sombra);
+    display: flex; align-items: center; gap: 16px;
+    border-left: 4px solid var(--morado);
+    transition: var(--trans);
+  }
+  .metric-card:hover { transform: translateY(-2px); box-shadow: var(--sombra-lg); }
+  .metric-card.dorado { border-left-color: var(--dorado); }
+  .metric-card.verde  { border-left-color: var(--verde); }
+  .metric-card.rojo   { border-left-color: var(--rojo); }
+  .metric-card.malva  { border-left-color: var(--malva); }
+  .metric-icon { font-size: 2rem; flex-shrink: 0; }
+  .metric-info .metric-label { font-size: 0.78rem; color: var(--gris); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric-info .metric-value { font-size: 1.9rem; font-weight: bold; color: var(--morado); line-height: 1; }
+  .metric-card.dorado .metric-value { color: var(--dorado); }
+  .metric-card.verde  .metric-value { color: var(--verde); }
+  .metric-card.rojo   .metric-value { color: var(--rojo); }
+
+  /* ===== PANEL — ALERTAS HOY ===== */
+  .section-title {
+    font-size: 1.05rem; color: var(--morado); font-weight: bold;
+    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--gris-claro); }
+  .alert-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .alert-card {
+    background: var(--blanco); border-radius: var(--radio-sm);
+    padding: 14px 18px; box-shadow: var(--sombra);
+    display: flex; align-items: center; gap: 14px;
+    border-left: 4px solid var(--dorado);
+  }
+  .alert-card .alert-name { font-weight: bold; color: var(--morado); }
+  .alert-card .alert-info { font-size: 0.82rem; color: var(--gris); margin-top: 2px; }
+  .alert-card .alert-stage { margin-left: auto; }
+  .empty-state {
+    text-align: center; padding: 40px 20px;
+    color: var(--gris); font-size: 0.9rem;
+    background: var(--blanco); border-radius: var(--radio);
+    box-shadow: var(--sombra);
+  }
+  .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+  /* ===== ETIQUETAS DE ETAPA ===== */
+  .stage-badge {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.73rem; font-weight: bold; white-space: nowrap;
+  }
+  .stage-0  { background: #EDE4F5; color: #5B2C83; }
+  .stage-1  { background: #E8F4FD; color: #1A6FA8; }
+  .stage-2  { background: #FEF9E7; color: #B7950B; }
+  .stage-3  { background: #E8F8F5; color: #1E8449; }
+  .stage-4  { background: #FDF2E9; color: #CA6F1E; }
+  .stage-5  { background: #FDEDEC; color: #C0392B; }
+  .stage-6  { background: #E8F8F5; color: #117A65; }
+  .stage-7  { background: #EAF2FF; color: #1F618D; }
+  .stage-8  { background: #F5EEF8; color: #76448A; }
+  .stage-9  { background: #F2F3F4; color: #7F8C8D; }
+
+  /* ===== KANBAN ===== */
+  .kanban-scroll { overflow-x: auto; padding-bottom: 12px; }
+  .kanban-board {
+    display: flex; gap: 14px; min-width: max-content; align-items: flex-start;
+  }
+  .kanban-col {
+    width: 220px; background: var(--morado-suave);
+    border-radius: var(--radio); padding: 12px;
+    flex-shrink: 0;
+  }
+  .kanban-col-header {
+    font-size: 0.78rem; font-weight: bold; color: var(--morado);
+    margin-bottom: 10px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--morado);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .kanban-count {
+    background: var(--morado); color: #fff;
+    border-radius: 20px; padding: 1px 8px; font-size: 0.7rem;
+  }
+  .kanban-cards { display: flex; flex-direction: column; gap: 8px; min-height: 60px; }
+  .kanban-card {
+    background: var(--blanco); border-radius: var(--radio-sm);
+    padding: 12px; box-shadow: var(--sombra);
+    cursor: pointer; transition: var(--trans);
+    border-top: 3px solid var(--morado);
+  }
+  .kanban-card:hover { transform: translateY(-2px); box-shadow: var(--sombra-lg); }
+  .kanban-card.dorado { border-top-color: var(--dorado); }
+  .kanban-card.verde  { border-top-color: var(--verde); }
+  .kanban-card.rojo   { border-top-color: var(--rojo); }
+  .kanban-card-name { font-weight: bold; font-size: 0.85rem; color: var(--morado); margin-bottom: 4px; }
+  .kanban-card-meta { font-size: 0.74rem; color: var(--gris); }
+  .kanban-card-program { font-size: 0.74rem; color: var(--dorado); margin-top: 4px; font-style: italic; }
+  .kanban-card-follow { font-size: 0.7rem; color: var(--rojo); margin-top: 4px; }
+
+  /* ===== TABLA CLIENTAS ===== */
+  .toolbar {
+    display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; align-items: center;
+  }
+  .search-input {
+    flex: 1; min-width: 200px; max-width: 360px;
+    border: 1.5px solid var(--gris-claro); border-radius: var(--radio-sm);
+    padding: 9px 14px; font-size: 0.88rem; background: var(--blanco);
+    outline: none; transition: var(--trans);
+  }
+  .search-input:focus { border-color: var(--morado); box-shadow: 0 0 0 3px rgba(91,44,131,0.1); }
+  .filter-select {
+    border: 1.5px solid var(--gris-claro); border-radius: var(--radio-sm);
+    padding: 9px 12px; font-size: 0.85rem; background: var(--blanco);
+    outline: none; cursor: pointer; color: #2D1B44;
+    transition: var(--trans);
+  }
+  .filter-select:focus { border-color: var(--morado); }
+  .table-wrap { background: var(--blanco); border-radius: var(--radio); box-shadow: var(--sombra); overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: var(--morado); color: #fff;
+    padding: 12px 14px; text-align: left;
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  tbody tr { border-bottom: 1px solid var(--gris-claro); transition: var(--trans); }
+  tbody tr:hover { background: var(--morado-suave); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody td { padding: 11px 14px; font-size: 0.85rem; }
+  .td-name { font-weight: bold; color: var(--morado); }
+  .td-actions { display: flex; gap: 6px; }
+  .btn-sm {
+    padding: 5px 11px; border-radius: 6px; border: none;
+    cursor: pointer; font-size: 0.78rem; font-weight: bold; transition: var(--trans);
+  }
+  .btn-edit { background: var(--morado-suave); color: var(--morado); }
+  .btn-edit:hover { background: var(--morado); color: #fff; }
+  .btn-del { background: #FDEDEC; color: var(--rojo); }
+  .btn-del:hover { background: var(--rojo); color: #fff; }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(45,27,68,0.55); z-index: 200;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--blanco); border-radius: var(--radio);
+    width: 100%; max-width: 680px; max-height: 90vh;
+    display: flex; flex-direction: column;
+    box-shadow: var(--sombra-lg);
+    animation: modalIn 0.2s ease;
+  }
+  @keyframes modalIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--gris-claro);
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(135deg, var(--morado) 0%, var(--morado-claro) 100%);
+    border-radius: var(--radio) var(--radio) 0 0;
+  }
+  .modal-header h3 { color: #fff; font-size: 1.1rem; }
+  .modal-close {
+    background: rgba(255,255,255,0.2); border: none; color: #fff;
+    border-radius: 50%; width: 30px; height: 30px;
+    cursor: pointer; font-size: 1.1rem; line-height: 30px; text-align: center;
+    transition: var(--trans);
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.35); }
+  .modal-body { padding: 22px 24px; overflow-y: auto; flex: 1; }
+  .modal-footer {
+    padding: 14px 24px;
+    border-top: 1px solid var(--gris-claro);
+    display: flex; gap: 10px; justify-content: flex-end;
+  }
+
+  /* ===== FORMULARIO ===== */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.78rem; font-weight: bold; color: var(--morado); text-transform: uppercase; letter-spacing: 0.04em; }
+  .form-group input, .form-group select, .form-group textarea {
+    border: 1.5px solid var(--gris-claro); border-radius: var(--radio-sm);
+    padding: 9px 12px; font-size: 0.88rem; background: var(--crema);
+    outline: none; transition: var(--trans); color: #2D1B44;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--morado); background: var(--blanco);
+    box-shadow: 0 0 0 3px rgba(91,44,131,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-section-title {
+    grid-column: 1 / -1;
+    font-size: 0.8rem; font-weight: bold; color: var(--dorado);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 6px 0 2px;
+    border-bottom: 1px solid var(--dorado-claro);
+    margin-top: 6px;
+  }
+
+  /* ===== BOTONES ===== */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--morado), var(--morado-claro));
+    color: #fff; border: none; border-radius: var(--radio-sm);
+    padding: 10px 22px; cursor: pointer; font-size: 0.9rem; font-weight: bold;
+    box-shadow: 0 3px 10px rgba(91,44,131,0.25);
+    transition: var(--trans);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(91,44,131,0.35); }
+  .btn-secondary {
+    background: var(--crema); color: var(--morado);
+    border: 1.5px solid var(--morado); border-radius: var(--radio-sm);
+    padding: 9px 18px; cursor: pointer; font-size: 0.88rem;
+    transition: var(--trans);
+  }
+  .btn-secondary:hover { background: var(--morado-suave); }
+  .btn-danger {
+    background: #FDEDEC; color: var(--rojo);
+    border: 1.5px solid var(--rojo); border-radius: var(--radio-sm);
+    padding: 9px 18px; cursor: pointer; font-size: 0.88rem;
+    transition: var(--trans);
+  }
+  .btn-danger:hover { background: var(--rojo); color: #fff; }
+
+  /* ===== DETALLE CLIENTA ===== */
+  .detail-header {
+    background: linear-gradient(135deg, var(--morado) 0%, var(--morado-claro) 100%);
+    border-radius: var(--radio); padding: 24px 28px; color: #fff;
+    margin-bottom: 22px; display: flex; align-items: center; gap: 20px;
+  }
+  .detail-avatar {
+    width: 68px; height: 68px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; flex-shrink: 0;
+    border: 3px solid var(--dorado);
+  }
+  .detail-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 4px; }
+  .detail-sub { font-size: 0.85rem; opacity: 0.85; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+  .detail-box {
+    background: var(--blanco); border-radius: var(--radio);
+    padding: 18px 20px; box-shadow: var(--sombra);
+  }
+  .detail-box h4 { font-size: 0.78rem; color: var(--dorado); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; border-bottom: 1px solid var(--dorado-claro); padding-bottom: 6px; }
+  .detail-field { display: flex; flex-direction: column; margin-bottom: 10px; }
+  .detail-field .df-label { font-size: 0.72rem; color: var(--gris); margin-bottom: 2px; }
+  .detail-field .df-value { font-size: 0.9rem; color: #2D1B44; font-weight: 500; }
+  .detail-field .df-value.highlight { color: var(--morado); font-weight: bold; }
+  .notes-box {
+    background: var(--blanco); border-radius: var(--radio);
+    padding: 18px 20px; box-shadow: var(--sombra); margin-bottom: 22px;
+    grid-column: 1 / -1;
+  }
+  .notes-box h4 { font-size: 0.78rem; color: var(--dorado); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; border-bottom: 1px solid var(--dorado-claro); padding-bottom: 6px; }
+  .notes-content { font-size: 0.9rem; color: #2D1B44; line-height: 1.7; white-space: pre-wrap; }
+  .stage-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-stage {
+    padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--morado);
+    background: var(--morado-suave); color: var(--morado); cursor: pointer;
+    font-size: 0.8rem; transition: var(--trans);
+  }
+  .btn-stage:hover, .btn-stage.current { background: var(--morado); color: #fff; }
+  .whatsapp-btn {
+    background: #25D366; color: #fff; border: none;
+    padding: 10px 20px; border-radius: var(--radio-sm);
+    cursor: pointer; font-size: 0.88rem; font-weight: bold;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: var(--trans);
+  }
+  .whatsapp-btn:hover { background: #1EB857; transform: translateY(-1px); }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position: fixed; bottom: 28px; right: 28px;
+    background: var(--morado); color: #fff;
+    padding: 13px 22px; border-radius: var(--radio-sm);
+    box-shadow: var(--sombra-lg);
+    font-size: 0.88rem; z-index: 999;
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.3s ease;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+  #toast.success { background: var(--verde); }
+  #toast.error   { background: var(--rojo); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    #sidebar { width: 100%; height: 60px; bottom: auto; flex-direction: row; padding: 0; }
+    .sidebar-logo { display: none; }
+    .sidebar-nav { display: flex; flex-direction: row; padding: 0; overflow-x: auto; }
+    .nav-section { display: none; }
+    .nav-btn { flex-direction: column; gap: 3px; padding: 10px 14px; font-size: 0.65rem; border-left: none; border-bottom: 3px solid transparent; }
+    .nav-btn.active { border-left: none; border-bottom-color: var(--dorado); }
+    .sidebar-footer { display: none; }
+    #main { margin-left: 0; margin-top: 60px; }
+    .form-grid, .detail-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    #page-content { padding: 16px; }
+    .detail-header { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🌸</div>
+    <h2>Renacer en Fe y Amor</h2>
+    <p>Centro de Capacitación Consciente</p>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <button class="nav-btn active" onclick="showPage('panel')" data-page="panel">
+      <span class="nav-icon">✨</span> Panel
+    </button>
+    <button class="nav-btn" onclick="showPage('kanban')" data-page="kanban">
+      <span class="nav-icon">🌺</span> Etapas
+    </button>
+    <button class="nav-btn" onclick="showPage('lista')" data-page="lista">
+      <span class="nav-icon">👩</span> Clientas
+    </button>
+    <div class="nav-section">Gestión</div>
+    <button class="nav-btn" onclick="showPage('seguimientos')" data-page="seguimientos">
+      <span class="nav-icon">📅</span> Seguimientos
+    </button>
+    <button class="nav-btn" onclick="showPage('pagos')" data-page="pagos">
+      <span class="nav-icon">💰</span> Pagos
+    </button>
+  </div>
+  <div class="sidebar-footer">
+    Claudia M. Spring © 2025
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="topbar">
+    <div class="topbar-title" id="page-title">✨ Panel Principal</div>
+    <div class="topbar-right">
+      <button class="btn-add" onclick="openModal()">+ Nueva clienta</button>
+    </div>
+  </div>
+  <div id="page-content">
+
+    <!-- PAGE: PANEL -->
+    <div id="page-panel" class="page active">
+      <div class="metrics-grid" id="metrics-grid"></div>
+      <div class="section-title">📅 Personas a contactar hoy</div>
+      <div class="alert-list" id="alerts-hoy"></div>
+      <div class="section-title">🌸 Actividad reciente</div>
+      <div id="actividad-reciente"></div>
+    </div>
+
+    <!-- PAGE: KANBAN -->
+    <div id="page-kanban" class="page">
+      <div class="kanban-scroll">
+        <div class="kanban-board" id="kanban-board"></div>
+      </div>
+    </div>
+
+    <!-- PAGE: LISTA -->
+    <div id="page-lista" class="page">
+      <div class="toolbar">
+        <input type="text" class="search-input" id="search-input" placeholder="🔍 Buscar por nombre, email, WhatsApp..." oninput="renderLista()">
+        <select class="filter-select" id="filter-stage" onchange="renderLista()">
+          <option value="">Todas las etapas</option>
+        </select>
+        <select class="filter-select" id="filter-pago" onchange="renderLista()">
+          <option value="">Todos los pagos</option>
+          <option value="Pendiente">Pago pendiente</option>
+          <option value="Completo">Pago completo</option>
+          <option value="Parcial">Pago parcial</option>
+          <option value="Sin definir">Sin definir</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>WhatsApp</th>
+              <th>País</th>
+              <th>Programa</th>
+              <th>Etapa</th>
+              <th>Pago</th>
+              <th>Seguimiento</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PAGE: SEGUIMIENTOS -->
+    <div id="page-seguimientos" class="page">
+      <div id="seguimientos-content"></div>
+    </div>
+
+    <!-- PAGE: PAGOS -->
+    <div id="page-pagos" class="page">
+      <div id="pagos-content"></div>
+    </div>
+
+    <!-- PAGE: DETALLE -->
+    <div id="page-detalle" class="page">
+      <div id="detalle-content"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL: NUEVA / EDITAR CLIENTA -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">✨ Nueva clienta</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-clienta" onsubmit="saveClienta(event)">
+        <div class="form-grid">
+
+          <div class="form-section-title">Información Personal</div>
+
+          <div class="form-group">
+            <label>Nombre completo *</label>
+            <input type="text" id="f-nombre" required placeholder="Nombre y apellidos">
+          </div>
+          <div class="form-group">
+            <label>WhatsApp *</label>
+            <input type="text" id="f-whatsapp" required placeholder="+52 55 1234 5678">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="f-email" placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-group">
+            <label>País</label>
+            <select id="f-pais">
+              <option value="">Seleccionar...</option>
+              <option>México</option><option>Colombia</option><option>Argentina</option>
+              <option>Venezuela</option><option>Perú</option><option>Chile</option>
+              <option>Ecuador</option><option>Bolivia</option><option>Paraguay</option>
+              <option>Uruguay</option><option>Costa Rica</option><option>Panamá</option>
+              <option>Guatemala</option><option>Honduras</option><option>El Salvador</option>
+              <option>Nicaragua</option><option>Cuba</option><option>República Dominicana</option>
+              <option>Puerto Rico</option><option>España</option><option>Estados Unidos</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Ciudad</label>
+            <input type="text" id="f-ciudad" placeholder="Ciudad">
+          </div>
+          <div class="form-group">
+            <label>Red social de origen</label>
+            <select id="f-red">
+              <option value="">Seleccionar...</option>
+              <option>Instagram</option><option>Facebook</option><option>WhatsApp</option>
+              <option>YouTube</option><option>TikTok</option><option>Referida</option>
+              <option>Página web</option><option>Email</option><option>Otro</option>
+            </select>
+          </div>
+
+          <div class="form-section-title">Programa e Interés</div>
+
+          <div class="form-group">
+            <label>Programa de interés</label>
+            <select id="f-programa">
+              <option value="">Seleccionar...</option>
+              <option>Mentoría Individual</option>
+              <option>Taller Renacer en Fe y Amor</option>
+              <option>Curso de Transformación Personal</option>
+              <option>Comunidad de Mujeres</option>
+              <option>Proceso de Acompañamiento</option>
+              <option>Retiro Espiritual</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Etapa actual</label>
+            <select id="f-etapa">
+              <option value="0">1. Nueva interesada</option>
+              <option value="1">2. Contactada</option>
+              <option value="2">3. En conversación</option>
+              <option value="3">4. Llamada agendada</option>
+              <option value="4">5. Propuesta enviada</option>
+              <option value="5">6. Pago pendiente</option>
+              <option value="6">7. Inscrita</option>
+              <option value="7">8. Alumna activa</option>
+              <option value="8">9. Seguimiento posterior</option>
+              <option value="9">10. No avanzó</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Situación actual</label>
+            <textarea id="f-situacion" placeholder="¿Qué está viviendo hoy? ¿Cuál es su dolor principal?"></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Objeción principal</label>
+            <input type="text" id="f-objecion" placeholder="El tiempo, el dinero, la duda, el miedo...">
+          </div>
+
+          <div class="form-section-title">Seguimiento y Pago</div>
+
+          <div class="form-group">
+            <label>Próximo seguimiento</label>
+            <input type="date" id="f-seguimiento">
+          </div>
+          <div class="form-group">
+            <label>Estado del pago</label>
+            <select id="f-estado-pago">
+              <option value="Sin definir">Sin definir</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Parcial">Parcial</option>
+              <option value="Completo">Completo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Método de pago</label>
+            <select id="f-metodo-pago">
+              <option value="">Seleccionar...</option>
+              <option>Transferencia</option><option>PayPal</option>
+              <option>Stripe</option><option>Efectivo</option>
+              <option>Zelle</option><option>Venmo</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Monto (USD)</label>
+            <input type="number" id="f-monto" placeholder="0.00" min="0" step="0.01">
+          </div>
+          <div class="form-group full">
+            <label>Notas de acompañamiento</label>
+            <textarea id="f-notas" rows="4" placeholder="Notas personales, compromisos, fecha de llamada, lo que compartió..."></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn-danger" id="btn-eliminar" onclick="eliminarClienta()" style="display:none">Eliminar</button>
+      <button class="btn-primary" onclick="saveClienta()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ===== CONSTANTES =====
+const ETAPAS = [
+  'Nueva interesada','Contactada','En conversación','Llamada agendada',
+  'Propuesta enviada','Pago pendiente','Inscrita','Alumna activa',
+  'Seguimiento posterior','No avanzó'
+];
+const ETAPA_COLORS = ['morado','','dorado','verde','dorado','rojo','verde','verde','','rojo'];
+
+// ===== DATOS =====
+let clientas = JSON.parse(localStorage.getItem('crm_clientas') || '[]');
+let editId = null;
+
+function save() { localStorage.setItem('crm_clientas', JSON.stringify(clientas)); }
+
+// ===== DATOS DE EJEMPLO =====
+function seedData() {
+  if (clientas.length > 0) return;
+  const hoy = new Date();
+  const fmt = d => d.toISOString().split('T')[0];
+  const add = n => { let d = new Date(hoy); d.setDate(d.getDate()+n); return fmt(d); };
+
+  clientas = [
+    {
+      id: uid(), nombre: 'María Elena Rodríguez', whatsapp: '+52 55 3847 2910',
+      email: 'mariaelena@gmail.com', pais: 'México', ciudad: 'Ciudad de México',
+      red: 'Instagram', programa: 'Mentoría Individual', etapa: 7,
+      situacion: 'Divorciada hace 2 años, siente que perdió su identidad. Busca reconectar con su propósito de vida.',
+      objecion: 'Tenía miedo de que no funcionara para ella',
+      seguimiento: add(7), estadoPago: 'Completo', metodoPago: 'Transferencia',
+      monto: 497, notas: 'Alumna comprometida. Completó módulo 1 y 2. Transformación visible en su forma de hablar de sí misma. Próxima sesión: revisión de propósito.',
+      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), 1))
+    },
+    {
+      id: uid(), nombre: 'Carmen Luz Vásquez', whatsapp: '+57 310 456 7890',
+      email: 'carmenluz@hotmail.com', pais: 'Colombia', ciudad: 'Bogotá',
+      red: 'Facebook', programa: 'Taller Renacer en Fe y Amor', etapa: 3,
+      situacion: 'Viuda, 52 años. Sus hijos crecieron y siente un vacío enorme. Quiere empezar de nuevo.',
+      objecion: 'El tiempo — trabaja jornadas largas',
+      seguimiento: fmt(hoy), estadoPago: 'Sin definir', metodoPago: '',
+      monto: 0, notas: 'Llamada agendada para mañana a las 4pm (hora Colombia). Muy emocionada con el taller. Enviar recordatorio por WhatsApp.',
+      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-3))
+    },
+    {
+      id: uid(), nombre: 'Lucía Fernanda Morales', whatsapp: '+54 9 11 2345 6789',
+      email: 'lucia.morales@yahoo.com', pais: 'Argentina', ciudad: 'Buenos Aires',
+      red: 'Referida', programa: 'Proceso de Acompañamiento', etapa: 5,
+      situacion: 'Se siente estancada en su carrera y en su relación. Referida por María Elena.',
+      objecion: 'El dinero — está en proceso de transición laboral',
+      seguimiento: fmt(hoy), estadoPago: 'Pendiente', metodoPago: 'PayPal',
+      monto: 297, notas: 'Envió señal de $50 USD. Queda pendiente el resto. Acordamos plan de pagos en 3 cuotas. Confirmó que quiere iniciar en la próxima cohorte.',
+      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-10))
+    },
+    {
+      id: uid(), nombre: 'Rosa Patricia Delgado', whatsapp: '+1 787 234 5678',
+      email: 'rosapatricia@gmail.com', pais: 'Puerto Rico', ciudad: 'San Juan',
+      red: 'YouTube', programa: 'Curso de Transformación Personal', etapa: 1,
+      situacion: 'Vio el video de YouTube "Cómo reconectar con tu propósito". Dejó comentario. La contacté ayer.',
+      objecion: 'No ha dado objeciones todavía — está en exploración',
+      seguimiento: add(2), estadoPago: 'Sin definir', metodoPago: '',
+      monto: 0, notas: 'Respondió el primer mensaje con entusiasmo. Enviar información del curso + link al webinar gratuito.',
+      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-1))
+    },
+    {
+      id: uid(), nombre: 'Gloria Esperanza Herrera', whatsapp: '+58 414 876 5432',
+      email: 'gloriaherrera@gmail.com', pais: 'Venezuela', ciudad: 'Caracas',
+      red: 'Instagram', programa: 'Comunidad de Mujeres', etapa: 0,
+      situacion: 'Comentó en Instagram. Primera vez que muestra interés. Pendiente primer contacto.',
+      objecion: 'Sin información todavía',
+      seguimiento: fmt(hoy), estadoPago: 'Sin definir', metodoPago: '',
+      monto: 0, notas: 'Comentó en la publicación del martes con 🙏❤️. Enviar DM hoy.',
+      creado: fmt(hoy)
+    },
+    {
+      id: uid(), nombre: 'Ana Isabel Cortés', whatsapp: '+52 33 9876 5432',
+      email: 'anaisabel@outlook.com', pais: 'México', ciudad: 'Guadalajara',
+      red: 'WhatsApp', programa: 'Mentoría Individual', etapa: 9,
+      situacion: 'Completó el proceso hace 3 meses. Quiere explorar continuación.',
+      objecion: 'Quiere tomarse un tiempo antes de comprometerse de nuevo',
+      seguimiento: add(14), estadoPago: 'Completo', metodoPago: 'Transferencia',
+      monto: 497, notas: 'Egresada del proceso de 3 meses. Escribió una reseña hermosa. Potencial para mentoría de continuación. Contactar en 2 semanas.',
+      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth()-3, 15))
+    },
+    {
+      id: uid(), nombre: 'Esperanza del Carmen Ríos', whatsapp: '+51 9 8765 4321',
+      email: 'esperanza.rios@gmail.com', pais: 'Perú', ciudad: 'Lima',
+      red: 'Facebook', programa: 'Taller Renacer en Fe y Amor', etapa: 4,
+      situacion: 'Maestra de primaria, 48 años. Burnout laboral. Necesita reconectar con ella misma.',
+      objecion: 'Tiene duda de si puede con el proceso siendo tan ocupada',
+      seguimiento: add(1), estadoPago: 'Sin definir', metodoPago: '',
+      monto: 0, notas: 'Propuesta enviada por WhatsApp el lunes. Incluí carta personalizada. Esperar su respuesta hasta el jueves.',
+      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-5))
+    },
+  ];
+  save();
+}
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+// ===== NAVEGACIÓN =====
+let currentPage = 'panel';
+let prevPage = null;
+
+function showPage(page, extra) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const btn = document.querySelector(`[data-page="${page}"]`);
+  if (btn) btn.classList.add('active');
+  currentPage = page;
+
+  const titles = {
+    panel: '✨ Panel Principal', kanban: '🌺 Etapas del Proceso',
+    lista: '👩 Todas las Clientas', seguimientos: '📅 Seguimientos',
+    pagos: '💰 Gestión de Pagos', detalle: '👤 Perfil de Clienta'
+  };
+  document.getElementById('page-title').textContent = titles[page] || '';
+
+  if (page === 'panel')        renderPanel();
+  if (page === 'kanban')       renderKanban();
+  if (page === 'lista')        renderLista();
+  if (page === 'seguimientos') renderSeguimientos();
+  if (page === 'pagos')        renderPagos();
+  if (page === 'detalle' && extra) renderDetalle(extra);
+}
+
+// ===== PANEL =====
+function renderPanel() {
+  const hoy = new Date().toISOString().split('T')[0];
+  const mes = new Date().toISOString().slice(0,7);
+
+  const interesadas = clientas.filter(c => c.etapa <= 4).length;
+  const llamadas = clientas.filter(c => c.etapa === 3).length;
+  const inscritas = clientas.filter(c => c.etapa >= 6 && c.etapa <= 7).length;
+  const ingresosMes = clientas.filter(c => c.creado && c.creado.startsWith(mes))
+    .reduce((s,c) => s + (parseFloat(c.monto)||0), 0);
+  const pagPendientes = clientas.filter(c => c.estadoPago === 'Pendiente').length;
+  const contactarHoy = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9).length;
+
+  document.getElementById('metrics-grid').innerHTML = `
+    <div class="metric-card">
+      <div class="metric-icon">🌷</div>
+      <div class="metric-info">
+        <div class="metric-label">Mujeres interesadas</div>
+        <div class="metric-value">${interesadas}</div>
+      </div>
+    </div>
+    <div class="metric-card dorado">
+      <div class="metric-icon">📞</div>
+      <div class="metric-info">
+        <div class="metric-label">Llamadas agendadas</div>
+        <div class="metric-value">${llamadas}</div>
+      </div>
+    </div>
+    <div class="metric-card verde">
+      <div class="metric-icon">🌸</div>
+      <div class="metric-info">
+        <div class="metric-label">Alumnas activas</div>
+        <div class="metric-value">${inscritas}</div>
+      </div>
+    </div>
+    <div class="metric-card dorado">
+      <div class="metric-icon">💰</div>
+      <div class="metric-info">
+        <div class="metric-label">Ingresos del mes (USD)</div>
+        <div class="metric-value">$${ingresosMes.toLocaleString()}</div>
+      </div>
+    </div>
+    <div class="metric-card rojo">
+      <div class="metric-icon">⏳</div>
+      <div class="metric-info">
+        <div class="metric-label">Pagos pendientes</div>
+        <div class="metric-value">${pagPendientes}</div>
+      </div>
+    </div>
+    <div class="metric-card malva">
+      <div class="metric-icon">💌</div>
+      <div class="metric-info">
+        <div class="metric-label">Contactar hoy</div>
+        <div class="metric-value">${contactarHoy}</div>
+      </div>
+    </div>
+  `;
+
+  const alertas = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9);
+  const alertDiv = document.getElementById('alerts-hoy');
+  if (alertas.length === 0) {
+    alertDiv.innerHTML = `<div class="empty-state"><div class="empty-icon">🌿</div>No hay seguimientos pendientes para hoy. ¡Todo al día!</div>`;
+  } else {
+    alertDiv.innerHTML = alertas.map(c => `
+      <div class="alert-card" onclick="showPage('detalle','${c.id}')" style="cursor:pointer">
+        <div style="font-size:1.6rem">💌</div>
+        <div>
+          <div class="alert-name">${c.nombre}</div>
+          <div class="alert-info">${c.whatsapp} ${c.programa ? '· ' + c.programa : ''}</div>
+          <div class="alert-info" style="color:var(--rojo)">Seguimiento: ${fmtFecha(c.seguimiento)}</div>
+        </div>
+        <div class="alert-stage"><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></div>
+      </div>
+    `).join('');
+  }
+
+  const recientes = [...clientas].sort((a,b) => (b.creado||'').localeCompare(a.creado||'')).slice(0,5);
+  document.getElementById('actividad-reciente').innerHTML = recientes.length ? `
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nombre</th><th>Etapa</th><th>Programa</th><th>Registrada</th></tr></thead>
+        <tbody>${recientes.map(c => `
+          <tr onclick="showPage('detalle','${c.id}')" style="cursor:pointer">
+            <td class="td-name">${c.nombre}</td>
+            <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+            <td>${c.programa||'—'}</td>
+            <td>${fmtFecha(c.creado)}</td>
+          </tr>
+        `).join('')}</tbody>
+      </table>
+    </div>
+  ` : `<div class="empty-state"><div class="empty-icon">🌺</div>Aún no hay registros.</div>`;
+}
+
+// ===== KANBAN =====
+function renderKanban() {
+  const board = document.getElementById('kanban-board');
+  board.innerHTML = ETAPAS.map((etapa, i) => {
+    const cards = clientas.filter(c => c.etapa === i);
+    return `
+      <div class="kanban-col">
+        <div class="kanban-col-header">
+          ${etapa}
+          <span class="kanban-count">${cards.length}</span>
+        </div>
+        <div class="kanban-cards">
+          ${cards.length === 0
+            ? `<div style="font-size:0.75rem;color:var(--gris);text-align:center;padding:14px 0;font-style:italic">Sin clientas</div>`
+            : cards.map(c => kanbanCard(c, i)).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function kanbanCard(c, etapa) {
+  const hoy = new Date().toISOString().split('T')[0];
+  const vence = c.seguimiento && c.seguimiento <= hoy;
+  const colorClass = [5,9].includes(etapa) ? 'rojo' : [3,6,7].includes(etapa) ? 'verde' : [0,4].includes(etapa) ? 'dorado' : '';
+  return `
+    <div class="kanban-card ${colorClass}" onclick="showPage('detalle','${c.id}')">
+      <div class="kanban-card-name">🌸 ${c.nombre}</div>
+      <div class="kanban-card-meta">${c.pais||''} ${c.ciudad ? '· '+c.ciudad : ''}</div>
+      ${c.programa ? `<div class="kanban-card-program">${c.programa}</div>` : ''}
+      ${vence ? `<div class="kanban-card-follow">📅 Contactar: ${fmtFecha(c.seguimiento)}</div>` : ''}
+      ${c.estadoPago === 'Pendiente' ? `<div class="kanban-card-follow">⚠️ Pago pendiente</div>` : ''}
+    </div>
+  `;
+}
+
+// ===== LISTA =====
+function renderLista() {
+  // Poblar select de etapas si está vacío
+  const sel = document.getElementById('filter-stage');
+  if (sel.options.length <= 1) {
+    ETAPAS.forEach((e,i) => {
+      const o = document.createElement('option');
+      o.value = i; o.textContent = e;
+      sel.appendChild(o);
+    });
+  }
+
+  const q = (document.getElementById('search-input').value||'').toLowerCase();
+  const stg = document.getElementById('filter-stage').value;
+  const pago = document.getElementById('filter-pago').value;
+
+  let filtered = clientas.filter(c => {
+    const matchQ = !q || c.nombre.toLowerCase().includes(q)
+      || (c.email||'').toLowerCase().includes(q)
+      || (c.whatsapp||'').includes(q);
+    const matchS = stg === '' || c.etapa == stg;
+    const matchP = !pago || c.estadoPago === pago;
+    return matchQ && matchS && matchP;
+  });
+
+  const tbody = document.getElementById('tabla-body');
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--gris)">🌿 No se encontraron resultados</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = filtered.map(c => `
+    <tr>
+      <td class="td-name" onclick="showPage('detalle','${c.id}')" style="cursor:pointer">${c.nombre}</td>
+      <td><a href="https://wa.me/${limpiaWA(c.whatsapp)}" target="_blank" style="color:var(--verde)">📱 ${c.whatsapp}</a></td>
+      <td>${c.pais||'—'}</td>
+      <td style="font-size:0.82rem;color:var(--dorado);font-style:italic">${c.programa||'—'}</td>
+      <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+      <td>${badgePago(c.estadoPago)}</td>
+      <td style="font-size:0.82rem;color:${c.seguimiento && c.seguimiento <= new Date().toISOString().split('T')[0] ? 'var(--rojo)' : 'inherit'}">${fmtFecha(c.seguimiento)}</td>
+      <td class="td-actions">
+        <button class="btn-sm btn-edit" onclick="openModal('${c.id}')">✏️ Editar</button>
+        <button class="btn-sm btn-del" onclick="confirmarEliminar('${c.id}')">🗑️</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ===== SEGUIMIENTOS =====
+function renderSeguimientos() {
+  const hoy = new Date().toISOString().split('T')[0];
+  const pendientes = clientas
+    .filter(c => c.seguimiento)
+    .sort((a,b) => a.seguimiento.localeCompare(b.seguimiento));
+
+  const vencidos = pendientes.filter(c => c.seguimiento < hoy && c.etapa !== 9);
+  const deHoy    = pendientes.filter(c => c.seguimiento === hoy && c.etapa !== 9);
+  const proximos = pendientes.filter(c => c.seguimiento > hoy && c.etapa !== 9);
+
+  document.getElementById('seguimientos-content').innerHTML = `
+    ${seccionSeg('🔴 Vencidos ('+vencidos.length+')', vencidos, 'var(--rojo)')}
+    ${seccionSeg('📅 Hoy ('+deHoy.length+')', deHoy, 'var(--dorado)')}
+    ${seccionSeg('🌿 Próximos ('+proximos.length+')', proximos, 'var(--verde)')}
+  `;
+}
+
+function seccionSeg(titulo, lista, color) {
+  if (lista.length === 0) return `<div class="section-title" style="color:${color}">${titulo}</div><div class="empty-state" style="margin-bottom:22px"><div class="empty-icon">✓</div>Sin pendientes en esta categoría</div>`;
+  return `
+    <div class="section-title" style="color:${color}">${titulo}</div>
+    <div class="alert-list" style="margin-bottom:28px">
+      ${lista.map(c => `
+        <div class="alert-card" onclick="showPage('detalle','${c.id}')" style="cursor:pointer;border-left-color:${color}">
+          <div style="font-size:1.5rem">💌</div>
+          <div style="flex:1">
+            <div class="alert-name">${c.nombre}</div>
+            <div class="alert-info">${c.whatsapp} · ${c.pais||''}</div>
+            <div class="alert-info">${c.programa||''}</div>
+          </div>
+          <div style="text-align:right">
+            <span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span>
+            <div style="font-size:0.78rem;margin-top:5px;color:${color}">${fmtFecha(c.seguimiento)}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// ===== PAGOS =====
+function renderPagos() {
+  const pendientes = clientas.filter(c => c.estadoPago === 'Pendiente');
+  const parciales   = clientas.filter(c => c.estadoPago === 'Parcial');
+  const completos   = clientas.filter(c => c.estadoPago === 'Completo');
+  const totalCobrado = completos.reduce((s,c) => s+(parseFloat(c.monto)||0),0);
+  const totalPend   = pendientes.reduce((s,c) => s+(parseFloat(c.monto)||0),0);
+
+  document.getElementById('pagos-content').innerHTML = `
+    <div class="metrics-grid" style="margin-bottom:28px">
+      <div class="metric-card verde">
+        <div class="metric-icon">✅</div>
+        <div class="metric-info">
+          <div class="metric-label">Total cobrado (USD)</div>
+          <div class="metric-value" style="color:var(--verde)">$${totalCobrado.toLocaleString()}</div>
+        </div>
+      </div>
+      <div class="metric-card rojo">
+        <div class="metric-icon">⏳</div>
+        <div class="metric-info">
+          <div class="metric-label">Por cobrar (USD)</div>
+          <div class="metric-value" style="color:var(--rojo)">$${totalPend.toLocaleString()}</div>
+        </div>
+      </div>
+      <div class="metric-card dorado">
+        <div class="metric-icon">💛</div>
+        <div class="metric-info">
+          <div class="metric-label">Pagos parciales</div>
+          <div class="metric-value" style="color:var(--dorado)">${parciales.length}</div>
+        </div>
+      </div>
+    </div>
+    ${seccionPagos('⏳ Pagos pendientes', pendientes, 'var(--rojo)')}
+    ${seccionPagos('💛 Pagos parciales', parciales, 'var(--dorado)')}
+    ${seccionPagos('✅ Pagos completos', completos, 'var(--verde)')}
+  `;
+}
+
+function seccionPagos(titulo, lista, color) {
+  if (lista.length === 0) return `<div class="section-title" style="color:${color}">${titulo}</div><div class="empty-state" style="margin-bottom:22px"><div class="empty-icon">✓</div>Sin registros en esta categoría</div>`;
+  return `
+    <div class="section-title" style="color:${color}">${titulo}</div>
+    <div class="table-wrap" style="margin-bottom:28px">
+      <table>
+        <thead><tr><th>Nombre</th><th>Programa</th><th>Monto (USD)</th><th>Método</th><th>Etapa</th><th></th></tr></thead>
+        <tbody>
+          ${lista.map(c => `
+            <tr onclick="showPage('detalle','${c.id}')" style="cursor:pointer">
+              <td class="td-name">${c.nombre}</td>
+              <td style="font-size:0.82rem;font-style:italic;color:var(--dorado)">${c.programa||'—'}</td>
+              <td style="font-weight:bold;color:${color}">$${(parseFloat(c.monto)||0).toLocaleString()}</td>
+              <td style="font-size:0.82rem">${c.metodoPago||'—'}</td>
+              <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+              <td><button class="btn-sm btn-edit" onclick="event.stopPropagation();openModal('${c.id}')">✏️</button></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+// ===== DETALLE =====
+function renderDetalle(id) {
+  const c = clientas.find(x => x.id === id);
+  if (!c) return;
+
+  const hoy = new Date().toISOString().split('T')[0];
+  const seguVencido = c.seguimiento && c.seguimiento <= hoy;
+
+  document.getElementById('detalle-content').innerHTML = `
+    <div style="margin-bottom:16px">
+      <button class="btn-secondary" onclick="showPage('lista')" style="font-size:0.82rem;padding:7px 14px">← Volver</button>
+    </div>
+    <div class="detail-header">
+      <div class="detail-avatar">🌸</div>
+      <div>
+        <div class="detail-name">${c.nombre}</div>
+        <div class="detail-sub">${c.programa || 'Programa por definir'} · ${c.pais||''} ${c.ciudad?'· '+c.ciudad:''}</div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <span class="stage-badge stage-${c.etapa}" style="font-size:0.82rem;padding:5px 14px">${ETAPAS[c.etapa]}</span>
+          ${badgePago(c.estadoPago)}
+          ${c.whatsapp ? `<a href="https://wa.me/${limpiaWA(c.whatsapp)}" target="_blank" class="whatsapp-btn">💬 WhatsApp</a>` : ''}
+          <button class="btn-add" onclick="openModal('${c.id}')" style="font-size:0.82rem;padding:7px 14px">✏️ Editar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-box">
+        <h4>📋 Información Personal</h4>
+        ${df('Email', c.email)} ${df('WhatsApp', c.whatsapp)} ${df('País', c.pais)} ${df('Ciudad', c.ciudad)} ${df('Red social', c.red)}
+      </div>
+      <div class="detail-box">
+        <h4>💰 Información de Pago</h4>
+        ${df('Estado del pago', c.estadoPago)} ${df('Monto (USD)', c.monto ? '$'+parseFloat(c.monto).toLocaleString() : '—')} ${df('Método de pago', c.metodoPago)} ${df('Próximo seguimiento', fmtFecha(c.seguimiento), seguVencido ? 'color:var(--rojo);font-weight:bold' : '')} ${df('Registrada', fmtFecha(c.creado))}
+      </div>
+      <div class="detail-box">
+        <h4>💭 Situación Actual</h4>
+        <p style="font-size:0.9rem;line-height:1.7;color:#2D1B44">${c.situacion || '—'}</p>
+        ${c.objecion ? `<div style="margin-top:12px"><div style="font-size:0.72rem;color:var(--gris);margin-bottom:4px">Objeción principal</div><div style="font-size:0.88rem;color:var(--rojo);font-weight:500">⚡ ${c.objecion}</div></div>` : ''}
+      </div>
+      <div class="detail-box">
+        <h4>🌺 Mover de Etapa</h4>
+        <div class="stage-actions">
+          ${ETAPAS.map((e,i) => `<button class="btn-stage ${c.etapa===i?'current':''}" onclick="moverEtapa('${c.id}',${i})">${e}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="notes-box">
+      <h4>📝 Notas de Acompañamiento</h4>
+      <div class="notes-content">${c.notas || 'Sin notas todavía.'}</div>
+    </div>
+  `;
+}
+
+function df(label, valor, style) {
+  return `<div class="detail-field"><div class="df-label">${label}</div><div class="df-value" style="${style||''}">${valor||'—'}</div></div>`;
+}
+
+function moverEtapa(id, etapa) {
+  const c = clientas.find(x => x.id === id);
+  if (!c) return;
+  c.etapa = etapa;
+  save();
+  renderDetalle(id);
+  toast('✨ Etapa actualizada: ' + ETAPAS[etapa], 'success');
+}
+
+// ===== MODAL =====
+function openModal(id) {
+  editId = id || null;
+  const c = id ? clientas.find(x => x.id === id) : null;
+  document.getElementById('modal-title').textContent = c ? '✏️ Editar clienta' : '✨ Nueva clienta';
+  document.getElementById('btn-eliminar').style.display = c ? 'inline-block' : 'none';
+
+  const campos = ['nombre','whatsapp','email','pais','ciudad','red','programa','situacion','objecion','seguimiento','estado-pago','metodo-pago','monto','notas','etapa'];
+  const keys   = ['nombre','whatsapp','email','pais','ciudad','red','programa','situacion','objecion','seguimiento','estadoPago','metodoPago','monto','notas','etapa'];
+
+  campos.forEach((campo, i) => {
+    const el = document.getElementById('f-' + campo);
+    if (el) el.value = c ? (c[keys[i]] !== undefined ? c[keys[i]] : '') : '';
+  });
+
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  editId = null;
+}
+
+function saveClienta() {
+  const get = id => (document.getElementById('f-'+id) || {}).value || '';
+  const nombre = get('nombre').trim();
+  const wa = get('whatsapp').trim();
+  if (!nombre || !wa) { toast('El nombre y WhatsApp son obligatorios', 'error'); return; }
+
+  const data = {
+    nombre, whatsapp: wa,
+    email: get('email'), pais: get('pais'), ciudad: get('ciudad'),
+    red: get('red'), programa: get('programa'),
+    situacion: get('situacion'), objecion: get('objecion'),
+    seguimiento: get('seguimiento'),
+    estadoPago: get('estado-pago'), metodoPago: get('metodo-pago'),
+    monto: get('monto'), notas: get('notas'),
+    etapa: parseInt(get('etapa'))||0,
+    creado: editId ? (clientas.find(x=>x.id===editId)||{}).creado : new Date().toISOString().split('T')[0]
+  };
+
+  if (editId) {
+    const idx = clientas.findIndex(x => x.id === editId);
+    clientas[idx] = { ...clientas[idx], ...data };
+    toast('✨ Clienta actualizada con éxito', 'success');
+  } else {
+    clientas.push({ id: uid(), ...data });
+    toast('🌸 Nueva clienta registrada', 'success');
+  }
+  save();
+  closeModal();
+
+  if (currentPage === 'panel') renderPanel();
+  else if (currentPage === 'kanban') renderKanban();
+  else if (currentPage === 'lista') renderLista();
+  else if (currentPage === 'detalle' && editId) renderDetalle(editId);
+}
+
+function confirmarEliminar(id) {
+  if (confirm('¿Segura que deseas eliminar este registro? Esta acción no se puede deshacer.')) {
+    clientas = clientas.filter(x => x.id !== id);
+    save();
+    renderLista();
+    toast('Registro eliminado', 'error');
+  }
+}
+
+function eliminarClienta() {
+  if (!editId) return;
+  confirmarEliminar(editId);
+  closeModal();
+}
+
+// ===== HELPERS =====
+function fmtFecha(fecha) {
+  if (!fecha) return '—';
+  const [y,m,d] = fecha.split('-');
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return `${parseInt(d)} ${meses[parseInt(m)-1]} ${y}`;
+}
+
+function badgePago(estado) {
+  const map = {
+    'Completo': ['#E8F8F5','var(--verde)'],
+    'Pendiente': ['#FDEDEC','var(--rojo)'],
+    'Parcial': ['#FEF9E7','#B7950B'],
+    'Sin definir': ['var(--gris-claro)','var(--gris)'],
+  };
+  const [bg, color] = map[estado] || map['Sin definir'];
+  return `<span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.73rem;font-weight:bold;background:${bg};color:${color}">${estado||'Sin definir'}</span>`;
+}
+
+function limpiaWA(wa) {
+  return (wa||'').replace(/[\s\-\(\)\+]/g,'');
+}
+
+function toast(msg, tipo) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + (tipo||'');
+  setTimeout(() => t.className = '', 3000);
+}
+
+// ===== INIT =====
+seedData();
+renderPanel();
+
+// Cerrar modal al click fuera
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+// ESC para cerrar
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>

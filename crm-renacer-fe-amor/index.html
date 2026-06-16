@@ -54,7 +54,7 @@
     box-shadow: 3px 0 20px rgba(91,44,131,0.25);
   }
   .sidebar-logo {
-    padding: 28px 20px 22px;
+    padding: 24px 20px 18px;
     border-bottom: 1px solid rgba(255,255,255,0.12);
     text-align: center;
   }
@@ -79,8 +79,32 @@
     font-weight: bold;
   }
   .nav-btn .nav-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+
+  /* WhatsApp Business en sidebar */
+  .sidebar-wa {
+    margin: 0 14px 14px;
+    background: rgba(37,211,102,0.15);
+    border: 1px solid rgba(37,211,102,0.35);
+    border-radius: var(--radio-sm);
+    padding: 12px 14px;
+  }
+  .sidebar-wa .wa-label {
+    color: rgba(255,255,255,0.6); font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;
+  }
+  .sidebar-wa .wa-number {
+    color: #fff; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px;
+  }
+  .sidebar-wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: 100%; padding: 7px 0; border-radius: 6px; border: none;
+    background: #25D366; color: #fff; font-size: 0.78rem; font-weight: bold;
+    cursor: pointer; transition: var(--trans); text-decoration: none;
+  }
+  .sidebar-wa-btn:hover { background: #1EB857; }
+
   .sidebar-footer {
-    padding: 16px 20px;
+    padding: 12px 20px;
     border-top: 1px solid rgba(255,255,255,0.12);
     color: rgba(255,255,255,0.5); font-size: 0.72rem; text-align: center;
   }
@@ -101,11 +125,11 @@
     position: sticky; top: 0; z-index: 50;
   }
   .topbar-title { font-size: 1.25rem; color: var(--morado); font-weight: bold; }
-  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
   .btn-add {
     background: linear-gradient(135deg, var(--morado) 0%, var(--morado-claro) 100%);
     color: #fff; border: none; border-radius: var(--radio-sm);
-    padding: 9px 18px; cursor: pointer; font-size: 0.88rem; font-weight: bold;
+    padding: 9px 18px; cursor: pointer; font-size: 0.9rem; font-weight: bold;
     display: flex; align-items: center; gap: 6px;
     box-shadow: 0 3px 10px rgba(91,44,131,0.3);
     transition: var(--trans);
@@ -116,6 +140,19 @@
   /* ===== TABS ===== */
   .page { display: none; }
   .page.active { display: block; }
+
+  /* ===== BIENVENIDA ===== */
+  .welcome-banner {
+    background: linear-gradient(135deg, var(--morado) 0%, #3A1860 100%);
+    border-radius: var(--radio); padding: 26px 32px; color: #fff;
+    margin-bottom: 28px; position: relative; overflow: hidden;
+  }
+  .welcome-banner::before {
+    content: '🌸'; position: absolute; right: 28px; top: 50%;
+    transform: translateY(-50%); font-size: 5rem; opacity: 0.15;
+  }
+  .welcome-banner h2 { font-size: 1.25rem; color: var(--dorado-claro); margin-bottom: 8px; }
+  .welcome-banner p { font-size: 0.9rem; opacity: 0.88; line-height: 1.65; max-width: 580px; }
 
   /* ===== PANEL — MÉTRICAS ===== */
   .metrics-grid {
@@ -162,12 +199,13 @@
   .alert-card .alert-info { font-size: 0.82rem; color: var(--gris); margin-top: 2px; }
   .alert-card .alert-stage { margin-left: auto; }
   .empty-state {
-    text-align: center; padding: 40px 20px;
-    color: var(--gris); font-size: 0.9rem;
+    text-align: center; padding: 48px 24px;
+    color: var(--gris); font-size: 0.92rem;
     background: var(--blanco); border-radius: var(--radio);
     box-shadow: var(--sombra);
   }
-  .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .empty-state .empty-icon { font-size: 2.8rem; margin-bottom: 12px; }
+  .empty-state p { margin-bottom: 18px; line-height: 1.6; }
 
   /* ===== ETIQUETAS DE ETAPA ===== */
   .stage-badge {
@@ -347,6 +385,13 @@
     transition: var(--trans);
   }
   .btn-danger:hover { background: var(--rojo); color: #fff; }
+  .btn-limpiar {
+    background: rgba(192,57,43,0.08); color: var(--rojo);
+    border: 1px dashed var(--rojo); border-radius: var(--radio-sm);
+    padding: 7px 14px; cursor: pointer; font-size: 0.8rem;
+    transition: var(--trans);
+  }
+  .btn-limpiar:hover { background: var(--rojo); color: #fff; }
 
   /* ===== DETALLE CLIENTA ===== */
   .detail-header {
@@ -392,9 +437,34 @@
     padding: 10px 20px; border-radius: var(--radio-sm);
     cursor: pointer; font-size: 0.88rem; font-weight: bold;
     display: inline-flex; align-items: center; gap: 7px;
-    transition: var(--trans);
+    transition: var(--trans); text-decoration: none;
   }
   .whatsapp-btn:hover { background: #1EB857; transform: translateY(-1px); }
+
+  /* ===== GUÍA DE USO ===== */
+  .guia-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px; margin-bottom: 32px;
+  }
+  .guia-card {
+    background: var(--blanco); border-radius: var(--radio);
+    padding: 22px 22px; box-shadow: var(--sombra);
+    border-top: 4px solid var(--morado);
+    transition: var(--trans);
+  }
+  .guia-card:hover { transform: translateY(-2px); box-shadow: var(--sombra-lg); }
+  .guia-card.dorado { border-top-color: var(--dorado); }
+  .guia-card.verde { border-top-color: var(--verde); }
+  .guia-icon { font-size: 2rem; margin-bottom: 10px; }
+  .guia-card h3 { font-size: 1rem; color: var(--morado); margin-bottom: 8px; }
+  .guia-card p { font-size: 0.87rem; color: var(--gris); line-height: 1.65; }
+  .guia-tip {
+    background: linear-gradient(135deg, var(--morado-suave), var(--malva-suave));
+    border-radius: var(--radio); padding: 22px 26px;
+    border-left: 4px solid var(--dorado); margin-bottom: 22px;
+  }
+  .guia-tip h3 { color: var(--morado); margin-bottom: 10px; font-size: 1rem; }
+  .guia-tip p { font-size: 0.88rem; color: #2D1B44; line-height: 1.7; }
 
   /* ===== TOAST ===== */
   #toast {
@@ -416,14 +486,16 @@
     .sidebar-logo { display: none; }
     .sidebar-nav { display: flex; flex-direction: row; padding: 0; overflow-x: auto; }
     .nav-section { display: none; }
-    .nav-btn { flex-direction: column; gap: 3px; padding: 10px 14px; font-size: 0.65rem; border-left: none; border-bottom: 3px solid transparent; }
+    .nav-btn { flex-direction: column; gap: 3px; padding: 10px 12px; font-size: 0.62rem; border-left: none; border-bottom: 3px solid transparent; }
     .nav-btn.active { border-left: none; border-bottom-color: var(--dorado); }
-    .sidebar-footer { display: none; }
+    .sidebar-wa, .sidebar-footer { display: none; }
     #main { margin-left: 0; margin-top: 60px; }
     .form-grid, .detail-grid { grid-template-columns: 1fr; }
     .metrics-grid { grid-template-columns: 1fr 1fr; }
     #page-content { padding: 16px; }
     .detail-header { flex-direction: column; text-align: center; }
+    .welcome-banner { padding: 20px; }
+    .welcome-banner::before { display: none; }
   }
 </style>
 </head>
@@ -454,9 +526,23 @@
     <button class="nav-btn" onclick="showPage('pagos')" data-page="pagos">
       <span class="nav-icon">💰</span> Pagos
     </button>
+    <div class="nav-section">Ayuda</div>
+    <button class="nav-btn" onclick="showPage('guia')" data-page="guia">
+      <span class="nav-icon">📖</span> Guía de uso
+    </button>
   </div>
+
+  <!-- WhatsApp Business -->
+  <div class="sidebar-wa">
+    <div class="wa-label">WhatsApp Business</div>
+    <div class="wa-number">+1 407 416 2993</div>
+    <a href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Renacer%20en%20Fe%20y%20Amor." target="_blank" class="sidebar-wa-btn">
+      💬 WhatsApp del negocio
+    </a>
+  </div>
+
   <div class="sidebar-footer">
-    Claudia M. Spring © 2025
+    Claudia M. Spring © 2026
   </div>
 </nav>
 
@@ -465,6 +551,7 @@
   <div id="topbar">
     <div class="topbar-title" id="page-title">✨ Panel Principal</div>
     <div class="topbar-right">
+      <button class="btn-limpiar" onclick="limpiarDatos()" title="Eliminar todos los registros y empezar de cero">🗑️ Limpiar datos</button>
       <button class="btn-add" onclick="openModal()">+ Nueva clienta</button>
     </div>
   </div>
@@ -472,6 +559,11 @@
 
     <!-- PAGE: PANEL -->
     <div id="page-panel" class="page active">
+      <!-- Bienvenida -->
+      <div class="welcome-banner">
+        <h2>Bienvenida al CRM Renacer en Fe y Amor</h2>
+        <p>Este sistema te ayuda a organizar tus prospectas, clientas, llamadas, pagos y seguimientos para servir con más claridad, orden y propósito.</p>
+      </div>
       <div class="metrics-grid" id="metrics-grid"></div>
       <div class="section-title">📅 Personas a contactar hoy</div>
       <div class="alert-list" id="alerts-hoy"></div>
@@ -501,23 +593,7 @@
           <option value="Sin definir">Sin definir</option>
         </select>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>WhatsApp</th>
-              <th>País</th>
-              <th>Programa</th>
-              <th>Etapa</th>
-              <th>Pago</th>
-              <th>Seguimiento</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-body"></tbody>
-        </table>
-      </div>
+      <div id="lista-content"></div>
     </div>
 
     <!-- PAGE: SEGUIMIENTOS -->
@@ -535,6 +611,77 @@
       <div id="detalle-content"></div>
     </div>
 
+    <!-- PAGE: GUÍA DE USO -->
+    <div id="page-guia" class="page">
+      <div class="welcome-banner" style="margin-bottom:28px">
+        <h2>📖 Guía de uso del CRM</h2>
+        <p>Aquí encontrarás todo lo que necesitas saber para usar este sistema con confianza y facilidad.</p>
+      </div>
+
+      <div class="guia-tip">
+        <h3>🌸 ¿Para qué sirve este CRM?</h3>
+        <p>Este sistema fue creado especialmente para ti, Claudia. Te permite tener en un solo lugar toda la información de las mujeres que se acercan a tu trabajo: desde el primer contacto hasta el acompañamiento posterior, pasando por los pagos y el seguimiento. Con orden, claridad y desde el corazón.</p>
+      </div>
+
+      <div class="section-title">Secciones del sistema</div>
+      <div class="guia-grid">
+        <div class="guia-card">
+          <div class="guia-icon">✨</div>
+          <h3>Panel principal</h3>
+          <p>Muestra los números más importantes de tu negocio: cuántas mujeres están interesadas, llamadas agendadas, alumnas activas, ingresos del mes, pagos pendientes y quién necesita seguimiento hoy. Es tu vista rápida del día.</p>
+        </div>
+        <div class="guia-card dorado">
+          <div class="guia-icon">🌺</div>
+          <h3>Etapas</h3>
+          <p>Muestra visualmente en qué parte del proceso está cada clienta, desde "Nueva interesada" hasta "Alumna activa". Puedes ver de un vistazo cuántas mujeres hay en cada etapa y hacer clic en cualquier tarjeta para ver su perfil completo.</p>
+        </div>
+        <div class="guia-card verde">
+          <div class="guia-icon">👩</div>
+          <h3>Clientas</h3>
+          <p>Muestra la lista completa de todas las mujeres registradas. Puedes buscar por nombre, WhatsApp o email, y filtrar por etapa o estado de pago. Desde aquí puedes editar o eliminar cualquier registro.</p>
+        </div>
+        <div class="guia-card dorado">
+          <div class="guia-icon">📅</div>
+          <h3>Seguimientos</h3>
+          <p>Organiza automáticamente a quién debes contactar hoy, quién tiene seguimiento vencido y quiénes son los próximos. Nunca más se te pasará una mujer importante. La fecha de seguimiento se configura al crear o editar cada registro.</p>
+        </div>
+        <div class="guia-card">
+          <div class="guia-icon">💰</div>
+          <h3>Pagos</h3>
+          <p>Te ayuda a revisar pagos completos, pagos pendientes e ingresos del mes. Muestra el total cobrado y el total por cobrar, para que tengas claridad financiera en todo momento.</p>
+        </div>
+        <div class="guia-card verde">
+          <div class="guia-icon">➕</div>
+          <h3>Nueva clienta</h3>
+          <p>Haz clic en el botón morado "Nueva clienta" en la parte superior derecha para registrar una nueva mujer interesada. Completa la información que tengas disponible y guarda. Puedes editar el registro en cualquier momento.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Consejos importantes</div>
+      <div class="guia-grid">
+        <div class="guia-card">
+          <div class="guia-icon">💾</div>
+          <h3>Guardado automático</h3>
+          <p>El CRM guarda todos los datos automáticamente en tu navegador. No necesitas hacer nada manual. Los datos permanecen aunque cierres la ventana y vuelvas a abrirla.</p>
+        </div>
+        <div class="guia-card dorado">
+          <div class="guia-icon">📱</div>
+          <h3>Botón WhatsApp de cada clienta</h3>
+          <p>Dentro del perfil de cada mujer encontrarás un botón verde de WhatsApp. Al hacer clic, se abrirá una conversación directamente con <strong>el número de esa clienta</strong>, con un mensaje de seguimiento prellenado de tu parte.</p>
+        </div>
+        <div class="guia-card verde">
+          <div class="guia-icon">💬</div>
+          <h3>WhatsApp del negocio</h3>
+          <p>En el menú lateral izquierdo encontrarás tu número de WhatsApp Business (+1 407 416 2993). El botón "WhatsApp del negocio" abre una conversación para que otras personas puedan escribirte directamente.</p>
+        </div>
+        <div class="guia-card">
+          <div class="guia-icon">🔄</div>
+          <h3>Mover entre etapas</h3>
+          <p>Dentro del perfil de cada clienta verás una sección "Mover de Etapa". Haz clic en la etapa correspondiente para actualizar su avance en el proceso de Renacer en Fe y Amor.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -546,7 +693,7 @@
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
-      <form id="form-clienta" onsubmit="saveClienta(event)">
+      <form id="form-clienta" onsubmit="return false;">
         <div class="form-grid">
 
           <div class="form-section-title">Información Personal</div>
@@ -557,7 +704,7 @@
           </div>
           <div class="form-group">
             <label>WhatsApp *</label>
-            <input type="text" id="f-whatsapp" required placeholder="+52 55 1234 5678">
+            <input type="text" id="f-whatsapp" required placeholder="+1 407 000 0000">
           </div>
           <div class="form-group">
             <label>Email</label>
@@ -684,101 +831,48 @@ const ETAPAS = [
   'Propuesta enviada','Pago pendiente','Inscrita','Alumna activa',
   'Seguimiento posterior','No avanzó'
 ];
-const ETAPA_COLORS = ['morado','','dorado','verde','dorado','rojo','verde','verde','','rojo'];
+
+const WA_CLAUDIA = '14074162993';
+const MSG_SEGUIMIENTO = encodeURIComponent(
+  'Hola, hermosa. Soy Claudia Spring del Centro de Capacitación Consciente. Paso a saludarte y darte seguimiento sobre tu interés en Renacer en Fe y Amor. ¿Cómo estás hoy?'
+);
 
 // ===== DATOS =====
+// Limpiamos datos de ejemplo de la versión anterior (identificados por el flag)
+if (!localStorage.getItem('crm_v2')) {
+  localStorage.removeItem('crm_clientas');
+  localStorage.setItem('crm_v2', '1');
+}
+
 let clientas = JSON.parse(localStorage.getItem('crm_clientas') || '[]');
 let editId = null;
 
 function save() { localStorage.setItem('crm_clientas', JSON.stringify(clientas)); }
-
-// ===== DATOS DE EJEMPLO =====
-function seedData() {
-  if (clientas.length > 0) return;
-  const hoy = new Date();
-  const fmt = d => d.toISOString().split('T')[0];
-  const add = n => { let d = new Date(hoy); d.setDate(d.getDate()+n); return fmt(d); };
-
-  clientas = [
-    {
-      id: uid(), nombre: 'María Elena Rodríguez', whatsapp: '+52 55 3847 2910',
-      email: 'mariaelena@gmail.com', pais: 'México', ciudad: 'Ciudad de México',
-      red: 'Instagram', programa: 'Mentoría Individual', etapa: 7,
-      situacion: 'Divorciada hace 2 años, siente que perdió su identidad. Busca reconectar con su propósito de vida.',
-      objecion: 'Tenía miedo de que no funcionara para ella',
-      seguimiento: add(7), estadoPago: 'Completo', metodoPago: 'Transferencia',
-      monto: 497, notas: 'Alumna comprometida. Completó módulo 1 y 2. Transformación visible en su forma de hablar de sí misma. Próxima sesión: revisión de propósito.',
-      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), 1))
-    },
-    {
-      id: uid(), nombre: 'Carmen Luz Vásquez', whatsapp: '+57 310 456 7890',
-      email: 'carmenluz@hotmail.com', pais: 'Colombia', ciudad: 'Bogotá',
-      red: 'Facebook', programa: 'Taller Renacer en Fe y Amor', etapa: 3,
-      situacion: 'Viuda, 52 años. Sus hijos crecieron y siente un vacío enorme. Quiere empezar de nuevo.',
-      objecion: 'El tiempo — trabaja jornadas largas',
-      seguimiento: fmt(hoy), estadoPago: 'Sin definir', metodoPago: '',
-      monto: 0, notas: 'Llamada agendada para mañana a las 4pm (hora Colombia). Muy emocionada con el taller. Enviar recordatorio por WhatsApp.',
-      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-3))
-    },
-    {
-      id: uid(), nombre: 'Lucía Fernanda Morales', whatsapp: '+54 9 11 2345 6789',
-      email: 'lucia.morales@yahoo.com', pais: 'Argentina', ciudad: 'Buenos Aires',
-      red: 'Referida', programa: 'Proceso de Acompañamiento', etapa: 5,
-      situacion: 'Se siente estancada en su carrera y en su relación. Referida por María Elena.',
-      objecion: 'El dinero — está en proceso de transición laboral',
-      seguimiento: fmt(hoy), estadoPago: 'Pendiente', metodoPago: 'PayPal',
-      monto: 297, notas: 'Envió señal de $50 USD. Queda pendiente el resto. Acordamos plan de pagos en 3 cuotas. Confirmó que quiere iniciar en la próxima cohorte.',
-      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-10))
-    },
-    {
-      id: uid(), nombre: 'Rosa Patricia Delgado', whatsapp: '+1 787 234 5678',
-      email: 'rosapatricia@gmail.com', pais: 'Puerto Rico', ciudad: 'San Juan',
-      red: 'YouTube', programa: 'Curso de Transformación Personal', etapa: 1,
-      situacion: 'Vio el video de YouTube "Cómo reconectar con tu propósito". Dejó comentario. La contacté ayer.',
-      objecion: 'No ha dado objeciones todavía — está en exploración',
-      seguimiento: add(2), estadoPago: 'Sin definir', metodoPago: '',
-      monto: 0, notas: 'Respondió el primer mensaje con entusiasmo. Enviar información del curso + link al webinar gratuito.',
-      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-1))
-    },
-    {
-      id: uid(), nombre: 'Gloria Esperanza Herrera', whatsapp: '+58 414 876 5432',
-      email: 'gloriaherrera@gmail.com', pais: 'Venezuela', ciudad: 'Caracas',
-      red: 'Instagram', programa: 'Comunidad de Mujeres', etapa: 0,
-      situacion: 'Comentó en Instagram. Primera vez que muestra interés. Pendiente primer contacto.',
-      objecion: 'Sin información todavía',
-      seguimiento: fmt(hoy), estadoPago: 'Sin definir', metodoPago: '',
-      monto: 0, notas: 'Comentó en la publicación del martes con 🙏❤️. Enviar DM hoy.',
-      creado: fmt(hoy)
-    },
-    {
-      id: uid(), nombre: 'Ana Isabel Cortés', whatsapp: '+52 33 9876 5432',
-      email: 'anaisabel@outlook.com', pais: 'México', ciudad: 'Guadalajara',
-      red: 'WhatsApp', programa: 'Mentoría Individual', etapa: 9,
-      situacion: 'Completó el proceso hace 3 meses. Quiere explorar continuación.',
-      objecion: 'Quiere tomarse un tiempo antes de comprometerse de nuevo',
-      seguimiento: add(14), estadoPago: 'Completo', metodoPago: 'Transferencia',
-      monto: 497, notas: 'Egresada del proceso de 3 meses. Escribió una reseña hermosa. Potencial para mentoría de continuación. Contactar en 2 semanas.',
-      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth()-3, 15))
-    },
-    {
-      id: uid(), nombre: 'Esperanza del Carmen Ríos', whatsapp: '+51 9 8765 4321',
-      email: 'esperanza.rios@gmail.com', pais: 'Perú', ciudad: 'Lima',
-      red: 'Facebook', programa: 'Taller Renacer en Fe y Amor', etapa: 4,
-      situacion: 'Maestra de primaria, 48 años. Burnout laboral. Necesita reconectar con ella misma.',
-      objecion: 'Tiene duda de si puede con el proceso siendo tan ocupada',
-      seguimiento: add(1), estadoPago: 'Sin definir', metodoPago: '',
-      monto: 0, notas: 'Propuesta enviada por WhatsApp el lunes. Incluí carta personalizada. Esperar su respuesta hasta el jueves.',
-      creado: fmt(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-5))
-    },
-  ];
-  save();
-}
-
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+// ===== LIMPIAR DATOS =====
+function limpiarDatos() {
+  if (clientas.length === 0) {
+    toast('El sistema ya está vacío', 'success');
+    return;
+  }
+  if (confirm('¿Segura que deseas eliminar TODOS los registros? Esta acción no se puede deshacer.\n\nEscribe "sí" en el siguiente cuadro para confirmar.')) {
+    const confirmacion = prompt('Escribe "sí" para confirmar que deseas borrar todo:');
+    if (confirmacion && confirmacion.trim().toLowerCase() === 'sí') {
+      clientas = [];
+      save();
+      toast('✨ Sistema limpio. Listo para comenzar.', 'success');
+      if (currentPage === 'panel') renderPanel();
+      else if (currentPage === 'kanban') renderKanban();
+      else if (currentPage === 'lista') renderLista();
+    } else {
+      toast('Operación cancelada. Tus datos están seguros.', '');
+    }
+  }
+}
 
 // ===== NAVEGACIÓN =====
 let currentPage = 'panel';
-let prevPage = null;
 
 function showPage(page, extra) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -791,7 +885,8 @@ function showPage(page, extra) {
   const titles = {
     panel: '✨ Panel Principal', kanban: '🌺 Etapas del Proceso',
     lista: '👩 Todas las Clientas', seguimientos: '📅 Seguimientos',
-    pagos: '💰 Gestión de Pagos', detalle: '👤 Perfil de Clienta'
+    pagos: '💰 Gestión de Pagos', detalle: '👤 Perfil de Clienta',
+    guia: '📖 Guía de Uso'
   };
   document.getElementById('page-title').textContent = titles[page] || '';
 
@@ -808,13 +903,13 @@ function renderPanel() {
   const hoy = new Date().toISOString().split('T')[0];
   const mes = new Date().toISOString().slice(0,7);
 
-  const interesadas = clientas.filter(c => c.etapa <= 4).length;
-  const llamadas = clientas.filter(c => c.etapa === 3).length;
-  const inscritas = clientas.filter(c => c.etapa >= 6 && c.etapa <= 7).length;
-  const ingresosMes = clientas.filter(c => c.creado && c.creado.startsWith(mes))
-    .reduce((s,c) => s + (parseFloat(c.monto)||0), 0);
-  const pagPendientes = clientas.filter(c => c.estadoPago === 'Pendiente').length;
-  const contactarHoy = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9).length;
+  const interesadas    = clientas.filter(c => c.etapa <= 4).length;
+  const llamadas       = clientas.filter(c => c.etapa === 3).length;
+  const inscritas      = clientas.filter(c => c.etapa >= 6 && c.etapa <= 7).length;
+  const ingresosMes    = clientas.filter(c => c.creado && c.creado.startsWith(mes))
+                           .reduce((s,c) => s + (parseFloat(c.monto)||0), 0);
+  const pagPendientes  = clientas.filter(c => c.estadoPago === 'Pendiente').length;
+  const contactarHoy   = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9).length;
 
   document.getElementById('metrics-grid').innerHTML = `
     <div class="metric-card">
@@ -864,7 +959,7 @@ function renderPanel() {
   const alertas = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9);
   const alertDiv = document.getElementById('alerts-hoy');
   if (alertas.length === 0) {
-    alertDiv.innerHTML = `<div class="empty-state"><div class="empty-icon">🌿</div>No hay seguimientos pendientes para hoy. ¡Todo al día!</div>`;
+    alertDiv.innerHTML = `<div class="empty-state"><div class="empty-icon">🌿</div><p>No hay seguimientos pendientes para hoy. ¡Todo al día!</p></div>`;
   } else {
     alertDiv.innerHTML = alertas.map(c => `
       <div class="alert-card" onclick="showPage('detalle','${c.id}')" style="cursor:pointer">
@@ -880,9 +975,8 @@ function renderPanel() {
   }
 
   const recientes = [...clientas].sort((a,b) => (b.creado||'').localeCompare(a.creado||'')).slice(0,5);
-  document.getElementById('actividad-reciente').innerHTML = recientes.length ? `
-    <div class="table-wrap">
-      <table>
+  document.getElementById('actividad-reciente').innerHTML = recientes.length
+    ? `<div class="table-wrap"><table>
         <thead><tr><th>Nombre</th><th>Etapa</th><th>Programa</th><th>Registrada</th></tr></thead>
         <tbody>${recientes.map(c => `
           <tr onclick="showPage('detalle','${c.id}')" style="cursor:pointer">
@@ -890,11 +984,13 @@ function renderPanel() {
             <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
             <td>${c.programa||'—'}</td>
             <td>${fmtFecha(c.creado)}</td>
-          </tr>
-        `).join('')}</tbody>
-      </table>
-    </div>
-  ` : `<div class="empty-state"><div class="empty-icon">🌺</div>Aún no hay registros.</div>`;
+          </tr>`).join('')}
+        </tbody></table></div>`
+    : `<div class="empty-state">
+        <div class="empty-icon">🌸</div>
+        <p>Aún no tienes clientas registradas.<br>Haz clic en <strong>Nueva clienta</strong> para comenzar.</p>
+        <button class="btn-add" onclick="openModal()" style="margin:0 auto">+ Nueva clienta</button>
+       </div>`;
 }
 
 // ===== KANBAN =====
@@ -913,8 +1009,7 @@ function renderKanban() {
             ? `<div style="font-size:0.75rem;color:var(--gris);text-align:center;padding:14px 0;font-style:italic">Sin clientas</div>`
             : cards.map(c => kanbanCard(c, i)).join('')}
         </div>
-      </div>
-    `;
+      </div>`;
   }).join('');
 }
 
@@ -929,13 +1024,11 @@ function kanbanCard(c, etapa) {
       ${c.programa ? `<div class="kanban-card-program">${c.programa}</div>` : ''}
       ${vence ? `<div class="kanban-card-follow">📅 Contactar: ${fmtFecha(c.seguimiento)}</div>` : ''}
       ${c.estadoPago === 'Pendiente' ? `<div class="kanban-card-follow">⚠️ Pago pendiente</div>` : ''}
-    </div>
-  `;
+    </div>`;
 }
 
 // ===== LISTA =====
 function renderLista() {
-  // Poblar select de etapas si está vacío
   const sel = document.getElementById('filter-stage');
   if (sel.options.length <= 1) {
     ETAPAS.forEach((e,i) => {
@@ -945,8 +1038,8 @@ function renderLista() {
     });
   }
 
-  const q = (document.getElementById('search-input').value||'').toLowerCase();
-  const stg = document.getElementById('filter-stage').value;
+  const q    = (document.getElementById('search-input').value||'').toLowerCase();
+  const stg  = document.getElementById('filter-stage').value;
   const pago = document.getElementById('filter-pago').value;
 
   let filtered = clientas.filter(c => {
@@ -958,26 +1051,42 @@ function renderLista() {
     return matchQ && matchS && matchP;
   });
 
-  const tbody = document.getElementById('tabla-body');
-  if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--gris)">🌿 No se encontraron resultados</td></tr>`;
+  const cont = document.getElementById('lista-content');
+  if (clientas.length === 0) {
+    cont.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">🌸</div>
+      <p>Aún no tienes clientas registradas.<br>Haz clic en <strong>Nueva clienta</strong> para comenzar.</p>
+      <button class="btn-add" onclick="openModal()" style="margin:0 auto">+ Nueva clienta</button>
+    </div>`;
     return;
   }
-  tbody.innerHTML = filtered.map(c => `
-    <tr>
-      <td class="td-name" onclick="showPage('detalle','${c.id}')" style="cursor:pointer">${c.nombre}</td>
-      <td><a href="https://wa.me/${limpiaWA(c.whatsapp)}" target="_blank" style="color:var(--verde)">📱 ${c.whatsapp}</a></td>
-      <td>${c.pais||'—'}</td>
-      <td style="font-size:0.82rem;color:var(--dorado);font-style:italic">${c.programa||'—'}</td>
-      <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
-      <td>${badgePago(c.estadoPago)}</td>
-      <td style="font-size:0.82rem;color:${c.seguimiento && c.seguimiento <= new Date().toISOString().split('T')[0] ? 'var(--rojo)' : 'inherit'}">${fmtFecha(c.seguimiento)}</td>
-      <td class="td-actions">
-        <button class="btn-sm btn-edit" onclick="openModal('${c.id}')">✏️ Editar</button>
-        <button class="btn-sm btn-del" onclick="confirmarEliminar('${c.id}')">🗑️</button>
-      </td>
-    </tr>
-  `).join('');
+  if (filtered.length === 0) {
+    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">🌿</div><p>No se encontraron resultados para tu búsqueda.</p></div>`;
+    return;
+  }
+  cont.innerHTML = `
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Nombre</th><th>WhatsApp</th><th>País</th>
+        <th>Programa</th><th>Etapa</th><th>Pago</th>
+        <th>Seguimiento</th><th>Acciones</th>
+      </tr></thead>
+      <tbody>${filtered.map(c => `
+        <tr>
+          <td class="td-name" onclick="showPage('detalle','${c.id}')" style="cursor:pointer">${c.nombre}</td>
+          <td><a href="https://wa.me/${limpiaWA(c.whatsapp)}?text=${MSG_SEGUIMIENTO}" target="_blank" style="color:var(--verde)">📱 ${c.whatsapp}</a></td>
+          <td>${c.pais||'—'}</td>
+          <td style="font-size:0.82rem;color:var(--dorado);font-style:italic">${c.programa||'—'}</td>
+          <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+          <td>${badgePago(c.estadoPago)}</td>
+          <td style="font-size:0.82rem;color:${c.seguimiento && c.seguimiento <= new Date().toISOString().split('T')[0] ? 'var(--rojo)' : 'inherit'}">${fmtFecha(c.seguimiento)}</td>
+          <td class="td-actions">
+            <button class="btn-sm btn-edit" onclick="openModal('${c.id}')">✏️ Editar</button>
+            <button class="btn-sm btn-del" onclick="confirmarEliminar('${c.id}')">🗑️</button>
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>`;
 }
 
 // ===== SEGUIMIENTOS =====
@@ -989,7 +1098,15 @@ function renderSeguimientos() {
 
   const vencidos = pendientes.filter(c => c.seguimiento < hoy && c.etapa !== 9);
   const deHoy    = pendientes.filter(c => c.seguimiento === hoy && c.etapa !== 9);
-  const proximos = pendientes.filter(c => c.seguimiento > hoy && c.etapa !== 9);
+  const proximos  = pendientes.filter(c => c.seguimiento > hoy && c.etapa !== 9);
+
+  if (clientas.length === 0) {
+    document.getElementById('seguimientos-content').innerHTML = `<div class="empty-state">
+      <div class="empty-icon">📅</div>
+      <p>Aún no tienes clientas registradas.<br>Haz clic en <strong>Nueva clienta</strong> para comenzar.</p>
+    </div>`;
+    return;
+  }
 
   document.getElementById('seguimientos-content').innerHTML = `
     ${seccionSeg('🔴 Vencidos ('+vencidos.length+')', vencidos, 'var(--rojo)')}
@@ -999,7 +1116,8 @@ function renderSeguimientos() {
 }
 
 function seccionSeg(titulo, lista, color) {
-  if (lista.length === 0) return `<div class="section-title" style="color:${color}">${titulo}</div><div class="empty-state" style="margin-bottom:22px"><div class="empty-icon">✓</div>Sin pendientes en esta categoría</div>`;
+  if (lista.length === 0) return `<div class="section-title" style="color:${color}">${titulo}</div>
+    <div class="empty-state" style="margin-bottom:22px"><div class="empty-icon">✓</div><p>Sin pendientes en esta categoría.</p></div>`;
   return `
     <div class="section-title" style="color:${color}">${titulo}</div>
     <div class="alert-list" style="margin-bottom:28px">
@@ -1015,19 +1133,17 @@ function seccionSeg(titulo, lista, color) {
             <span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span>
             <div style="font-size:0.78rem;margin-top:5px;color:${color}">${fmtFecha(c.seguimiento)}</div>
           </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
+        </div>`).join('')}
+    </div>`;
 }
 
 // ===== PAGOS =====
 function renderPagos() {
-  const pendientes = clientas.filter(c => c.estadoPago === 'Pendiente');
-  const parciales   = clientas.filter(c => c.estadoPago === 'Parcial');
-  const completos   = clientas.filter(c => c.estadoPago === 'Completo');
-  const totalCobrado = completos.reduce((s,c) => s+(parseFloat(c.monto)||0),0);
-  const totalPend   = pendientes.reduce((s,c) => s+(parseFloat(c.monto)||0),0);
+  const pendientes   = clientas.filter(c => c.estadoPago === 'Pendiente');
+  const parciales    = clientas.filter(c => c.estadoPago === 'Parcial');
+  const completos    = clientas.filter(c => c.estadoPago === 'Completo');
+  const totalCobrado = completos.reduce((s,c) => s+(parseFloat(c.monto)||0), 0);
+  const totalPend    = pendientes.reduce((s,c) => s+(parseFloat(c.monto)||0), 0);
 
   document.getElementById('pagos-content').innerHTML = `
     <div class="metrics-grid" style="margin-bottom:28px">
@@ -1060,7 +1176,8 @@ function renderPagos() {
 }
 
 function seccionPagos(titulo, lista, color) {
-  if (lista.length === 0) return `<div class="section-title" style="color:${color}">${titulo}</div><div class="empty-state" style="margin-bottom:22px"><div class="empty-icon">✓</div>Sin registros en esta categoría</div>`;
+  if (lista.length === 0) return `<div class="section-title" style="color:${color}">${titulo}</div>
+    <div class="empty-state" style="margin-bottom:22px"><div class="empty-icon">✓</div><p>Sin registros en esta categoría.</p></div>`;
   return `
     <div class="section-title" style="color:${color}">${titulo}</div>
     <div class="table-wrap" style="margin-bottom:28px">
@@ -1075,12 +1192,10 @@ function seccionPagos(titulo, lista, color) {
               <td style="font-size:0.82rem">${c.metodoPago||'—'}</td>
               <td><span class="stage-badge stage-${c.etapa}">${ETAPAS[c.etapa]}</span></td>
               <td><button class="btn-sm btn-edit" onclick="event.stopPropagation();openModal('${c.id}')">✏️</button></td>
-            </tr>
-          `).join('')}
+            </tr>`).join('')}
         </tbody>
       </table>
-    </div>
-  `;
+    </div>`;
 }
 
 // ===== DETALLE =====
@@ -1093,7 +1208,7 @@ function renderDetalle(id) {
 
   document.getElementById('detalle-content').innerHTML = `
     <div style="margin-bottom:16px">
-      <button class="btn-secondary" onclick="showPage('lista')" style="font-size:0.82rem;padding:7px 14px">← Volver</button>
+      <button class="btn-secondary" onclick="showPage('lista')" style="font-size:0.82rem;padding:7px 14px">← Volver a Clientas</button>
     </div>
     <div class="detail-header">
       <div class="detail-avatar">🌸</div>
@@ -1103,7 +1218,9 @@ function renderDetalle(id) {
         <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
           <span class="stage-badge stage-${c.etapa}" style="font-size:0.82rem;padding:5px 14px">${ETAPAS[c.etapa]}</span>
           ${badgePago(c.estadoPago)}
-          ${c.whatsapp ? `<a href="https://wa.me/${limpiaWA(c.whatsapp)}" target="_blank" class="whatsapp-btn">💬 WhatsApp</a>` : ''}
+          ${c.whatsapp
+            ? `<a href="https://wa.me/${limpiaWA(c.whatsapp)}?text=${MSG_SEGUIMIENTO}" target="_blank" class="whatsapp-btn">💬 Escribir por WhatsApp</a>`
+            : ''}
           <button class="btn-add" onclick="openModal('${c.id}')" style="font-size:0.82rem;padding:7px 14px">✏️ Editar</button>
         </div>
       </div>
@@ -1112,16 +1229,27 @@ function renderDetalle(id) {
     <div class="detail-grid">
       <div class="detail-box">
         <h4>📋 Información Personal</h4>
-        ${df('Email', c.email)} ${df('WhatsApp', c.whatsapp)} ${df('País', c.pais)} ${df('Ciudad', c.ciudad)} ${df('Red social', c.red)}
+        ${df('Email', c.email)}
+        ${df('WhatsApp', c.whatsapp)}
+        ${df('País', c.pais)}
+        ${df('Ciudad', c.ciudad)}
+        ${df('Red social de origen', c.red)}
       </div>
       <div class="detail-box">
         <h4>💰 Información de Pago</h4>
-        ${df('Estado del pago', c.estadoPago)} ${df('Monto (USD)', c.monto ? '$'+parseFloat(c.monto).toLocaleString() : '—')} ${df('Método de pago', c.metodoPago)} ${df('Próximo seguimiento', fmtFecha(c.seguimiento), seguVencido ? 'color:var(--rojo);font-weight:bold' : '')} ${df('Registrada', fmtFecha(c.creado))}
+        ${df('Estado del pago', c.estadoPago)}
+        ${df('Monto (USD)', c.monto ? '$'+parseFloat(c.monto).toLocaleString() : '—')}
+        ${df('Método de pago', c.metodoPago)}
+        ${df('Próximo seguimiento', fmtFecha(c.seguimiento), seguVencido ? 'color:var(--rojo);font-weight:bold' : '')}
+        ${df('Registrada', fmtFecha(c.creado))}
       </div>
       <div class="detail-box">
         <h4>💭 Situación Actual</h4>
         <p style="font-size:0.9rem;line-height:1.7;color:#2D1B44">${c.situacion || '—'}</p>
-        ${c.objecion ? `<div style="margin-top:12px"><div style="font-size:0.72rem;color:var(--gris);margin-bottom:4px">Objeción principal</div><div style="font-size:0.88rem;color:var(--rojo);font-weight:500">⚡ ${c.objecion}</div></div>` : ''}
+        ${c.objecion ? `<div style="margin-top:12px">
+          <div style="font-size:0.72rem;color:var(--gris);margin-bottom:4px">Objeción principal</div>
+          <div style="font-size:0.88rem;color:var(--rojo);font-weight:500">⚡ ${c.objecion}</div>
+        </div>` : ''}
       </div>
       <div class="detail-box">
         <h4>🌺 Mover de Etapa</h4>
@@ -1203,9 +1331,9 @@ function saveClienta() {
   save();
   closeModal();
 
-  if (currentPage === 'panel') renderPanel();
+  if (currentPage === 'panel')  renderPanel();
   else if (currentPage === 'kanban') renderKanban();
-  else if (currentPage === 'lista') renderLista();
+  else if (currentPage === 'lista')  renderLista();
   else if (currentPage === 'detalle' && editId) renderDetalle(editId);
 }
 
@@ -1220,8 +1348,13 @@ function confirmarEliminar(id) {
 
 function eliminarClienta() {
   if (!editId) return;
-  confirmarEliminar(editId);
-  closeModal();
+  if (confirm('¿Segura que deseas eliminar a esta clienta? Esta acción no se puede deshacer.')) {
+    clientas = clientas.filter(x => x.id !== editId);
+    save();
+    closeModal();
+    showPage('lista');
+    toast('Registro eliminado', 'error');
+  }
 }
 
 // ===== HELPERS =====
@@ -1251,18 +1384,15 @@ function toast(msg, tipo) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'show ' + (tipo||'');
-  setTimeout(() => t.className = '', 3000);
+  setTimeout(() => t.className = '', 3200);
 }
 
 // ===== INIT =====
-seedData();
 renderPanel();
 
-// Cerrar modal al click fuera
 document.getElementById('modal-overlay').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-// ESC para cerrar
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>

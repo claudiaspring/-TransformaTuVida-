@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprende Claude Code — Claudia Spring</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --morado:#5B2C83; --morado-c:#7B3FAD; --morado-s:#EDE4F5;
+  --dorado:#C9A646; --dorado-c:#F0DFA0;
+  --crema:#F7F1E8; --blanco:#FFFFFF;
+  --gris:#6B6B6B; --gris-c:#E8E0EC;
+  --verde:#27AE60; --rojo:#C0392B;
+  --malva:#C9A3B8; --malva-s:#F5ECF2;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--crema);color:#2D1B44;line-height:1.7}
+
+/* ===== PORTADA ===== */
+.portada{
+  background:linear-gradient(145deg,var(--morado) 0%,#3A1860 100%);
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:40px 24px;position:relative;overflow:hidden;
+}
+.portada::before{content:'🌸';position:absolute;font-size:18rem;opacity:.05;top:-60px;right:-60px}
+.portada::after{content:'✨';position:absolute;font-size:12rem;opacity:.05;bottom:-40px;left:-40px}
+.portada-badge{
+  background:rgba(201,166,70,.2);border:1px solid rgba(201,166,70,.5);
+  color:var(--dorado-c);border-radius:30px;padding:7px 20px;
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:28px;display:inline-block;
+}
+.portada h1{font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:18px;line-height:1.2}
+.portada h1 span{color:var(--dorado-c)}
+.portada p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:580px;margin:0 auto 36px}
+.portada-info{
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:44px;
+}
+.portada-chip{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.85);border-radius:30px;padding:8px 18px;font-size:.85rem;
+}
+.btn-empezar{
+  background:linear-gradient(135deg,var(--dorado),#B8952A);
+  color:#fff;border:none;border-radius:50px;padding:15px 36px;
+  font-size:1rem;font-weight:bold;cursor:pointer;
+  box-shadow:0 6px 24px rgba(201,166,70,.4);
+  text-decoration:none;display:inline-block;transition:all .25s;
+}
+.btn-empezar:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,166,70,.5)}
+.firma{margin-top:48px;color:rgba(255,255,255,.45);font-size:.8rem}
+.firma strong{color:var(--dorado-c)}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.contenido{max-width:860px;margin:0 auto;padding:60px 24px}
+
+/* ===== ÍNDICE ===== */
+.indice{
+  background:var(--blanco);border-radius:18px;padding:36px;
+  box-shadow:0 4px 24px rgba(91,44,131,.1);margin-bottom:60px;
+  border-left:5px solid var(--dorado);
+}
+.indice h2{color:var(--morado);font-size:1.3rem;margin-bottom:22px}
+.indice ol{padding-left:22px}
+.indice li{margin-bottom:10px;font-size:.95rem}
+.indice a{color:var(--morado-c);font-weight:bold;text-decoration:none;transition:all .2s}
+.indice a:hover{color:var(--dorado)}
+
+/* ===== SECCIONES ===== */
+.leccion{
+  background:var(--blanco);border-radius:18px;padding:40px;
+  box-shadow:0 4px 24px rgba(91,44,131,.1);margin-bottom:40px;
+  scroll-margin-top:30px;
+}
+.leccion-num{
+  display:inline-block;background:var(--morado);color:#fff;
+  border-radius:50%;width:38px;height:38px;line-height:38px;
+  text-align:center;font-size:.85rem;font-weight:bold;
+  margin-bottom:14px;
+}
+.leccion h2{font-size:1.5rem;color:var(--morado);margin-bottom:8px}
+.leccion .subtitulo{color:var(--gris);font-size:.9rem;margin-bottom:28px;font-style:italic}
+.leccion h3{font-size:1.05rem;color:var(--morado-c);margin:26px 0 10px}
+.leccion p{margin-bottom:14px;font-size:.95rem;line-height:1.75}
+.leccion ul,.leccion ol{padding-left:22px;margin-bottom:16px}
+.leccion li{margin-bottom:8px;font-size:.95rem;line-height:1.65}
+
+/* ===== DESTACADOS ===== */
+.tip{
+  background:linear-gradient(135deg,var(--morado-s),var(--malva-s));
+  border-left:4px solid var(--dorado);border-radius:12px;
+  padding:18px 22px;margin:22px 0;
+}
+.tip strong{color:var(--morado);display:block;margin-bottom:5px;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.tip p{margin:0;font-size:.9rem;line-height:1.65}
+
+.advertencia{
+  background:#FEF9E7;border-left:4px solid var(--dorado);
+  border-radius:12px;padding:18px 22px;margin:22px 0;
+}
+.advertencia strong{color:#8a6200;display:block;margin-bottom:5px;font-size:.85rem;text-transform:uppercase}
+.advertencia p{margin:0;font-size:.9rem}
+
+.exito{
+  background:#E8F8F5;border-left:4px solid var(--verde);
+  border-radius:12px;padding:18px 22px;margin:22px 0;
+}
+.exito strong{color:var(--verde);display:block;margin-bottom:5px;font-size:.85rem;text-transform:uppercase}
+.exito p{margin:0;font-size:.9rem}
+
+/* ===== CÓDIGO ===== */
+.codigo-bloque{
+  background:#2D1B44;color:#F0DFA0;border-radius:12px;
+  padding:22px 24px;margin:18px 0;overflow-x:auto;
+  font-family:'Courier New',monospace;font-size:.88rem;line-height:1.7;
+  position:relative;
+}
+.codigo-bloque .etiqueta{
+  position:absolute;top:10px;right:14px;
+  background:rgba(201,166,70,.2);color:var(--dorado-c);
+  border-radius:20px;padding:2px 10px;font-size:.72rem;
+  font-family:Georgia,serif;letter-spacing:.05em;
+}
+.codigo-inline{
+  background:var(--morado-s);color:var(--morado);
+  border-radius:5px;padding:2px 8px;
+  font-family:'Courier New',monospace;font-size:.88rem;
+}
+.verde-texto{color:#7EE8A2}
+.dorado-texto{color:#F0DFA0}
+.malva-texto{color:#D4A5C9}
+.gris-texto{color:#9B8FA8}
+
+/* ===== TABLAS ===== */
+.tabla-wrap{overflow-x:auto;margin:18px 0;border-radius:12px;box-shadow:0 2px 12px rgba(91,44,131,.1)}
+table{width:100%;border-collapse:collapse;background:var(--blanco)}
+thead th{background:var(--morado);color:#fff;padding:12px 16px;text-align:left;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+tbody tr:nth-child(even){background:var(--morado-s)}
+tbody td{padding:11px 16px;font-size:.88rem;border-bottom:1px solid var(--gris-c)}
+tbody tr:last-child td{border-bottom:none}
+
+/* ===== EJERCICIOS ===== */
+.ejercicio{
+  border:2px solid var(--morado-s);border-radius:14px;
+  padding:26px;margin:26px 0;position:relative;
+}
+.ejercicio-num{
+  position:absolute;top:-14px;left:20px;
+  background:var(--morado);color:#fff;
+  padding:3px 16px;border-radius:20px;font-size:.8rem;font-weight:bold;
+}
+.ejercicio h3{color:var(--morado);margin-bottom:8px;font-size:1rem;margin-top:8px}
+.ejercicio p{font-size:.9rem;margin-bottom:14px}
+.ejercicio .aprende{
+  background:var(--dorado-c);color:#2D1B44;
+  border-radius:8px;padding:8px 14px;font-size:.82rem;
+  display:inline-block;font-weight:bold;
+}
+
+/* ===== PASOS NUMERADOS ===== */
+.pasos{list-style:none;padding:0;margin:18px 0}
+.pasos li{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--gris-c);
+}
+.pasos li:last-child{border-bottom:none}
+.paso-num{
+  background:var(--morado);color:#fff;border-radius:50%;
+  width:32px;height:32px;line-height:32px;text-align:center;
+  font-size:.82rem;font-weight:bold;flex-shrink:0;margin-top:2px;
+}
+.pasos li p{margin:0;font-size:.92rem}
+.pasos li strong{color:var(--morado)}
+
+/* ===== CAJA GRANDE ===== */
+.caja-dorada{
+  background:linear-gradient(135deg,#FEF9E7,#FDF2E9);
+  border:2px solid var(--dorado-c);border-radius:18px;
+  padding:32px;margin:28px 0;text-align:center;
+}
+.caja-dorada h3{color:var(--dorado);font-size:1.2rem;margin-bottom:12px}
+.caja-dorada p{font-size:.95rem;margin-bottom:0;color:#2D1B44}
+
+/* ===== REGLAS ===== */
+.reglas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+.regla-si,.regla-no{border-radius:12px;padding:18px 20px}
+.regla-si{background:#E8F8F5;border-top:3px solid var(--verde)}
+.regla-no{background:#FDEDEC;border-top:3px solid var(--rojo)}
+.regla-si h4{color:var(--verde);font-size:.85rem;text-transform:uppercase;margin-bottom:10px}
+.regla-no h4{color:var(--rojo);font-size:.85rem;text-transform:uppercase;margin-bottom:10px}
+.regla-si li,.regla-no li{font-size:.85rem;margin-bottom:6px;line-height:1.5}
+
+/* ===== TRES CAJAS ===== */
+.tres{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:22px 0}
+.caja-tres{border-radius:14px;padding:22px;text-align:center}
+.caja-tres .icono{font-size:2.5rem;margin-bottom:12px}
+.caja-tres h3{font-size:1rem;margin-bottom:8px}
+.caja-tres p{font-size:.84rem;color:var(--gris);line-height:1.6}
+.caja-html{background:#EDE4F5;border-top:4px solid var(--morado)}
+.caja-html h3{color:var(--morado)}
+.caja-css{background:#FEF9E7;border-top:4px solid var(--dorado)}
+.caja-css h3{color:#8a6200}
+.caja-js{background:#E8F8F5;border-top:4px solid var(--verde)}
+.caja-js h3{color:var(--verde)}
+
+/* ===== DIPLOMA ===== */
+.diploma{
+  background:linear-gradient(145deg,var(--morado) 0%,#3A1860 100%);
+  border-radius:22px;padding:50px 40px;text-align:center;
+  color:#fff;margin-top:60px;position:relative;overflow:hidden;
+}
+.diploma::before{content:'🌸';position:absolute;font-size:14rem;opacity:.06;top:-40px;left:-40px}
+.diploma::after{content:'✨';position:absolute;font-size:10rem;opacity:.06;bottom:-30px;right:-30px}
+.diploma h2{color:var(--dorado-c);font-size:1.8rem;margin-bottom:16px}
+.diploma p{font-size:1rem;opacity:.85;margin-bottom:8px;max-width:520px;margin-left:auto;margin-right:auto}
+.diploma .firma-d{margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);font-size:.82rem}
+.diploma .firma-d strong{color:var(--dorado-c)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--morado);color:rgba(255,255,255,.6);text-align:center;padding:28px 24px;font-size:.82rem}
+footer strong{color:var(--dorado-c)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:640px){
+  .contenido{padding:32px 16px}
+  .leccion{padding:26px 20px}
+  .reglas{grid-template-columns:1fr}
+  .portada h1{font-size:1.9rem}
+  .codigo-bloque{font-size:.8rem;padding:16px}
+}
+
+/* ===== PRINT ===== */
+@media print{
+  .btn-empezar{display:none}
+  .portada{min-height:auto;padding:40px}
+  .leccion{break-inside:avoid;box-shadow:none;border:1px solid var(--gris-c)}
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="portada">
+  <div class="portada-badge">Material de clase · Nivel principiante</div>
+  <h1>Aprende a usar<br><span>Claude Code</span><br>desde cero</h1>
+  <p>Guía completa para crear, editar y entender proyectos digitales usando inteligencia artificial — sin saber programar.</p>
+  <div class="portada-info">
+    <span class="portada-chip">📚 7 lecciones</span>
+    <span class="portada-chip">💻 5 ejercicios prácticos</span>
+    <span class="portada-chip">🌸 Todo en español</span>
+    <span class="portada-chip">✨ Sin experiencia previa</span>
+  </div>
+  <a href="#leccion-1" class="btn-empezar">Comenzar la clase →</a>
+  <div class="firma">
+    Preparado por <strong>Claudia M. Spring</strong> ·
+    Centro de Capacitación Consciente · Renacer en Fe y Amor
+  </div>
+</section>
+
+<!-- CONTENIDO -->
+<div class="contenido">
+
+  <!-- ÍNDICE -->
+  <div class="indice">
+    <h2>📋 Contenido de la clase</h2>
+    <ol>
+      <li><a href="#leccion-1">¿Qué es Claude Code y para qué sirve?</a></li>
+      <li><a href="#leccion-2">Cómo acceder y crear tu cuenta</a></li>
+      <li><a href="#leccion-3">Los tres ingredientes de toda página web</a></li>
+      <li><a href="#leccion-4">Cómo leer un archivo HTML</a></li>
+      <li><a href="#leccion-5">Cómo dar instrucciones claras</a></li>
+      <li><a href="#leccion-6">Reglas de seguridad</a></li>
+      <li><a href="#leccion-7">Tus 5 ejercicios de práctica</a></li>
+    </ol>
+  </div>
+
+  <!-- LECCIÓN 1 -->
+  <div class="leccion" id="leccion-1">
+    <div class="leccion-num">1</div>
+    <h2>¿Qué es Claude Code y para qué sirve?</h2>
+    <p class="subtitulo">Entendiendo la herramienta antes de usarla</p>
+
+    <p>Claude Code es una herramienta de inteligencia artificial creada por la empresa Anthropic. Con ella puedes <strong>construir, editar y entender proyectos digitales</strong> escribiendo en español, como si le hablaras a una asistente muy capaz.</p>
+
+    <p>No necesitas saber programar para usarlo. Lo que sí necesitas es aprender a <strong>dar instrucciones claras</strong>.</p>
+
+    <div class="tip">
+      <strong>💡 Analogía</strong>
+      <p>Claude Code es como tener una arquitecta digital a tu lado. Tú le dices qué quieres construir o cambiar, y ella lo hace. Tú no necesitas saber cómo mezclar el cemento — solo necesitas saber qué quieres.</p>
+    </div>
+
+    <h3>¿En qué se diferencia Claude normal de Claude Code?</h3>
+    <div class="tabla-wrap">
+      <table>
+        <thead><tr><th></th><th>Claude normal</th><th>Claude Code</th></tr></thead>
+        <tbody>
+          <tr><td><strong>¿Qué es?</strong></td><td>Chat de inteligencia artificial</td><td>Versión especializada en proyectos digitales</td></tr>
+          <tr><td><strong>Para qué sirve</strong></td><td>Escribir, responder preguntas, redactar</td><td>Crear y editar páginas web, aplicaciones</td></tr>
+          <tr><td><strong>Dónde está</strong></td><td>claude.ai</td><td>claude.ai/code</td></tr>
+          <tr><td><strong>Costo</strong></td><td>Versión gratuita disponible</td><td>Requiere plan Pro (~$20 USD/mes)</td></tr>
+          <tr><td><strong>Trabaja con archivos</strong></td><td>No directamente</td><td>Sí — lee y edita tus archivos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>¿Qué puedes hacer con Claude Code?</h3>
+    <ul>
+      <li>Crear páginas web desde cero sin escribir código</li>
+      <li>Editar textos, colores y diseños de una página existente</li>
+      <li>Agregar funciones nuevas a tu sitio o aplicación</li>
+      <li>Entender qué hace el código que ya tienes</li>
+      <li>Construir herramientas propias como el CRM de Claudia Spring</li>
+    </ul>
+  </div>
+
+  <!-- LECCIÓN 2 -->
+  <div class="leccion" id="leccion-2">
+    <div class="leccion-num">2</div>
+    <h2>Cómo acceder y crear tu cuenta</h2>
+    <p class="subtitulo">Pasos exactos para entrar por primera vez</p>
+
+    <h3>Paso a paso para crear tu cuenta</h3>
+    <ul class="pasos">
+      <li><div class="paso-num">1</div><p>Abre tu navegador — se recomienda <strong>Google Chrome</strong></p></li>
+      <li><div class="paso-num">2</div><p>Escribe en la barra de dirección: <strong>claude.ai</strong> y presiona Enter</p></li>
+      <li><div class="paso-num">3</div><p>Haz clic en <strong>"Sign up"</strong> o <strong>"Crear cuenta"</strong></p></li>
+      <li><div class="paso-num">4</div><p>Ingresa tu <strong>correo electrónico</strong> y crea una contraseña</p></li>
+      <li><div class="paso-num">5</div><p>Revisa tu correo — llegarán instrucciones para confirmar tu cuenta</p></li>
+      <li><div class="paso-num">6</div><p>Confirma tu correo y ya puedes <strong>iniciar sesión</strong></p></li>
+    </ul>
+
+    <div class="exito">
+      <strong>✅ Para usar Claude Code (proyectos reales)</strong>
+      <p>Una vez dentro, ve a <strong>Configuración → Plans</strong> y activa el plan <strong>Pro</strong> (~$20 USD/mes). Luego entra a <strong>claude.ai/code</strong> para trabajar con tus archivos.</p>
+    </div>
+
+    <div class="advertencia">
+      <strong>⚠️ ¿No quieres pagar todavía?</strong>
+      <p>Puedes empezar con la versión gratuita en <strong>claude.ai</strong> para practicar cómo escribir instrucciones, hacer preguntas sobre código y aprender los conceptos. Cuando estés lista para editar proyectos reales, ahí activas el plan Pro.</p>
+    </div>
+
+    <h3>Tu primer mensaje al entrar</h3>
+    <p>Cuando abras Claude por primera vez, escribe esto exactamente:</p>
+    <div class="codigo-bloque">
+      <span class="etiqueta">Tu primer mensaje</span>
+Hola. Soy principiante y quiero aprender
+a usar Claude Code paso a paso.
+¿Por dónde empiezo?
+    </div>
+    <p>Claude te responderá en español y te guiará desde donde estás.</p>
+  </div>
+
+  <!-- LECCIÓN 3 -->
+  <div class="leccion" id="leccion-3">
+    <div class="leccion-num">3</div>
+    <h2>Los tres ingredientes de toda página web</h2>
+    <p class="subtitulo">Lo que necesitas entender antes de tocar cualquier archivo</p>
+
+    <p>Toda página web — sin excepción — está hecha de exactamente <strong>tres cosas</strong>. Siempre las tres, siempre trabajando juntas:</p>
+
+    <div class="tres">
+      <div class="caja-tres caja-html">
+        <div class="icono">🦴</div>
+        <h3>HTML — La estructura</h3>
+        <p>Es el esqueleto. Define qué elementos existen y en qué orden aparecen en la página.</p>
+      </div>
+      <div class="caja-tres caja-css">
+        <div class="icono">👗</div>
+        <h3>CSS — El diseño</h3>
+        <p>Es la ropa. Define colores, tamaños, fuentes, espacios y formas de cada elemento.</p>
+      </div>
+      <div class="caja-tres caja-js">
+        <div class="icono">🧠</div>
+        <h3>JavaScript — El comportamiento</h3>
+        <p>Es el cerebro. Define qué pasa cuando interactúas: clics, guardados, cálculos, filtros.</p>
+      </div>
+    </div>
+
+    <h3>Ejemplo con el CRM de Claudia Spring</h3>
+    <p>Cuando ves el botón morado que dice <em>"+ Nueva clienta"</em>, eso es la combinación de los tres:</p>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">HTML — qué existe</span>
+<span class="gris-texto">&lt;!-- Esto crea el botón --&gt;</span>
+<span class="verde-texto">&lt;button</span> <span class="malva-texto">onclick</span>=<span class="dorado-texto">"openModal()"</span><span class="verde-texto">&gt;</span>
+  + Nueva clienta
+<span class="verde-texto">&lt;/button&gt;</span>
+    </div>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">CSS — cómo se ve</span>
+<span class="gris-texto">/* Esto lo hace morado y elegante */</span>
+<span class="malva-texto">.btn-add</span> {
+  <span class="dorado-texto">background</span>: <span class="verde-texto">linear-gradient(135deg, #5B2C83, #7B3FAD)</span>;
+  <span class="dorado-texto">color</span>: <span class="verde-texto">#fff</span>;
+  <span class="dorado-texto">border-radius</span>: <span class="verde-texto">8px</span>;
+  <span class="dorado-texto">padding</span>: <span class="verde-texto">9px 16px</span>;
+}
+    </div>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">JavaScript — qué hace</span>
+<span class="gris-texto">// Esto abre el formulario al hacer clic</span>
+<span class="dorado-texto">function</span> <span class="verde-texto">openModal</span>() {
+  <span class="gris-texto">// muestra el formulario de nueva clienta</span>
+  document.<span class="malva-texto">getElementById</span>(<span class="dorado-texto">'modal-overlay'</span>)
+          .<span class="malva-texto">classList</span>.<span class="verde-texto">add</span>(<span class="dorado-texto">'open'</span>);
+}
+    </div>
+
+    <div class="tip">
+      <strong>💡 Para recordar siempre</strong>
+      <p>HTML dice <em>qué hay</em>. CSS dice <em>cómo se ve</em>. JavaScript dice <em>qué hace</em>. Si algo no se ve bien → CSS. Si algo no funciona → JavaScript. Si falta algo → HTML.</p>
+    </div>
+  </div>
+
+  <!-- LECCIÓN 4 -->
+  <div class="leccion" id="leccion-4">
+    <div class="leccion-num">4</div>
+    <h2>Cómo leer un archivo HTML</h2>
+    <p class="subtitulo">El mapa que necesitas para no perderte</p>
+
+    <p>Todo archivo <span class="codigo-inline">.html</span> tiene la misma estructura básica, como un libro con partes fijas:</p>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Estructura de todo archivo HTML</span>
+<span class="verde-texto">&lt;!DOCTYPE html&gt;</span>   <span class="gris-texto">← Le dice al navegador: "esto es HTML"</span>
+<span class="verde-texto">&lt;html&gt;</span>
+
+  <span class="verde-texto">&lt;head&gt;</span>            <span class="gris-texto">← Información invisible para el usuario</span>
+    <span class="verde-texto">&lt;title&gt;</span>Mi página<span class="verde-texto">&lt;/title&gt;</span>   <span class="gris-texto">← Título de la pestaña</span>
+    <span class="verde-texto">&lt;style&gt;</span>          <span class="gris-texto">← Aquí vive el CSS (diseño)</span>
+      ...
+    <span class="verde-texto">&lt;/style&gt;</span>
+  <span class="verde-texto">&lt;/head&gt;</span>
+
+  <span class="verde-texto">&lt;body&gt;</span>            <span class="gris-texto">← Todo lo que se VE en pantalla</span>
+    <span class="dorado-texto">&lt;h1&gt;</span>Título grande<span class="dorado-texto">&lt;/h1&gt;</span>
+    <span class="dorado-texto">&lt;p&gt;</span>Un párrafo<span class="dorado-texto">&lt;/p&gt;</span>
+    <span class="dorado-texto">&lt;button&gt;</span>Un botón<span class="dorado-texto">&lt;/button&gt;</span>
+  <span class="verde-texto">&lt;/body&gt;</span>
+
+  <span class="verde-texto">&lt;script&gt;</span>         <span class="gris-texto">← Aquí vive el JavaScript (comportamiento)</span>
+    ...
+  <span class="verde-texto">&lt;/script&gt;</span>
+
+<span class="verde-texto">&lt;/html&gt;</span>
+    </div>
+
+    <h3>La regla de oro — etiquetas que abren y cierran</h3>
+    <p>Cada elemento en HTML tiene una etiqueta que <strong>abre</strong> y una que <strong>cierra</strong>. La barra <span class="codigo-inline">/</span> siempre indica el cierre:</p>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead><tr><th>Etiqueta</th><th>Qué crea</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td><span class="codigo-inline">&lt;h1&gt; &lt;/h1&gt;</span></td><td>Título muy grande</td><td>El título principal de una página</td></tr>
+          <tr><td><span class="codigo-inline">&lt;h2&gt; &lt;/h2&gt;</span></td><td>Título grande</td><td>Encabezados de secciones</td></tr>
+          <tr><td><span class="codigo-inline">&lt;p&gt; &lt;/p&gt;</span></td><td>Párrafo de texto</td><td>Cualquier texto descriptivo</td></tr>
+          <tr><td><span class="codigo-inline">&lt;button&gt; &lt;/button&gt;</span></td><td>Botón</td><td>Botón de acción o envío</td></tr>
+          <tr><td><span class="codigo-inline">&lt;div&gt; &lt;/div&gt;</span></td><td>Caja contenedora</td><td>Agrupa otros elementos</td></tr>
+          <tr><td><span class="codigo-inline">&lt;a&gt; &lt;/a&gt;</span></td><td>Enlace</td><td>Texto que lleva a otro lugar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Las cajas dentro de cajas</h3>
+    <p>El HTML funciona como cajas que contienen otras cajas. El banner de bienvenida del CRM, por ejemplo, se ve así por dentro:</p>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Ejemplo real del CRM</span>
+<span class="gris-texto">┌─── div.welcome (caja grande — el banner morado) ──┐</span>
+<span class="gris-texto">│                                                   │</span>
+<span class="gris-texto">│  ┌── h2 ─────────────────────────────────────┐   │</span>
+<span class="gris-texto">│  │</span>  <span class="dorado-texto">Bienvenida al CRM Renacer en Fe y Amor</span>  <span class="gris-texto">│   │</span>
+<span class="gris-texto">│  └────────────────────────────────────────────┘   │</span>
+<span class="gris-texto">│                                                   │</span>
+<span class="gris-texto">│  ┌── p ──────────────────────────────────────┐   │</span>
+<span class="gris-texto">│  │</span>  <span class="verde-texto">Este sistema te ayuda a organizar...</span>      <span class="gris-texto">│   │</span>
+<span class="gris-texto">│  └────────────────────────────────────────────┘   │</span>
+<span class="gris-texto">│                                                   │</span>
+<span class="gris-texto">└───────────────────────────────────────────────────┘</span>
+    </div>
+
+    <div class="tip">
+      <strong>💡 Para cambiar un texto</strong>
+      <p>Solo tienes que editar lo que está <em>entre</em> las etiquetas. Si quieres cambiar el título, editas lo que hay entre <span class="codigo-inline">&lt;h2&gt;</span> y <span class="codigo-inline">&lt;/h2&gt;</span>. Todo lo demás queda igual.</p>
+    </div>
+  </div>
+
+  <!-- LECCIÓN 5 -->
+  <div class="leccion" id="leccion-5">
+    <div class="leccion-num">5</div>
+    <h2>Cómo dar instrucciones claras</h2>
+    <p class="subtitulo">La habilidad más importante para trabajar con Claude Code</p>
+
+    <p>Una instrucción bien escrita produce resultados precisos. Una instrucción vaga produce resultados vagos. Esta es la habilidad central que debes desarrollar.</p>
+
+    <h3>La fórmula de una buena instrucción</h3>
+
+    <div class="caja-dorada">
+      <h3>📝 Fórmula</h3>
+      <p><strong>[En qué archivo]</strong> + <strong>[Qué quiero cambiar]</strong> + <strong>[Cómo quiero que quede]</strong></p>
+    </div>
+
+    <h3>Ejemplos: instrucción vaga vs instrucción clara</h3>
+
+    <div class="reglas">
+      <div class="regla-no">
+        <h4>❌ Instrucción vaga</h4>
+        <ul>
+          <li>Cambia el texto</li>
+          <li>Pon un color diferente</li>
+          <li>Agrega algo ahí</li>
+          <li>Hazlo más bonito</li>
+        </ul>
+      </div>
+      <div class="regla-si">
+        <h4>✅ Instrucción clara</h4>
+        <ul>
+          <li>En el archivo X, cambia el título que dice "Y" por "Z"</li>
+          <li>Cambia el color dorado de #C9A646 a #D4AF37</li>
+          <li>Agrega un campo llamado "Edad" entre Ciudad y País</li>
+          <li>Explícame qué cambió y por qué</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Instrucciones reales que puedes usar</h3>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Para cambiar un texto</span>
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+cambia el título del banner de bienvenida.
+Quiero que diga: "Con amor y claridad, organizo mi misión."
+No toques nada más.
+    </div>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Para cambiar un color</span>
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+cambia el color dorado de #C9A646 a #D4AF37.
+Solo ese valor, en todas las partes donde aparezca.
+Explícame cuántos lugares cambiaron.
+    </div>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Para entender algo</span>
+Sin modificar nada, explícame para qué sirve
+la función "exportar" en el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html.
+Explícamelo como si fuera principiante.
+    </div>
+
+    <div class="tip">
+      <strong>💡 Consejo de oro</strong>
+      <p>Siempre incluye el nombre exacto del archivo. Así Claude sabe exactamente dónde trabajar y no toca los demás archivos por accidente.</p>
+    </div>
+  </div>
+
+  <!-- LECCIÓN 6 -->
+  <div class="leccion" id="leccion-6">
+    <div class="leccion-num">6</div>
+    <h2>Reglas de seguridad</h2>
+    <p class="subtitulo">Protege tu trabajo antes de hacer cualquier cambio</p>
+
+    <p>Antes de pedirle a Claude que modifique algo, incluye siempre estas frases protectoras en tu instrucción:</p>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Frases de seguridad — úsalas siempre</span>
+No borres archivos existentes.
+No elimines funciones actuales.
+No cambies lo que no te pido.
+Explícame exactamente qué cambiaste después de hacerlo.
+    </div>
+
+    <h3>Qué hacer si algo sale mal</h3>
+    <p>Si haces un cambio y el resultado no es lo que esperabas, escribe una de estas frases:</p>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Para deshacer un cambio</span>
+Eso no quedó como esperaba.
+Por favor revierte el último cambio
+y déjalo exactamente como estaba antes.
+    </div>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Para entender qué pasó</span>
+Explícame qué cambió exactamente
+y por qué no se ve como yo esperaba.
+    </div>
+
+    <div class="codigo-bloque">
+      <span class="etiqueta">Para empezar de nuevo</span>
+Descarta ese cambio.
+Quiero intentarlo de otra manera.
+Antes de hacer cualquier cosa, explícame el plan.
+    </div>
+
+    <div class="exito">
+      <strong>✅ Recuerda siempre</strong>
+      <p>Claude puede deshacer, explicar y volver a intentarlo. Nunca tienes que sentir que rompiste algo sin solución. Siempre hay una forma de recuperarte.</p>
+    </div>
+
+    <h3>Reglas de oro para principiantes</h3>
+    <div class="reglas">
+      <div class="regla-si">
+        <h4>✅ Haz esto</h4>
+        <ul>
+          <li>Cambia una cosa a la vez</li>
+          <li>Pide explicación antes de cambios grandes</li>
+          <li>Exporta un respaldo antes de modificar</li>
+          <li>Lee lo que Claude explica antes de continuar</li>
+          <li>Pregunta si no entiendes algo</li>
+        </ul>
+      </div>
+      <div class="regla-no">
+        <h4>❌ Evita esto</h4>
+        <ul>
+          <li>Pedir muchos cambios a la vez</li>
+          <li>Dar instrucciones sin nombre de archivo</li>
+          <li>Aceptar cambios sin leer la explicación</li>
+          <li>Modificar sin tener respaldo guardado</li>
+          <li>Apresurarte cuando algo no funciona</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LECCIÓN 7 -->
+  <div class="leccion" id="leccion-7">
+    <div class="leccion-num">7</div>
+    <h2>Tus 5 ejercicios de práctica</h2>
+    <p class="subtitulo">Del más fácil al más desafiante — basados en el CRM real de Claudia Spring</p>
+
+    <p>Estos ejercicios usan el archivo real <span class="codigo-inline">CRM-Renacer-en-Fe-y-Amor-FINAL.html</span>. Están ordenados por dificultad. Empieza por el primero y avanza cuando te sientas cómoda.</p>
+
+    <div class="ejercicio">
+      <div class="ejercicio-num">Ejercicio 1 — Nivel básico</div>
+      <h3>Cambiar el texto del banner de bienvenida</h3>
+      <p>El panel principal del CRM tiene un banner morado con un título y una descripción. Tu tarea es cambiar ese texto por uno que tú elijas.</p>
+      <p><strong>Instrucción que debes escribir:</strong></p>
+      <div class="codigo-bloque">
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+cambia el texto del banner de bienvenida.
+Título nuevo: [escribe tu título aquí]
+Descripción nueva: [escribe tu descripción aquí]
+No toques nada más. Explícame qué línea cambiaste.
+      </div>
+      <span class="aprende">Lo que aprenderás: dónde viven los textos en el HTML</span>
+    </div>
+
+    <div class="ejercicio">
+      <div class="ejercicio-num">Ejercicio 2 — Nivel básico</div>
+      <h3>Cambiar el color dorado</h3>
+      <p>El CRM usa el color dorado <span class="codigo-inline">#C9A646</span> en botones, títulos y acentos. Tu tarea es cambiarlo por otro tono de dorado y ver cómo afecta todo el sistema.</p>
+      <p><strong>Instrucción que debes escribir:</strong></p>
+      <div class="codigo-bloque">
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+cambia el color dorado de #C9A646 a #D4AF37.
+Solo ese valor en todas las partes donde aparezca.
+Después dime cuántos lugares cambiaron y dónde.
+      </div>
+      <span class="aprende">Lo que aprenderás: cómo una variable CSS afecta todo el diseño</span>
+    </div>
+
+    <div class="ejercicio">
+      <div class="ejercicio-num">Ejercicio 3 — Nivel intermedio</div>
+      <h3>Agregar un campo al formulario</h3>
+      <p>El formulario de nueva clienta tiene campos como Nombre, WhatsApp, País y Ciudad. Tu tarea es agregar un campo nuevo llamado "Edad aproximada".</p>
+      <p><strong>Instrucción que debes escribir:</strong></p>
+      <div class="codigo-bloque">
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+agrega un campo llamado "Edad aproximada" en el formulario
+de nueva clienta, entre los campos de Ciudad y Red social.
+No elimines ningún campo existente.
+Explícame en qué partes del archivo hiciste cambios.
+      </div>
+      <span class="aprende">Lo que aprenderás: cómo se conecta el HTML del formulario con el JavaScript</span>
+    </div>
+
+    <div class="ejercicio">
+      <div class="ejercicio-num">Ejercicio 4 — Nivel intermedio</div>
+      <h3>Cambiar el mensaje de WhatsApp</h3>
+      <p>Cuando haces clic en WhatsApp desde el perfil de una clienta, se envía un mensaje prellenado. Tu tarea es cambiar ese mensaje por uno con tus propias palabras.</p>
+      <p><strong>Instrucción que debes escribir:</strong></p>
+      <div class="codigo-bloque">
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+cambia el mensaje prellenado de WhatsApp para contactar clientas.
+Quiero que diga: [escribe aquí tu mensaje personalizado]
+Explícame en qué parte del archivo está guardado ese mensaje.
+      </div>
+      <span class="aprende">Lo que aprenderás: cómo viven las constantes en JavaScript</span>
+    </div>
+
+    <div class="ejercicio">
+      <div class="ejercicio-num">Ejercicio 5 — Nivel avanzado</div>
+      <h3>Agregar una nueva etapa al proceso</h3>
+      <p>El CRM tiene 10 etapas del proceso de acompañamiento. Tu tarea es agregar una etapa nueva llamada "En lista de espera", entre "Propuesta enviada" y "Pago pendiente".</p>
+      <p><strong>Instrucción que debes escribir:</strong></p>
+      <div class="codigo-bloque">
+En el archivo CRM-Renacer-en-Fe-y-Amor-FINAL.html,
+agrega una nueva etapa llamada "En lista de espera"
+entre "Propuesta enviada" y "Pago pendiente".
+Después muéstrame en cuántas partes del archivo
+afectó ese cambio y por qué.
+      </div>
+      <span class="aprende">Lo que aprenderás: cómo un dato controla múltiples partes del sistema al mismo tiempo</span>
+    </div>
+
+    <div class="tip" style="margin-top:32px">
+      <strong>💡 Antes de cada ejercicio</strong>
+      <p>Exporta un respaldo de tu CRM haciendo clic en el botón <strong>"⬇️ Exportar respaldo"</strong>. Así, si algo no queda como esperabas, puedes restaurar todo con un clic usando <strong>"⬆️ Importar respaldo"</strong>.</p>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma">
+    <h2>🌸 Completaste la clase</h2>
+    <p>Has aprendido los fundamentos de Claude Code: qué es HTML, CSS y JavaScript, cómo leer un archivo, cómo dar instrucciones claras y cómo proteger tu trabajo.</p>
+    <p style="margin-top:12px;opacity:.7;font-size:.88rem">Ahora tienes todo lo que necesitas para empezar a practicar. Recuerda: no se aprende leyendo, se aprende haciendo. Da el primer paso hoy.</p>
+    <div class="firma-d">
+      Preparado con amor por <strong>Claudia M. Spring</strong><br>
+      Centro de Capacitación Consciente · Renacer en Fe y Amor
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Claudia M. Spring</strong> · Centro de Capacitación Consciente</p>
+  <p style="margin-top:6px">Método Renacer en Fe y Amor · www.renacerenfeyamor.com · WhatsApp: +1 407 416 2993</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Renacer en Fe y Amor — Claudia Spring</title>
+<style>
+/* ===== VARIABLES & RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --morado:#5B2C83; --morado-c:#7B3FAD; --morado-s:#EDE4F5;
+  --dorado:#C9A646; --dorado-c:#F0DFA0;
+  --crema:#F7F1E8; --malva:#C9A3B8; --malva-s:#F5ECF2;
+  --blanco:#FFFFFF; --gris:#6B6B6B; --gris-c:#E8E0EC;
+  --rojo:#C0392B; --verde:#27AE60;
+  --sombra:0 2px 12px rgba(91,44,131,.12);
+  --sombra-lg:0 8px 32px rgba(91,44,131,.18);
+  --r:14px; --rs:8px; --tr:all .22s ease;
+}
+html{font-size:15px}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--crema);color:#2D1B44;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3,h4{font-family:Georgia,serif}
+input,select,textarea,button{font-family:inherit}
+a{color:var(--morado);text-decoration:none}
+::-webkit-scrollbar{width:7px;height:7px}
+::-webkit-scrollbar-track{background:var(--gris-c)}
+::-webkit-scrollbar-thumb{background:var(--malva);border-radius:10px}
+
+/* ===== SIDEBAR ===== */
+#sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:240px;
+  background:linear-gradient(160deg,var(--morado) 0%,#3A1860 100%);
+  display:flex;flex-direction:column;z-index:100;
+  box-shadow:3px 0 20px rgba(91,44,131,.25);
+}
+.sb-logo{padding:22px 18px 16px;border-bottom:1px solid rgba(255,255,255,.12);text-align:center}
+.sb-logo .logo-icon{font-size:2.2rem;margin-bottom:4px}
+.sb-logo h2{color:var(--dorado);font-size:.84rem;font-weight:bold;letter-spacing:.04em;line-height:1.3}
+.sb-logo p{color:rgba(255,255,255,.55);font-size:.7rem;margin-top:3px}
+.sb-nav{flex:1;padding:14px 0;overflow-y:auto}
+.nav-sec{padding:8px 18px 4px;color:var(--dorado-c);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.nb{
+  display:flex;align-items:center;gap:10px;
+  width:100%;padding:10px 18px;
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,.8);font-size:.86rem;
+  transition:var(--tr);text-align:left;
+  border-left:3px solid transparent;
+}
+.nb:hover{background:rgba(255,255,255,.08);color:#fff}
+.nb.active{background:rgba(201,166,70,.18);color:var(--dorado-c);border-left-color:var(--dorado);font-weight:bold}
+.nb .ni{font-size:1.1rem;width:22px;text-align:center}
+
+/* WhatsApp Business sidebar */
+.sb-wa{margin:0 12px 12px;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.35);border-radius:var(--rs);padding:11px 13px}
+.sb-wa .wa-lbl{color:rgba(255,255,255,.55);font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.sb-wa .wa-num{color:#fff;font-size:.8rem;font-weight:bold;margin-bottom:7px}
+.wa-btn-side{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:7px 0;border-radius:6px;border:none;background:#25D366;color:#fff;font-size:.77rem;font-weight:bold;cursor:pointer;transition:var(--tr);text-decoration:none}
+.wa-btn-side:hover{background:#1EB857}
+.sb-footer{padding:10px 18px;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);font-size:.7rem;text-align:center}
+
+/* ===== MAIN ===== */
+#main{margin-left:240px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+#topbar{
+  background:var(--blanco);padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 8px rgba(91,44,131,.08);
+  position:sticky;top:0;z-index:50;flex-wrap:wrap;gap:8px;
+}
+.topbar-title{font-size:1.2rem;color:var(--morado);font-weight:bold}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#page-content{flex:1;padding:26px}
+
+/* ===== PÁGINAS ===== */
+.page{display:none}.page.active{display:block}
+
+/* ===== BOTONES PRINCIPALES ===== */
+.btn-add{
+  background:linear-gradient(135deg,var(--morado),var(--morado-c));
+  color:#fff;border:none;border-radius:var(--rs);
+  padding:9px 16px;cursor:pointer;font-size:.87rem;font-weight:bold;
+  display:flex;align-items:center;gap:5px;
+  box-shadow:0 3px 10px rgba(91,44,131,.3);transition:var(--tr);
+}
+.btn-add:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(91,44,131,.4)}
+.btn-export{background:linear-gradient(135deg,var(--dorado),#B8952A);color:#fff;border:none;border-radius:var(--rs);padding:9px 14px;cursor:pointer;font-size:.83rem;font-weight:bold;display:flex;align-items:center;gap:5px;transition:var(--tr)}
+.btn-export:hover{transform:translateY(-1px);opacity:.9}
+.btn-import{background:var(--blanco);color:var(--morado);border:1.5px solid var(--morado);border-radius:var(--rs);padding:8px 14px;cursor:pointer;font-size:.83rem;font-weight:bold;display:flex;align-items:center;gap:5px;transition:var(--tr)}
+.btn-import:hover{background:var(--morado-s)}
+.btn-limpiar{background:rgba(192,57,43,.08);color:var(--rojo);border:1px dashed var(--rojo);border-radius:var(--rs);padding:8px 13px;cursor:pointer;font-size:.8rem;transition:var(--tr)}
+.btn-limpiar:hover{background:var(--rojo);color:#fff}
+.btn-primary{background:linear-gradient(135deg,var(--morado),var(--morado-c));color:#fff;border:none;border-radius:var(--rs);padding:10px 22px;cursor:pointer;font-size:.9rem;font-weight:bold;box-shadow:0 3px 10px rgba(91,44,131,.25);transition:var(--tr)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-secondary{background:var(--crema);color:var(--morado);border:1.5px solid var(--morado);border-radius:var(--rs);padding:9px 16px;cursor:pointer;font-size:.86rem;transition:var(--tr)}
+.btn-secondary:hover{background:var(--morado-s)}
+.btn-danger{background:#FDEDEC;color:var(--rojo);border:1.5px solid var(--rojo);border-radius:var(--rs);padding:9px 16px;cursor:pointer;font-size:.86rem;transition:var(--tr)}
+.btn-danger:hover{background:var(--rojo);color:#fff}
+.btn-sm{padding:5px 10px;border-radius:6px;border:none;cursor:pointer;font-size:.76rem;font-weight:bold;transition:var(--tr)}
+.btn-edit{background:var(--morado-s);color:var(--morado)}.btn-edit:hover{background:var(--morado);color:#fff}
+.btn-del{background:#FDEDEC;color:var(--rojo)}.btn-del:hover{background:var(--rojo);color:#fff}
+
+/* ===== BIENVENIDA ===== */
+.welcome{
+  background:linear-gradient(135deg,var(--morado) 0%,#3A1860 100%);
+  border-radius:var(--r);padding:24px 30px;color:#fff;
+  margin-bottom:26px;position:relative;overflow:hidden;
+}
+.welcome::before{content:'🌸';position:absolute;right:26px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.13}
+.welcome h2{font-size:1.2rem;color:var(--dorado-c);margin-bottom:8px}
+.welcome p{font-size:.88rem;opacity:.88;line-height:1.65;max-width:560px}
+
+/* ===== MÉTRICAS ===== */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:16px;margin-bottom:30px}
+.metric-card{background:var(--blanco);border-radius:var(--r);padding:20px 18px;box-shadow:var(--sombra);display:flex;align-items:center;gap:14px;border-left:4px solid var(--morado);transition:var(--tr)}
+.metric-card:hover{transform:translateY(-2px);box-shadow:var(--sombra-lg)}
+.metric-card.d{border-left-color:var(--dorado)}.metric-card.v{border-left-color:var(--verde)}.metric-card.r{border-left-color:var(--rojo)}.metric-card.m{border-left-color:var(--malva)}
+.mi{font-size:1.9rem;flex-shrink:0}
+.ml{font-size:.74rem;color:var(--gris);margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.mv{font-size:1.8rem;font-weight:bold;color:var(--morado);line-height:1}
+.metric-card.d .mv{color:var(--dorado)}.metric-card.v .mv{color:var(--verde)}.metric-card.r .mv{color:var(--rojo)}
+
+/* ===== SECCIÓN TÍTULOS ===== */
+.section-title{font-size:1rem;color:var(--morado);font-weight:bold;margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--gris-c)}
+
+/* ===== ALERTAS ===== */
+.alert-list{display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.alert-card{background:var(--blanco);border-radius:var(--rs);padding:13px 16px;box-shadow:var(--sombra);display:flex;align-items:center;gap:13px;border-left:4px solid var(--dorado)}
+.alert-name{font-weight:bold;color:var(--morado)}
+.alert-info{font-size:.8rem;color:var(--gris);margin-top:2px}
+
+/* ===== EMPTY STATE ===== */
+.empty{text-align:center;padding:48px 24px;color:var(--gris);font-size:.9rem;background:var(--blanco);border-radius:var(--r);box-shadow:var(--sombra)}
+.empty .ei{font-size:2.8rem;margin-bottom:12px}
+.empty p{margin-bottom:18px;line-height:1.6}
+
+/* ===== ETIQUETAS ETAPA ===== */
+.sb{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.71rem;font-weight:bold;white-space:nowrap}
+.s0{background:#EDE4F5;color:#5B2C83}.s1{background:#E8F4FD;color:#1A6FA8}.s2{background:#FEF9E7;color:#B7950B}
+.s3{background:#E8F8F5;color:#1E8449}.s4{background:#FDF2E9;color:#CA6F1E}.s5{background:#FDEDEC;color:#C0392B}
+.s6{background:#E8F8F5;color:#117A65}.s7{background:#EAF2FF;color:#1F618D}.s8{background:#F5EEF8;color:#76448A}
+.s9{background:#F2F3F4;color:#7F8C8D}
+
+/* ===== KANBAN ===== */
+.kanban-scroll{overflow-x:auto;padding-bottom:12px}
+.kanban-board{display:flex;gap:13px;min-width:max-content;align-items:flex-start}
+.kc{width:215px;background:var(--morado-s);border-radius:var(--r);padding:11px;flex-shrink:0}
+.kch{font-size:.76rem;font-weight:bold;color:var(--morado);margin-bottom:9px;padding-bottom:7px;border-bottom:2px solid var(--morado);display:flex;justify-content:space-between;align-items:center}
+.kcount{background:var(--morado);color:#fff;border-radius:20px;padding:1px 8px;font-size:.68rem}
+.kcards{display:flex;flex-direction:column;gap:8px;min-height:55px}
+.kcard{background:var(--blanco);border-radius:var(--rs);padding:11px;box-shadow:var(--sombra);cursor:pointer;transition:var(--tr);border-top:3px solid var(--morado)}
+.kcard:hover{transform:translateY(-2px);box-shadow:var(--sombra-lg)}
+.kcard.d{border-top-color:var(--dorado)}.kcard.v{border-top-color:var(--verde)}.kcard.r{border-top-color:var(--rojo)}
+.kname{font-weight:bold;font-size:.83rem;color:var(--morado);margin-bottom:3px}
+.kmeta{font-size:.72rem;color:var(--gris)}
+.kprog{font-size:.71rem;color:var(--dorado);margin-top:3px;font-style:italic}
+.kalert{font-size:.68rem;color:var(--rojo);margin-top:3px}
+
+/* ===== TABLA ===== */
+.toolbar{display:flex;gap:9px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.search-input{flex:1;min-width:190px;max-width:340px;border:1.5px solid var(--gris-c);border-radius:var(--rs);padding:8px 13px;font-size:.86rem;background:var(--blanco);outline:none;transition:var(--tr)}
+.search-input:focus{border-color:var(--morado);box-shadow:0 0 0 3px rgba(91,44,131,.1)}
+.filter-sel{border:1.5px solid var(--gris-c);border-radius:var(--rs);padding:8px 11px;font-size:.83rem;background:var(--blanco);outline:none;cursor:pointer;color:#2D1B44;transition:var(--tr)}
+.filter-sel:focus{border-color:var(--morado)}
+.table-wrap{background:var(--blanco);border-radius:var(--r);box-shadow:var(--sombra);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+thead th{background:var(--morado);color:#fff;padding:11px 13px;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
+tbody tr{border-bottom:1px solid var(--gris-c);transition:var(--tr)}
+tbody tr:hover{background:var(--morado-s)}
+tbody tr:last-child{border-bottom:none}
+tbody td{padding:10px 13px;font-size:.83rem}
+.td-name{font-weight:bold;color:var(--morado)}
+.td-actions{display:flex;gap:5px}
+
+/* ===== MODAL ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,68,.55);z-index:200;align-items:center;justify-content:center;padding:18px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--blanco);border-radius:var(--r);width:100%;max-width:700px;max-height:92vh;display:flex;flex-direction:column;box-shadow:var(--sombra-lg);animation:mIn .2s ease}
+@keyframes mIn{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-header{padding:18px 22px 15px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--morado),var(--morado-c));border-radius:var(--r) var(--r) 0 0}
+.modal-header h3{color:#fff;font-size:1.05rem}
+.modal-close{background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:50%;width:29px;height:29px;cursor:pointer;font-size:1rem;line-height:29px;text-align:center;transition:var(--tr)}
+.modal-close:hover{background:rgba(255,255,255,.35)}
+.modal-body{padding:20px 22px;overflow-y:auto;flex:1}
+.modal-footer{padding:13px 22px;border-top:1px solid var(--gris-c);display:flex;gap:9px;justify-content:flex-end}
+
+/* ===== FORM ===== */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:.75rem;font-weight:bold;color:var(--morado);text-transform:uppercase;letter-spacing:.04em}
+.fg input,.fg select,.fg textarea{border:1.5px solid var(--gris-c);border-radius:var(--rs);padding:8px 11px;font-size:.86rem;background:var(--crema);outline:none;transition:var(--tr);color:#2D1B44}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--morado);background:var(--blanco);box-shadow:0 0 0 3px rgba(91,44,131,.1)}
+.fg textarea{resize:vertical;min-height:76px}
+.form-sec{grid-column:1/-1;font-size:.77rem;font-weight:bold;color:var(--dorado);text-transform:uppercase;letter-spacing:.06em;padding:6px 0 2px;border-bottom:1px solid var(--dorado-c);margin-top:5px}
+
+/* ===== DETALLE ===== */
+.detail-header{background:linear-gradient(135deg,var(--morado),var(--morado-c));border-radius:var(--r);padding:22px 26px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:18px}
+.d-avatar{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;border:3px solid var(--dorado)}
+.d-name{font-size:1.35rem;font-weight:bold;margin-bottom:4px}
+.d-sub{font-size:.83rem;opacity:.85}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.detail-box{background:var(--blanco);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sombra)}
+.detail-box h4{font-size:.75rem;color:var(--dorado);text-transform:uppercase;letter-spacing:.06em;margin-bottom:11px;border-bottom:1px solid var(--dorado-c);padding-bottom:5px}
+.df{display:flex;flex-direction:column;margin-bottom:9px}
+.df .dfl{font-size:.7rem;color:var(--gris);margin-bottom:2px}
+.df .dfv{font-size:.88rem;color:#2D1B44;font-weight:500}
+.notes-box{background:var(--blanco);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sombra);margin-bottom:20px}
+.notes-box h4{font-size:.75rem;color:var(--dorado);text-transform:uppercase;letter-spacing:.06em;margin-bottom:11px;border-bottom:1px solid var(--dorado-c);padding-bottom:5px}
+.notes-content{font-size:.88rem;color:#2D1B44;line-height:1.7;white-space:pre-wrap}
+.stage-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-stage{padding:6px 12px;border-radius:20px;border:1.5px solid var(--morado);background:var(--morado-s);color:var(--morado);cursor:pointer;font-size:.77rem;transition:var(--tr)}
+.btn-stage:hover,.btn-stage.curr{background:var(--morado);color:#fff}
+.wa-btn-c{background:#25D366;color:#fff;border:none;padding:9px 18px;border-radius:var(--rs);cursor:pointer;font-size:.86rem;font-weight:bold;display:inline-flex;align-items:center;gap:6px;transition:var(--tr);text-decoration:none}
+.wa-btn-c:hover{background:#1EB857;transform:translateY(-1px)}
+
+/* ===== GUÍA ===== */
+.guia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px}
+.guia-card{background:var(--blanco);border-radius:var(--r);padding:20px;box-shadow:var(--sombra);border-top:4px solid var(--morado);transition:var(--tr)}
+.guia-card:hover{transform:translateY(-2px);box-shadow:var(--sombra-lg)}
+.guia-card.d{border-top-color:var(--dorado)}.guia-card.v{border-top-color:var(--verde)}
+.guia-icon{font-size:1.8rem;margin-bottom:9px}
+.guia-card h3{font-size:.96rem;color:var(--morado);margin-bottom:7px}
+.guia-card p{font-size:.84rem;color:var(--gris);line-height:1.62}
+.guia-tip{background:linear-gradient(135deg,var(--morado-s),var(--malva-s));border-radius:var(--r);padding:20px 24px;border-left:4px solid var(--dorado);margin-bottom:20px}
+.guia-tip h3{color:var(--morado);margin-bottom:9px;font-size:.96rem}
+.guia-tip p{font-size:.86rem;color:#2D1B44;line-height:1.68}
+.tip-respaldo{background:linear-gradient(135deg,#FEF9E7,#FDF2E9);border-radius:var(--r);padding:18px 22px;border-left:4px solid var(--dorado);margin-top:22px}
+.tip-respaldo h3{color:var(--dorado);margin-bottom:8px;font-size:.9rem}
+.tip-respaldo p{font-size:.84rem;color:#2D1B44;line-height:1.65}
+
+/* ===== TOAST ===== */
+#toast{position:fixed;bottom:26px;right:26px;background:var(--morado);color:#fff;padding:12px 20px;border-radius:var(--rs);box-shadow:var(--sombra-lg);font-size:.86rem;z-index:999;transform:translateY(80px);opacity:0;transition:all .3s ease}
+#toast.show{transform:translateY(0);opacity:1}
+#toast.s{background:var(--verde)}#toast.e{background:var(--rojo)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  #sidebar{width:100%;height:58px;bottom:auto;flex-direction:row;padding:0}
+  .sb-logo{display:none}
+  .sb-nav{display:flex;flex-direction:row;padding:0;overflow-x:auto}
+  .nav-sec{display:none}
+  .nb{flex-direction:column;gap:2px;padding:9px 11px;font-size:.6rem;border-left:none;border-bottom:3px solid transparent}
+  .nb.active{border-left:none;border-bottom-color:var(--dorado)}
+  .sb-wa,.sb-footer{display:none}
+  #main{margin-left:0;margin-top:58px}
+  .form-grid,.detail-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  #page-content{padding:14px}
+  .detail-header{flex-direction:column;text-align:center}
+  .welcome{padding:18px}.welcome::before{display:none}
+  .topbar-right{gap:6px}
+  .btn-export,.btn-import{font-size:.74rem;padding:7px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="logo-icon">🌸</div>
+    <h2>Renacer en Fe y Amor</h2>
+    <p>Centro de Capacitación Consciente</p>
+  </div>
+  <div class="sb-nav">
+    <div class="nav-sec">Principal</div>
+    <button class="nb active" onclick="sp('panel')" data-page="panel"><span class="ni">✨</span> Panel</button>
+    <button class="nb" onclick="sp('kanban')" data-page="kanban"><span class="ni">🌺</span> Etapas</button>
+    <button class="nb" onclick="sp('lista')" data-page="lista"><span class="ni">👩</span> Clientas</button>
+    <div class="nav-sec">Gestión</div>
+    <button class="nb" onclick="sp('seguimientos')" data-page="seguimientos"><span class="ni">📅</span> Seguimientos</button>
+    <button class="nb" onclick="sp('pagos')" data-page="pagos"><span class="ni">💰</span> Pagos</button>
+    <div class="nav-sec">Ayuda</div>
+    <button class="nb" onclick="sp('guia')" data-page="guia"><span class="ni">📖</span> Guía de uso</button>
+  </div>
+  <div class="sb-wa">
+    <div class="wa-lbl">WhatsApp Business</div>
+    <div class="wa-num">+1 407 416 2993</div>
+    <a href="https://wa.me/14074162993?text=Hola%20Claudia%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Renacer%20en%20Fe%20y%20Amor." target="_blank" class="wa-btn-side">💬 WhatsApp del negocio</a>
+  </div>
+  <div class="sb-footer">Claudia M. Spring · CRM © 2026</div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="topbar">
+    <div class="topbar-title" id="page-title">✨ Panel Principal</div>
+    <div class="topbar-right">
+      <button class="btn-export" onclick="exportar()">⬇️ Exportar respaldo</button>
+      <label class="btn-import" style="cursor:pointer">⬆️ Importar respaldo<input type="file" accept=".json" id="import-file" style="display:none" onchange="importar(event)"></label>
+      <button class="btn-limpiar" onclick="limpiarDatos()" title="Borrar todos los registros">🗑️ Limpiar datos</button>
+      <button class="btn-add" onclick="openModal()">+ Nueva clienta</button>
+    </div>
+  </div>
+
+  <div id="page-content">
+
+    <!-- PANEL -->
+    <div id="page-panel" class="page active">
+      <div class="welcome">
+        <h2>Bienvenida al CRM Renacer en Fe y Amor</h2>
+        <p>Este sistema te ayuda a organizar tus prospectas, clientas, llamadas, pagos y seguimientos para servir con más claridad, orden y propósito.</p>
+      </div>
+      <div class="metrics-grid" id="metrics-grid"></div>
+      <div class="section-title">📅 Personas a contactar hoy</div>
+      <div class="alert-list" id="alerts-hoy"></div>
+      <div class="section-title">🌸 Actividad reciente</div>
+      <div id="act-reciente"></div>
+    </div>
+
+    <!-- KANBAN -->
+    <div id="page-kanban" class="page">
+      <div class="kanban-scroll"><div class="kanban-board" id="kanban-board"></div></div>
+    </div>
+
+    <!-- LISTA -->
+    <div id="page-lista" class="page">
+      <div class="toolbar">
+        <input type="text" class="search-input" id="search-input" placeholder="🔍 Buscar nombre, WhatsApp, email..." oninput="renderLista()">
+        <select class="filter-sel" id="filter-stage" onchange="renderLista()"><option value="">Todas las etapas</option></select>
+        <select class="filter-sel" id="filter-pago" onchange="renderLista()">
+          <option value="">Todos los pagos</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Completo">Completo</option>
+          <option value="Parcial">Parcial</option>
+          <option value="Sin definir">Sin definir</option>
+        </select>
+      </div>
+      <div id="lista-content"></div>
+    </div>
+
+    <!-- SEGUIMIENTOS -->
+    <div id="page-seguimientos" class="page"><div id="segu-content"></div></div>
+
+    <!-- PAGOS -->
+    <div id="page-pagos" class="page"><div id="pagos-content"></div></div>
+
+    <!-- DETALLE -->
+    <div id="page-detalle" class="page"><div id="detalle-content"></div></div>
+
+    <!-- GUÍA -->
+    <div id="page-guia" class="page">
+      <div class="welcome" style="margin-bottom:26px">
+        <h2>📖 Guía de uso del CRM</h2>
+        <p>Todo lo que necesitas saber para usar este sistema con facilidad, confianza y propósito.</p>
+      </div>
+      <div class="guia-tip">
+        <h3>🌸 ¿Para qué sirve este CRM?</h3>
+        <p>Este sistema fue creado especialmente para ti, Claudia. Te permite tener en un solo lugar toda la información de las mujeres que se acercan a tu trabajo — desde el primer contacto hasta el acompañamiento posterior — incluyendo pagos, etapas y seguimientos. Con orden, claridad y desde el corazón.</p>
+      </div>
+      <div class="section-title">Secciones del sistema</div>
+      <div class="guia-grid">
+        <div class="guia-card"><div class="guia-icon">✨</div><h3>Panel principal</h3><p>Muestra los números más importantes de tu negocio: mujeres interesadas, llamadas agendadas, alumnas activas, ingresos del mes, pagos pendientes y quién necesita seguimiento hoy.</p></div>
+        <div class="guia-card d"><div class="guia-icon">🌺</div><h3>Etapas</h3><p>Vista visual de las 10 etapas del proceso. Muestra cuántas mujeres hay en cada etapa. Haz clic en cualquier tarjeta para ver el perfil completo.</p></div>
+        <div class="guia-card v"><div class="guia-icon">👩</div><h3>Clientas</h3><p>Lista completa de todas las mujeres registradas. Puedes buscar por nombre, WhatsApp o email, y filtrar por etapa o estado de pago.</p></div>
+        <div class="guia-card d"><div class="guia-icon">📅</div><h3>Seguimientos</h3><p>Organiza automáticamente quién tiene seguimiento vencido, quién es para hoy y quiénes son los próximos. Nunca más se te pasará una mujer importante.</p></div>
+        <div class="guia-card"><div class="guia-icon">💰</div><h3>Pagos</h3><p>Revisa pagos completos, pendientes y parciales. Muestra el total cobrado y el total por cobrar para tener claridad financiera en todo momento.</p></div>
+        <div class="guia-card v"><div class="guia-icon">➕</div><h3>Nueva clienta</h3><p>Botón en la parte superior derecha. Completa la información disponible y guarda. Puedes editar el registro en cualquier momento desde su perfil o desde la lista.</p></div>
+        <div class="guia-card d"><div class="guia-icon">⬇️</div><h3>Exportar respaldo</h3><p>Descarga un archivo .json con toda la información del CRM. Guárdalo en una carpeta segura de tu computadora o en Google Drive como copia de seguridad.</p></div>
+        <div class="guia-card"><div class="guia-icon">⬆️</div><h3>Importar respaldo</h3><p>Sube un archivo .json exportado previamente para restaurar la información del CRM. Úsalo si cambias de navegador o de computadora.</p></div>
+      </div>
+      <div class="tip-respaldo">
+        <h3>💾 Recomendación de respaldo</h3>
+        <p>Exporta un respaldo semanal de tu CRM y guárdalo en una carpeta segura en tu computadora o en la nube (Google Drive, iCloud, Dropbox). Así tus datos siempre estarán protegidos aunque cambies de navegador o dispositivo.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL CLIENTA -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">✨ Nueva clienta</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-sec">Información Personal</div>
+        <div class="fg"><label>Nombre completo *</label><input type="text" id="f-nombre" placeholder="Nombre y apellidos"></div>
+        <div class="fg"><label>WhatsApp *</label><input type="text" id="f-whatsapp" placeholder="+1 407 000 0000"></div>
+        <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="correo@ejemplo.com"></div>
+        <div class="fg"><label>País</label>
+          <select id="f-pais"><option value="">Seleccionar...</option>
+            <option>México</option><option>Colombia</option><option>Argentina</option><option>Venezuela</option>
+            <option>Perú</option><option>Chile</option><option>Ecuador</option><option>Bolivia</option>
+            <option>Paraguay</option><option>Uruguay</option><option>Costa Rica</option><option>Panamá</option>
+            <option>Guatemala</option><option>Honduras</option><option>El Salvador</option><option>Nicaragua</option>
+            <option>Cuba</option><option>República Dominicana</option><option>Puerto Rico</option>
+            <option>España</option><option>Estados Unidos</option><option>Otro</option></select>
+        </div>
+        <div class="fg"><label>Ciudad</label><input type="text" id="f-ciudad" placeholder="Ciudad"></div>
+        <div class="fg"><label>Red social de origen</label>
+          <select id="f-red"><option value="">Seleccionar...</option>
+            <option>Instagram</option><option>Facebook</option><option>WhatsApp</option>
+            <option>YouTube</option><option>TikTok</option><option>Referida</option>
+            <option>Página web</option><option>Email</option><option>Otro</option></select>
+        </div>
+
+        <div class="form-sec">Programa e Interés</div>
+        <div class="fg"><label>Programa de interés</label>
+          <select id="f-programa"><option value="">Seleccionar...</option>
+            <option>Mentoría Individual</option><option>Taller Renacer en Fe y Amor</option>
+            <option>Curso de Transformación Personal</option><option>Comunidad de Mujeres</option>
+            <option>Proceso de Acompañamiento</option><option>Retiro Espiritual</option><option>Otro</option></select>
+        </div>
+        <div class="fg"><label>Etapa actual</label>
+          <select id="f-etapa">
+            <option value="0">1. Nueva interesada</option><option value="1">2. Contactada</option>
+            <option value="2">3. En conversación</option><option value="3">4. Llamada agendada</option>
+            <option value="4">5. Propuesta enviada</option><option value="5">6. Pago pendiente</option>
+            <option value="6">7. Inscrita</option><option value="7">8. Alumna activa</option>
+            <option value="8">9. Seguimiento posterior</option><option value="9">10. No avanzó</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Situación actual</label><textarea id="f-situacion" placeholder="¿Qué está viviendo hoy? ¿Cuál es su dolor principal?"></textarea></div>
+        <div class="fg full"><label>Objeción principal</label><input type="text" id="f-objecion" placeholder="El tiempo, el dinero, la duda, el miedo..."></div>
+
+        <div class="form-sec">Seguimiento y Pago</div>
+        <div class="fg"><label>Próximo seguimiento</label><input type="date" id="f-seguimiento"></div>
+        <div class="fg"><label>Estado del pago</label>
+          <select id="f-estado-pago">
+            <option value="Sin definir">Sin definir</option><option value="Pendiente">Pendiente</option>
+            <option value="Parcial">Parcial</option><option value="Completo">Completo</option>
+          </select>
+        </div>
+        <div class="fg"><label>Método de pago</label>
+          <select id="f-metodo-pago"><option value="">Seleccionar...</option>
+            <option>Transferencia</option><option>PayPal</option><option>Stripe</option>
+            <option>Efectivo</option><option>Zelle</option><option>Venmo</option><option>Otro</option></select>
+        </div>
+        <div class="fg"><label>Monto pagado (USD)</label><input type="number" id="f-monto" placeholder="0.00" min="0" step="0.01"></div>
+        <div class="fg"><label>Saldo pendiente (USD)</label><input type="number" id="f-saldo" placeholder="0.00" min="0" step="0.01"></div>
+        <div class="fg full"><label>Notas de acompañamiento</label><textarea id="f-notas" rows="4" placeholder="Notas personales, compromisos, lo que compartió, próximos pasos..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn-danger" id="btn-eliminar" onclick="eliminarClienta()" style="display:none">Eliminar</button>
+      <button class="btn-primary" onclick="saveClienta()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ===== CONSTANTES =====
+const ETAPAS = [
+  'Nueva interesada','Contactada','En conversación','Llamada agendada','Propuesta enviada',
+  'Pago pendiente','Inscrita','Alumna activa','Seguimiento posterior','No avanzó'
+];
+const WA_MSG = encodeURIComponent(
+  'Hola, hermosa. Soy Claudia Spring del Centro de Capacitación Consciente. Paso a saludarte y darte seguimiento sobre tu interés en Renacer en Fe y Amor. ¿Cómo estás hoy?'
+);
+
+// ===== MIGRACIÓN & DATOS =====
+// Limpia datos de versiones anteriores al abrir esta versión FINAL
+if (!localStorage.getItem('crm_final_v1')) {
+  localStorage.removeItem('crm_clientas');
+  localStorage.setItem('crm_final_v1','1');
+}
+
+let clientas = JSON.parse(localStorage.getItem('crm_clientas') || '[]');
+let editId = null;
+let curPage = 'panel';
+
+function save() { localStorage.setItem('crm_clientas', JSON.stringify(clientas)); }
+function uid()  { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+// ===== EXPORTAR =====
+function exportar() {
+  if (clientas.length === 0) { toast('No hay datos para exportar', 'e'); return; }
+  const data = { version: 'CRM-Renacer-FINAL', fecha: new Date().toISOString(), total: clientas.length, clientas };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  const fecha = new Date().toISOString().split('T')[0];
+  a.href = url;
+  a.download = `CRM-Renacer-respaldo-${fecha}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✅ Respaldo exportado correctamente', 's');
+}
+
+// ===== IMPORTAR =====
+function importar(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      const lista = data.clientas || (Array.isArray(data) ? data : null);
+      if (!lista) { toast('Archivo no válido', 'e'); return; }
+      if (!confirm(`¿Segura que deseas importar ${lista.length} registro(s)? Esto reemplazará los datos actuales.`)) return;
+      clientas = lista;
+      save();
+      toast(`✅ ${lista.length} registro(s) importados correctamente`, 's');
+      if (curPage === 'panel')  renderPanel();
+      else if (curPage === 'lista')  renderLista();
+      else sp('panel');
+    } catch(err) { toast('Error al leer el archivo. Verifica que sea un respaldo válido.', 'e'); }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ===== LIMPIAR =====
+function limpiarDatos() {
+  if (clientas.length === 0) { toast('El sistema ya está vacío', 's'); return; }
+  if (!confirm(`¿Segura que deseas eliminar todos los ${clientas.length} registro(s)? Esta acción no se puede deshacer.\n\nTe recomendamos exportar un respaldo antes de continuar.`)) return;
+  const conf = prompt('Para confirmar, escribe exactamente: sí');
+  if (conf && conf.trim().toLowerCase() === 'sí') {
+    clientas = []; save();
+    toast('✨ Sistema limpio. Listo para comenzar.', 's');
+    if (curPage === 'panel') renderPanel();
+    else if (curPage === 'kanban') renderKanban();
+    else if (curPage === 'lista') renderLista();
+  } else {
+    toast('Operación cancelada. Tus datos están seguros.', '');
+  }
+}
+
+// ===== NAVEGACIÓN =====
+function sp(page, extra) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const btn = document.querySelector(`[data-page="${page}"]`);
+  if (btn) btn.classList.add('active');
+  curPage = page;
+  const titles = {
+    panel:'✨ Panel Principal', kanban:'🌺 Etapas del Proceso',
+    lista:'👩 Todas las Clientas', seguimientos:'📅 Seguimientos',
+    pagos:'💰 Gestión de Pagos', detalle:'👤 Perfil de Clienta', guia:'📖 Guía de Uso'
+  };
+  document.getElementById('page-title').textContent = titles[page] || '';
+  if (page === 'panel')        renderPanel();
+  if (page === 'kanban')       renderKanban();
+  if (page === 'lista')        renderLista();
+  if (page === 'seguimientos') renderSeguimientos();
+  if (page === 'pagos')        renderPagos();
+  if (page === 'detalle' && extra) renderDetalle(extra);
+}
+
+// ===== PANEL =====
+function renderPanel() {
+  const hoy = new Date().toISOString().split('T')[0];
+  const mes  = new Date().toISOString().slice(0,7);
+  const interesadas   = clientas.filter(c => c.etapa <= 4).length;
+  const llamadas      = clientas.filter(c => c.etapa === 3).length;
+  const inscritas     = clientas.filter(c => c.etapa === 6).length;
+  const activas       = clientas.filter(c => c.etapa === 7).length;
+  const ingresosMes   = clientas.filter(c => c.creado && c.creado.startsWith(mes)).reduce((s,c) => s+(parseFloat(c.monto)||0),0);
+  const pagPend       = clientas.filter(c => c.estadoPago === 'Pendiente').length;
+  const contactarHoy  = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9).length;
+
+  document.getElementById('metrics-grid').innerHTML = `
+    <div class="metric-card"><div class="mi">🌷</div><div><div class="ml">Mujeres interesadas</div><div class="mv">${interesadas}</div></div></div>
+    <div class="metric-card d"><div class="mi">📞</div><div><div class="ml">Llamadas agendadas</div><div class="mv">${llamadas}</div></div></div>
+    <div class="metric-card v"><div class="mi">🌸</div><div><div class="ml">Clientas inscritas</div><div class="mv">${inscritas}</div></div></div>
+    <div class="metric-card v"><div class="mi">👩‍🎓</div><div><div class="ml">Alumnas activas</div><div class="mv">${activas}</div></div></div>
+    <div class="metric-card d"><div class="mi">💰</div><div><div class="ml">Ingresos del mes (USD)</div><div class="mv">$${ingresosMes.toLocaleString()}</div></div></div>
+    <div class="metric-card r"><div class="mi">⏳</div><div><div class="ml">Pagos pendientes</div><div class="mv">${pagPend}</div></div></div>
+    <div class="metric-card m"><div class="mi">💌</div><div><div class="ml">Contactar hoy</div><div class="mv">${contactarHoy}</div></div></div>
+  `;
+
+  const alertas = clientas.filter(c => c.seguimiento && c.seguimiento <= hoy && c.etapa !== 9);
+  const ad = document.getElementById('alerts-hoy');
+  ad.innerHTML = alertas.length === 0
+    ? `<div class="empty"><div class="ei">🌿</div><p>No hay seguimientos pendientes para hoy. ¡Todo al día!</p></div>`
+    : alertas.map(c => `
+        <div class="alert-card" onclick="sp('detalle','${c.id}')" style="cursor:pointer">
+          <div style="font-size:1.5rem">💌</div>
+          <div><div class="alert-name">${c.nombre}</div>
+          <div class="alert-info">${c.whatsapp} ${c.programa?'· '+c.programa:''}</div>
+          <div class="alert-info" style="color:var(--rojo)">Seguimiento: ${ff(c.seguimiento)}</div></div>
+          <div style="margin-left:auto"><span class="sb s${c.etapa}">${ETAPAS[c.etapa]}</span></div>
+        </div>`).join('');
+
+  const rec = [...clientas].sort((a,b)=>(b.creado||'').localeCompare(a.creado||'')).slice(0,6);
+  document.getElementById('act-reciente').innerHTML = rec.length
+    ? `<div class="table-wrap"><table>
+        <thead><tr><th>Nombre</th><th>Etapa</th><th>Programa</th><th>Registrada</th></tr></thead>
+        <tbody>${rec.map(c=>`<tr onclick="sp('detalle','${c.id}')" style="cursor:pointer">
+          <td class="td-name">${c.nombre}</td>
+          <td><span class="sb s${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+          <td>${c.programa||'—'}</td><td>${ff(c.creado)}</td></tr>`).join('')}
+        </tbody></table></div>`
+    : `<div class="empty"><div class="ei">🌸</div><p>Aún no tienes clientas registradas.<br>Haz clic en <strong>Nueva clienta</strong> para comenzar.</p><button class="btn-add" onclick="openModal()" style="margin:0 auto">+ Nueva clienta</button></div>`;
+}
+
+// ===== KANBAN =====
+function renderKanban() {
+  document.getElementById('kanban-board').innerHTML = ETAPAS.map((etapa,i) => {
+    const cards = clientas.filter(c => c.etapa === i);
+    return `<div class="kc">
+      <div class="kch">${etapa}<span class="kcount">${cards.length}</span></div>
+      <div class="kcards">${cards.length === 0
+        ? `<div style="font-size:.73rem;color:var(--gris);text-align:center;padding:13px 0;font-style:italic">Sin clientas</div>`
+        : cards.map(c => {
+            const hoy = new Date().toISOString().split('T')[0];
+            const vence = c.seguimiento && c.seguimiento <= hoy;
+            const cc = [5,9].includes(i)?'r':[3,6,7].includes(i)?'v':[0,4].includes(i)?'d':'';
+            return `<div class="kcard ${cc}" onclick="sp('detalle','${c.id}')">
+              <div class="kname">🌸 ${c.nombre}</div>
+              <div class="kmeta">${c.pais||''}${c.ciudad?' · '+c.ciudad:''}</div>
+              ${c.programa?`<div class="kprog">${c.programa}</div>`:''}
+              ${vence?`<div class="kalert">📅 ${ff(c.seguimiento)}</div>`:''}
+              ${c.estadoPago==='Pendiente'?`<div class="kalert">⚠️ Pago pendiente</div>`:''}
+            </div>`;
+          }).join('')}
+      </div></div>`;
+  }).join('');
+}
+
+// ===== LISTA =====
+function renderLista() {
+  const sel = document.getElementById('filter-stage');
+  if (sel.options.length <= 1) ETAPAS.forEach((e,i)=>{const o=document.createElement('option');o.value=i;o.textContent=e;sel.appendChild(o)});
+  const q    = (document.getElementById('search-input').value||'').toLowerCase();
+  const stg  = document.getElementById('filter-stage').value;
+  const pago = document.getElementById('filter-pago').value;
+  const filtered = clientas.filter(c => {
+    const mq = !q || c.nombre.toLowerCase().includes(q)||(c.email||'').toLowerCase().includes(q)||(c.whatsapp||'').includes(q);
+    const ms = stg==='' || c.etapa==stg;
+    const mp = !pago || c.estadoPago===pago;
+    return mq && ms && mp;
+  });
+  const cont = document.getElementById('lista-content');
+  if (clientas.length === 0) {
+    cont.innerHTML = `<div class="empty"><div class="ei">🌸</div><p>Aún no tienes clientas registradas.<br>Haz clic en <strong>Nueva clienta</strong> para comenzar.</p><button class="btn-add" onclick="openModal()" style="margin:0 auto">+ Nueva clienta</button></div>`;
+    return;
+  }
+  if (filtered.length === 0) {
+    cont.innerHTML = `<div class="empty"><div class="ei">🌿</div><p>No se encontraron resultados para tu búsqueda.</p></div>`;
+    return;
+  }
+  const hoy = new Date().toISOString().split('T')[0];
+  cont.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr><th>Nombre</th><th>WhatsApp</th><th>País</th><th>Programa</th><th>Etapa</th><th>Pago</th><th>Seguimiento</th><th>Acciones</th></tr></thead>
+    <tbody>${filtered.map(c=>`<tr>
+      <td class="td-name" onclick="sp('detalle','${c.id}')" style="cursor:pointer">${c.nombre}</td>
+      <td><a href="https://wa.me/${wa(c.whatsapp)}?text=${WA_MSG}" target="_blank" style="color:var(--verde)">📱 ${c.whatsapp}</a></td>
+      <td>${c.pais||'—'}</td>
+      <td style="font-size:.8rem;color:var(--dorado);font-style:italic">${c.programa||'—'}</td>
+      <td><span class="sb s${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+      <td>${bpago(c.estadoPago)}</td>
+      <td style="font-size:.8rem;color:${c.seguimiento&&c.seguimiento<=hoy?'var(--rojo)':'inherit'}">${ff(c.seguimiento)}</td>
+      <td class="td-actions">
+        <button class="btn-sm btn-edit" onclick="openModal('${c.id}')">✏️ Editar</button>
+        <button class="btn-sm btn-del" onclick="confirmarEliminar('${c.id}')">🗑️</button>
+      </td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+// ===== SEGUIMIENTOS =====
+function renderSeguimientos() {
+  const hoy = new Date().toISOString().split('T')[0];
+  if (clientas.length === 0) {
+    document.getElementById('segu-content').innerHTML = `<div class="empty"><div class="ei">📅</div><p>Aún no tienes clientas registradas.</p></div>`;
+    return;
+  }
+  const sorted   = [...clientas].filter(c=>c.seguimiento).sort((a,b)=>a.seguimiento.localeCompare(b.seguimiento));
+  const vencidos = sorted.filter(c=>c.seguimiento<hoy&&c.etapa!==9);
+  const deHoy    = sorted.filter(c=>c.seguimiento===hoy&&c.etapa!==9);
+  const proximos  = sorted.filter(c=>c.seguimiento>hoy&&c.etapa!==9);
+  document.getElementById('segu-content').innerHTML =
+    sseg('🔴 Vencidos ('+vencidos.length+')',vencidos,'var(--rojo)')+
+    sseg('📅 Hoy ('+deHoy.length+')',deHoy,'var(--dorado)')+
+    sseg('🌿 Próximos ('+proximos.length+')',proximos,'var(--verde)');
+}
+function sseg(titulo,lista,color){
+  if(!lista.length) return `<div class="section-title" style="color:${color}">${titulo}</div><div class="empty" style="margin-bottom:22px"><div class="ei">✓</div><p>Sin pendientes en esta categoría.</p></div>`;
+  return `<div class="section-title" style="color:${color}">${titulo}</div>
+    <div class="alert-list" style="margin-bottom:26px">${lista.map(c=>`
+      <div class="alert-card" onclick="sp('detalle','${c.id}')" style="cursor:pointer;border-left-color:${color}">
+        <div style="font-size:1.4rem">💌</div>
+        <div style="flex:1"><div class="alert-name">${c.nombre}</div>
+          <div class="alert-info">${c.whatsapp} · ${c.pais||''}</div>
+          <div class="alert-info">${c.programa||''}</div></div>
+        <div style="text-align:right">
+          <span class="sb s${c.etapa}">${ETAPAS[c.etapa]}</span>
+          <div style="font-size:.76rem;margin-top:4px;color:${color}">${ff(c.seguimiento)}</div>
+        </div></div>`).join('')}</div>`;
+}
+
+// ===== PAGOS =====
+function renderPagos() {
+  const pend = clientas.filter(c=>c.estadoPago==='Pendiente');
+  const parc = clientas.filter(c=>c.estadoPago==='Parcial');
+  const comp = clientas.filter(c=>c.estadoPago==='Completo');
+  const tc = comp.reduce((s,c)=>s+(parseFloat(c.monto)||0),0);
+  const tp = pend.reduce((s,c)=>s+(parseFloat(c.monto)||0),0);
+  document.getElementById('pagos-content').innerHTML = `
+    <div class="metrics-grid" style="margin-bottom:26px">
+      <div class="metric-card v"><div class="mi">✅</div><div><div class="ml">Total cobrado (USD)</div><div class="mv" style="color:var(--verde)">$${tc.toLocaleString()}</div></div></div>
+      <div class="metric-card r"><div class="mi">⏳</div><div><div class="ml">Por cobrar (USD)</div><div class="mv" style="color:var(--rojo)">$${tp.toLocaleString()}</div></div></div>
+      <div class="metric-card d"><div class="mi">💛</div><div><div class="ml">Pagos parciales</div><div class="mv" style="color:var(--dorado)">${parc.length}</div></div></div>
+    </div>
+    ${spago('⏳ Pagos pendientes',pend,'var(--rojo)')}
+    ${spago('💛 Pagos parciales',parc,'var(--dorado)')}
+    ${spago('✅ Pagos completos',comp,'var(--verde)')}`;
+}
+function spago(titulo,lista,color){
+  if(!lista.length) return `<div class="section-title" style="color:${color}">${titulo}</div><div class="empty" style="margin-bottom:22px"><div class="ei">✓</div><p>Sin registros en esta categoría.</p></div>`;
+  return `<div class="section-title" style="color:${color}">${titulo}</div>
+    <div class="table-wrap" style="margin-bottom:26px"><table>
+      <thead><tr><th>Nombre</th><th>Programa</th><th>Pagado (USD)</th><th>Saldo</th><th>Método</th><th>Etapa</th><th></th></tr></thead>
+      <tbody>${lista.map(c=>`<tr onclick="sp('detalle','${c.id}')" style="cursor:pointer">
+        <td class="td-name">${c.nombre}</td>
+        <td style="font-size:.8rem;font-style:italic;color:var(--dorado)">${c.programa||'—'}</td>
+        <td style="font-weight:bold;color:${color}">$${(parseFloat(c.monto)||0).toLocaleString()}</td>
+        <td style="color:var(--rojo);font-weight:bold">${c.saldo?'$'+(parseFloat(c.saldo)||0).toLocaleString():'—'}</td>
+        <td style="font-size:.8rem">${c.metodoPago||'—'}</td>
+        <td><span class="sb s${c.etapa}">${ETAPAS[c.etapa]}</span></td>
+        <td><button class="btn-sm btn-edit" onclick="event.stopPropagation();openModal('${c.id}')">✏️</button></td>
+      </tr>`).join('')}
+      </tbody></table></div>`;
+}
+
+// ===== DETALLE =====
+function renderDetalle(id){
+  const c = clientas.find(x=>x.id===id);
+  if(!c) return;
+  const hoy = new Date().toISOString().split('T')[0];
+  const sv = c.seguimiento && c.seguimiento<=hoy;
+  document.getElementById('detalle-content').innerHTML = `
+    <div style="margin-bottom:14px">
+      <button class="btn-secondary" onclick="sp('lista')" style="font-size:.8rem;padding:7px 13px">← Volver a Clientas</button>
+    </div>
+    <div class="detail-header">
+      <div class="d-avatar">🌸</div>
+      <div>
+        <div class="d-name">${c.nombre}</div>
+        <div class="d-sub">${c.programa||'Programa por definir'} · ${c.pais||''}${c.ciudad?' · '+c.ciudad:''}</div>
+        <div style="margin-top:10px;display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+          <span class="sb s${c.etapa}" style="font-size:.8rem;padding:5px 13px">${ETAPAS[c.etapa]}</span>
+          ${bpago(c.estadoPago)}
+          ${c.whatsapp?`<a href="https://wa.me/${wa(c.whatsapp)}?text=${WA_MSG}" target="_blank" class="wa-btn-c">💬 Escribir por WhatsApp</a>`:''}
+          <button class="btn-add" onclick="openModal('${c.id}')" style="font-size:.8rem;padding:7px 13px">✏️ Editar</button>
+        </div>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-box">
+        <h4>📋 Información Personal</h4>
+        ${df('Email',c.email)}${df('WhatsApp',c.whatsapp)}${df('País',c.pais)}${df('Ciudad',c.ciudad)}${df('Red social',c.red)}
+      </div>
+      <div class="detail-box">
+        <h4>💰 Información de Pago</h4>
+        ${df('Estado del pago',c.estadoPago)}
+        ${df('Monto pagado (USD)',c.monto?'$'+parseFloat(c.monto).toLocaleString():'—')}
+        ${df('Saldo pendiente (USD)',c.saldo?'$'+parseFloat(c.saldo).toLocaleString():'—','color:var(--rojo)')}
+        ${df('Método de pago',c.metodoPago)}
+        ${df('Próximo seguimiento',ff(c.seguimiento),sv?'color:var(--rojo);font-weight:bold':'')}
+        ${df('Registrada',ff(c.creado))}
+      </div>
+      <div class="detail-box">
+        <h4>💭 Situación Actual</h4>
+        <p style="font-size:.87rem;line-height:1.7;color:#2D1B44">${c.situacion||'—'}</p>
+        ${c.objecion?`<div style="margin-top:11px"><div style="font-size:.7rem;color:var(--gris);margin-bottom:3px">Objeción principal</div><div style="font-size:.86rem;color:var(--rojo);font-weight:500">⚡ ${c.objecion}</div></div>`:''}
+      </div>
+      <div class="detail-box">
+        <h4>🌺 Mover de Etapa</h4>
+        <div class="stage-actions">
+          ${ETAPAS.map((e,i)=>`<button class="btn-stage ${c.etapa===i?'curr':''}" onclick="moverEtapa('${c.id}',${i})">${e}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="notes-box">
+      <h4>📝 Notas de Acompañamiento</h4>
+      <div class="notes-content">${c.notas||'Sin notas todavía.'}</div>
+    </div>`;
+}
+function df(label,valor,style){
+  return `<div class="df"><div class="dfl">${label}</div><div class="dfv" style="${style||''}">${valor||'—'}</div></div>`;
+}
+function moverEtapa(id,etapa){
+  const c=clientas.find(x=>x.id===id);if(!c)return;
+  c.etapa=etapa;save();renderDetalle(id);
+  toast('✨ Etapa: '+ETAPAS[etapa],'s');
+}
+
+// ===== MODAL =====
+function openModal(id){
+  editId=id||null;
+  const c=id?clientas.find(x=>x.id===id):null;
+  document.getElementById('modal-title').textContent=c?'✏️ Editar clienta':'✨ Nueva clienta';
+  document.getElementById('btn-eliminar').style.display=c?'inline-block':'none';
+  const campos=['nombre','whatsapp','email','pais','ciudad','red','programa','situacion','objecion','seguimiento','estado-pago','metodo-pago','monto','saldo','notas','etapa'];
+  const keys  =['nombre','whatsapp','email','pais','ciudad','red','programa','situacion','objecion','seguimiento','estadoPago','metodoPago','monto','saldo','notas','etapa'];
+  campos.forEach((campo,i)=>{const el=document.getElementById('f-'+campo);if(el)el.value=c?(c[keys[i]]!==undefined?c[keys[i]]:''):'';});
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');editId=null;}
+function saveClienta(){
+  const g=id=>(document.getElementById('f-'+id)||{}).value||'';
+  const nombre=g('nombre').trim();const wa_=g('whatsapp').trim();
+  if(!nombre||!wa_){toast('El nombre y WhatsApp son obligatorios','e');return;}
+  const data={
+    nombre,whatsapp:wa_,
+    email:g('email'),pais:g('pais'),ciudad:g('ciudad'),red:g('red'),programa:g('programa'),
+    situacion:g('situacion'),objecion:g('objecion'),seguimiento:g('seguimiento'),
+    estadoPago:g('estado-pago'),metodoPago:g('metodo-pago'),monto:g('monto'),saldo:g('saldo'),
+    notas:g('notas'),etapa:parseInt(g('etapa'))||0,
+    creado:editId?(clientas.find(x=>x.id===editId)||{}).creado:new Date().toISOString().split('T')[0]
+  };
+  if(editId){const idx=clientas.findIndex(x=>x.id===editId);clientas[idx]={...clientas[idx],...data};toast('✨ Clienta actualizada','s');}
+  else{clientas.push({id:uid(),...data});toast('🌸 Nueva clienta registrada','s');}
+  save();closeModal();
+  if(curPage==='panel')renderPanel();
+  else if(curPage==='kanban')renderKanban();
+  else if(curPage==='lista')renderLista();
+  else if(curPage==='detalle'&&editId)renderDetalle(editId);
+}
+function confirmarEliminar(id){
+  if(!confirm('¿Segura que deseas eliminar este registro? Esta acción no se puede deshacer.'))return;
+  clientas=clientas.filter(x=>x.id!==id);save();renderLista();toast('Registro eliminado','e');
+}
+function eliminarClienta(){
+  if(!editId)return;
+  if(!confirm('¿Segura que deseas eliminar a esta clienta? Esta acción no se puede deshacer.'))return;
+  clientas=clientas.filter(x=>x.id!==editId);save();closeModal();sp('lista');toast('Registro eliminado','e');
+}
+
+// ===== HELPERS =====
+function ff(fecha){
+  if(!fecha)return'—';
+  const[y,m,d]=fecha.split('-');
+  const ms=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return`${parseInt(d)} ${ms[parseInt(m)-1]} ${y}`;
+}
+function bpago(estado){
+  const map={'Completo':['#E8F8F5','var(--verde)'],'Pendiente':['#FDEDEC','var(--rojo)'],'Parcial':['#FEF9E7','#B7950B'],'Sin definir':['var(--gris-c)','var(--gris)']};
+  const[bg,c]=map[estado]||map['Sin definir'];
+  return`<span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:.71rem;font-weight:bold;background:${bg};color:${c}">${estado||'Sin definir'}</span>`;
+}
+function wa(n){return(n||'').replace(/[\s\-\(\)\+]/g,'')}
+function toast(msg,tipo){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='show '+(tipo||'');
+  setTimeout(()=>t.className='',3200);
+}
+
+// ===== INIT =====
+renderPanel();
+document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
